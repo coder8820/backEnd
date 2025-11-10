@@ -11,7 +11,7 @@ let product = a * b;
 
 let data = `The sum of ${a} and ${b} is ${sum}, and their product is ${product} `;
 
-fs.writeFileSync("output.txt", data, (err) => {
+fs.writeFile("output.txt", data, (err) => {
   if (err) throw err;
   console.log("File written successfully");
 });
