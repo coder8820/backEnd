@@ -1,1 +1,20 @@
 console.log("Hellow world this is my first Node.js file!");
+// On Clicking a button Incrementing a number by 2
+let count = 0;
+const http = require("http");
+const server = http.createServer((req, res) => {
+  if (req.url === "/increment") {
+    count += 2;
+    res.end(`Count is now: ${count}`);
+  } else {
+    res.end(
+      "Welcome to the Node.js server. Click /increment to increase the count by 2."
+    );
+  }
+});
+server.listen(3000, () => {
+  console.log("Server is listening on port 3000");
+});
+
+// To run this file, use the command: node first.js
+// Then navigate to http://localhost:3000/increment to see the count increment.
