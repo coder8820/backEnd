@@ -1,6 +1,24 @@
 console.log("Hellow world this is my first Node.js file!");
-// On Clicking a button Incrementing a number by 2
+// ------------------ first logic -------------
+
+const fs = require("fs");
+
+let a = 10;
+let b = 20;
+
+let sum = a + b;
+let product = a * b;
+
+let data = `The sum of ${a} and ${b} is ${sum}, and their product is ${product} `;
+
+fs.writeFileSync("output.txt", data, (err) => {
+  if (err) throw err;
+  console.log("File written successfully");
+});
+
+// Creating a simple HTTP server to handle requests
 let count = 0;
+
 const http = require("http");
 const server = http.createServer((req, res) => {
   if (req.url === "/increment") {
