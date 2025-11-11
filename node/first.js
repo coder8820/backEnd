@@ -9,6 +9,8 @@ let b = 20;
 let sum = a + b;
 let product = a * b;
 
+let explain = 'This program calculates the sum and product of two numbers using Node.js.';
+
 let data = `The sum of ${a} and ${b} is ${sum}, and their product is ${product} `;
 
 fs.writeFile("output.txt", data, (err) => {
