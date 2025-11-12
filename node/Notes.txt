@@ -2,3 +2,4 @@
 
 1- What is DNS?
    Domain name Services
+   type of domain into the borwser
