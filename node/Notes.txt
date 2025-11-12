@@ -3,3 +3,27 @@
 1- What is DNS?
    Domain name Services
    type of domain into the borwser
+
+There are three level of DNS
+1- Root DNS
+2- TLD (Top-level-domain)
+3- Authoritative DNS
+
+Q2 How Website works?
+Q3 What are protocols: (http, https, tcp)
+
+------------------ 
+Node Core Modules:
+1- Build-in: Core modules are included with Node.js installation
+2- No installation needed: Directly avalable for use without npm installation
+3- Performence: Highly Optimized for Performence
+
+* fs(file system)
+* http
+* https
+* path
+* path.os
+* events
+* crypto
+* url
+4-- Require Keyword -----
