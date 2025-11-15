@@ -27,3 +27,14 @@ Node Core Modules:
 * crypto
 * url
 4-- Require Keyword -----
+
+
+
+****** Request and Responce ********
+1- Node lifecycle and event loop
+2- Hot two exit event loop?
+3- Understand Request object
+4- Sending Responce
+5- Routing Request
+6- Taking user input
+7- Redirecting Requests
