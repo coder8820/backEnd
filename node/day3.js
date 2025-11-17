@@ -8,22 +8,21 @@ let server = http.createServer((req, res) => {
     res.write("<head><title>Home page</title></head>");
     res.write("<body><h1>This is home page</h1></body>");
     res.write("</html>");
-    res.end();
+    return res.end();
   } else if (req.url === "/about") {
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
     res.write("<head><title>About page</title></head>");
     res.write("<body><h1>This is about page</h1></body>");
     res.write("</html>");
-    res.end();
-  } else {
-    res.setHeader("Content-Type", "text/html");
-    res.write("<html>");
-    res.write("<head><title>Complete Node js</title></head>");
-    res.write("<body><h1>Welcome to complete coding</h1></body>");
-    res.write("</html>");
-    res.end();
+    return res.end();
   }
+  res.setHeader("Content-Type", "text/html");
+  res.write("<html>");
+  res.write("<head><title>Complete Node js</title></head>");
+  res.write("<body><h1>Welcome to complete coding</h1></body>");
+  res.write("</html>");
+  res.end();
 });
 
 const PORT = 3000;
