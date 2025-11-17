@@ -4,7 +4,8 @@ let server = http.createServer((req, res) => {
   console.log(req.url, req.method, req.headers);
   if (req.url === "/") {
     res.write("<h1>This is the home page</h1>");
-    res.write("<form action='/submit' method='POST>");
+    res.write("<form action='/submit-details' method='POST>");
+    res.write('<label for="name">Name:</label>');
     res.write(
       "<input type='text' id='name' name='name' placeholder='enter your name'/>"
     );
