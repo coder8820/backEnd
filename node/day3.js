@@ -3,10 +3,18 @@ let http = require("http");
 let server = http.createServer((req, res) => {
   console.log(req.url, req.method, req.headers);
   if (req.url === "/") {
-    res.write("<h1>This is the home page</h1>");
+    res.setHeader("Content-Type", "text/html");
+    res.write("<html>");
+    res.write("<head><title>Home page</title></head>");
+    res.write("<body><h1>This is home page</h1></body>");
+    res.write("</html>");
     res.end();
   } else if (req.url === "/about") {
-    res.write("<h1>This is the about page</h1>");
+    res.setHeader("Content-Type", "text/html");
+    res.write("<html>");
+    res.write("<head><title>About page</title></head>");
+    res.write("<body><h1>This is about page</h1></body>");
+    res.write("</html>");
     res.end();
   } else {
     res.setHeader("Content-Type", "text/html");
