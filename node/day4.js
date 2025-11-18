@@ -24,10 +24,7 @@ let server = http.createServer((req, res) => {
     res.write("</body>");
     res.write("</html>");
     return res.end();
-  } else if (
-    req.url.toLowerCase() === "/submit-details" &&
-    req.method === "POST"
-  ) {
+  } else if (req.url === "/submit-details" && req.method == "POST") {
     fs.writeFileSync("userDetails.txt", "Sample User Details");
     res.statusCode = 302;
     res.setHeader("Location", "/");
