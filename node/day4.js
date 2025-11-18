@@ -23,13 +23,27 @@ let server = http.createServer((req, res) => {
     res.write("</body>");
     res.write("</html>");
     return res.end();
+  } else if (req.url === "/submit-details" && req.method === "POST") {
+    const body = [];
+    req.on("data", (chunk) => {
+      body.push(chunk);
+    });
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const username = parsedBody.split("&")[0].split("=")[1];
+      const gender = parsedBody.split("&")[1].split("=")[1];
+      console.log("Username:", decodeURIComponent(username));
+      console.log("Gender:", decodeURIComponent(gender));
+      res.statusCode = 302;
+      res.setHeader("Location", "/");
+      return res.end();
+    });
   } else {
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
-    res.write("<body>");
-    res.write("<h1>404 - Page Not Found</h1>");
-    res.write("</body>");
+    res.write("<head><title>Page Not Found</title></head>");
+    res.write("<body><h1>404 - Page Not Found</h1></body>");
     res.write("</html>");
     return res.end();
   }
