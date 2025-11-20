@@ -30,6 +30,7 @@ const server = http.createServer((req, res) => {
               <a href="/cart">🛒</a>
           </nav>
           <h1>Welcome to the Practice Page</h1>
+          <h2>This is the node js practice for backend</h2>
       </body>
       </html>`);
     res.end();
