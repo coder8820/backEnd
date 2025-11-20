@@ -40,3 +40,12 @@ Node Core Modules:
 7- Redirecting Requests
 
 * Routing Request: 
+
+*----------------- Parsing Request -----------***
+1- Streams
+2- Chunks
+3- Buffers
+4- Reading (Chunks)
+5- Buffering Chunks
+6- Parsing Request
+7- Using Modules
