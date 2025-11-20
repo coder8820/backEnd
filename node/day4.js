@@ -3,7 +3,7 @@ const fs = require("fs");
 
 let server = http.createServer((req, res) => {
   console.log(req.url, req.method);
-  if (req.url === "/") {
+  if (req.url === "/submit-details") {
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
     res.write("<head><title>Complete Node js</title></head>");
