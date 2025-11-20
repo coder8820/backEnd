@@ -24,12 +24,26 @@ let server = http.createServer((req, res) => {
     res.write("</body>");
     res.write("</html>");
     return res.end();
-  } else if (req.url === "/submit-details" && req.method == "POST") {
+  } else if (
+    req.url.toLowerCase() === "/submit-details" &&
+    req.method == "POST"
+  ) {
+    req.on("data", (chunk) => {
+      console.log(chunk);
+    });
     fs.writeFileSync("userDetails.txt", "Sample User Details");
     res.statusCode = 302;
     res.setHeader("Location", "/");
-    return res.end();
+    // return res.end();
   }
+  res.setHeader("Content-Type", "text/html");
+  res.write('html lang="en">');
+  res.write("<head><title>Complete Node js</title></head>");
+  res.write("<body>");
+  res.write("<h1>Like / Share / Subscribe</h1>");
+  res.write("</body>");
+  res.write("</html>");
+  res.end();
 });
 
 const PORT = 3000;
