@@ -33,9 +33,6 @@ let server = http.createServer((req, res) => {
     res.setHeader("Location", "/");
     // return res.end();
   }
-  req.on("data", (chunk) => {
-    console.log(chunk);
-  });
   res.setHeader("Content-Type", "text/html");
   res.write('html lang="en">');
   res.write("<head><title>Complete Node js</title></head>");
