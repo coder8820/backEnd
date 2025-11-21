@@ -9,14 +9,19 @@ let server = http.createServer((req, res) => {
     res.write("<head><title>Complete Node js</title></head>");
     res.write("<body>");
     res.write("<h1>This is the home page</h1>");
-    res.write("<form action='/submit-details' method='POST>");
+    res.write("<form action='/submit-details' method='POST'>");
     res.write("<label for='username'>Name:</label>");
     res.write(
       "<input type='text' name='username' placeholder='Enter your name'>"
     );
+    res.write("<br/><label for='email'>Email:</label>");
+    res.write(
+      '<input type="email" name="email" placeholder="Enter your email>'
+    );
     res.write("<br/><label for='gender'>Gender:</label>");
-    res.write('<input value="male" id="male" name="gender" type="radio">');
-    res.write('<br/><label for="male">Male</label>');
+
+    res.write('<br><input value="male" id="male" name="gender" type="radio">');
+    res.write('<label for="male">Male</label>');
     res.write('<input value="female" id="female" name="gender" type="radio">');
     res.write('<label for="female">Female</label>');
     res.write("<input type='submit' value='submit'>");
