@@ -42,6 +42,9 @@ let server = http.createServer((req, res) => {
   res.write("<head><title>Complete Node js</title></head>");
   res.write("<body>");
   res.write("<h1>Like / Share / Subscribe</h1>");
+  res.write(
+    "<h2>This is the only page whrer Im learning Node js for backend </h2>"
+  );
   res.write("</body>");
   res.write("</html>");
   res.end();
