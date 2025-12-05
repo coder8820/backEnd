@@ -33,8 +33,10 @@ let server = http.createServer((req, res) => {
     req.url.toLowerCase() === "/submit-details" &&
     req.method == "POST"
   ) {
+    const body = [];
     req.on("data", (chunk) => {
       console.log(chunk);
+      body.push(chunk); //Buffer data pushed into array of body
     });
     fs.writeFileSync("userDetails.txt", "Sample User Details");
     res.statusCode = 302;
