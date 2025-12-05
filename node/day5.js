@@ -41,14 +41,16 @@ let server = http.createServer((req, res) => {
       const parsedBody = Buffer.concat(body).toString();
       console.log(parsedBody);
       const params = new URLSearchParams(parsedBody);
-      const jsonData = {};
-      for (const [key, value] of params) {
-        jsonData[key] = value;
-      }
+      // const jsonData = {};
+      // for (const [key, value] of params.entries()) {
+      //   jsonData[key] = value;
+      // }
+      const jsonData = Object.fromEntries(params.entries());
       console.log(jsonData);
+      const jsonString = JSON.stringify(jsonData);
+      fs.writeFileSync("userDetails.json", jsonString);
     });
 
-    fs.writeFileSync("userDetails.txt", "Sample User Details");
     res.statusCode = 302;
     res.setHeader("Location", "/");
     // return res.end();
