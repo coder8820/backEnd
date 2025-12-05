@@ -16,11 +16,10 @@ let server = http.createServer((req, res) => {
     );
     res.write("<br/><label for='email'>Email:</label>");
     res.write(
-      '<input type="email" name="email" placeholder="Enter your email>'
+      '<input type="email" name="email" placeholder="Enter your email...">'
     );
     res.write("<br/><label for='gender'>Gender:</label>");
-
-    res.write('<br><input value="male" id="male" name="gender" type="radio">');
+    res.write('<br/><input value="male" id="male" name="gender" type="radio">');
     res.write('<label for="male">Male</label>');
     res.write('<input value="female" id="female" name="gender" type="radio">');
     res.write('<label for="female">Female</label>');
@@ -38,6 +37,11 @@ let server = http.createServer((req, res) => {
       console.log(chunk);
       body.push(chunk); //Buffer data pushed into array of body
     });
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      console.log(parsedBody);
+    });
+
     fs.writeFileSync("userDetails.txt", "Sample User Details");
     res.statusCode = 302;
     res.setHeader("Location", "/");
