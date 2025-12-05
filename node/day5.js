@@ -40,6 +40,12 @@ let server = http.createServer((req, res) => {
     req.on("end", () => {
       const parsedBody = Buffer.concat(body).toString();
       console.log(parsedBody);
+      const params = new URLSearchParams(parsedBody);
+      const jsonData = {};
+      for (const [key, value] of params) {
+        jsonData[key] = value;
+      }
+      console.log(jsonData);
     });
 
     fs.writeFileSync("userDetails.txt", "Sample User Details");
