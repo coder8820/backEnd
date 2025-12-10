@@ -1,7 +1,7 @@
-const http = require("http");
+// const http = require("http");
 const fs = require("fs");
 
-let server = http.createServer((req, res) => {
+const requestHandler = (req, res) => {
   console.log(req.url, req.method);
   if (req.url === "/") {
     res.setHeader("Content-Type", "text/html");
@@ -67,9 +67,12 @@ let server = http.createServer((req, res) => {
   res.write("</body>");
   res.write("</html>");
   res.end();
-});
+};
 
-const PORT = 3000;
-server.listen(PORT, () => {
-  console.log(`Server is listening on http://localhost:${PORT}`);
-});
+// exporting requestHandler function
+module.exports = requestHandler;
+
+// const PORT = 3000;
+// server.listen(PORT, () => {
+//   console.log(`Server is listening on http://localhost:${PORT}`);
+// });
