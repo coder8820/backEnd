@@ -11,7 +11,23 @@ const requestHandler = (req, res) => {
     res.write("</body>");
     res.write("</html>");
     return res.end();
+  } else if (req.url === "/calculator") {
+    res.setHeader("Content-Type", "text/html");
+    res.write(`
+      <html>
+        <head><title>Calculator</title></head>
+        <body>
+            <h1>Simple Calculator</h1>
+            <form action="/calculator" method="POST">
+                <input type="number" name="num1" placeholder="First Number" required>
+                <input type="number" name="num2" placeholder="Second Number" required>
+                <button type="submit">Calculate Sum</button>  
+            </form>
+        </body>
+      </html>`);
+    return res.end();
   }
+
   res.setHeader("Content-Type", "text/html");
   res.write(`
   <html>
