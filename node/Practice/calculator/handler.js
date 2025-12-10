@@ -13,10 +13,13 @@ const requestHandler = (req, res) => {
     return res.end();
   }
   res.setHeader("Content-Type", "text/html");
-  res.write("<html>");
-  res.write("<head><title>Practice set</title></head>");
-  res.write("<body><h1>404 page does not exist</h1></body>");
-  res.write("</html>");
+  res.write(`
+  <html>
+    <head><title>Practice set</title></head>
+    <body>
+        <h1>404 page does not exist</h1>
+    </body>
+  </html>`);
 };
 
 // Export the requestHandler function
