@@ -18,7 +18,7 @@ const requestHandler = (req, res) => {
         <head><title>Calculator</title></head>
         <body>
             <h1>Simple Calculator</h1>
-            <form action="/calculator" method="POST">
+            <form action="/calculator-result" method="POST">
                 <input type="number" name="num1" placeholder="First Number" required>
                 <input type="number" name="num2" placeholder="Second Number" required>
                 <button type="submit">Calculate Sum</button>  
