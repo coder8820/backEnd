@@ -1,7 +1,7 @@
+const { sumHandler } = require("./sum");
 const requestHandler = (req, res) => {
   // Your request handling logic here
   console.log(req.url, req.method);
-  // res.statusCode = 200;
   if (req.url === "/") {
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
@@ -26,6 +26,8 @@ const requestHandler = (req, res) => {
         </body>
       </html>`);
     return res.end();
+  } else if (req.url === "/calculator-result" && req.method === "POST") {
+    sumHandler(req, res);
   }
 
   res.setHeader("Content-Type", "text/html");
