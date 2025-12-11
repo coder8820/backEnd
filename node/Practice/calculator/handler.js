@@ -27,7 +27,7 @@ const requestHandler = (req, res) => {
       </html>`);
     return res.end();
   } else if (req.url === "/calculator-result" && req.method === "POST") {
-    sumHandler(req, res);
+    return sumHandler(req, res);
   }
 
   res.setHeader("Content-Type", "text/html");
