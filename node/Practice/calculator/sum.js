@@ -1,5 +1,4 @@
 const sumHandler = (req, res) => {
-  console.log("Inside sumHandler", req.url);
   let body = [];
   req.on("data", (chunk) => body.push(chunk));
   req.on("end", () => {
