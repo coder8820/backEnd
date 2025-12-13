@@ -1,15 +1,19 @@
 const sumHandler = (req, res) => {
   let body = [];
+  let sum;
+  let sub;
+  let multiplication;
+  let division;
   req.on("data", (chunk) => body.push(chunk));
   req.on("end", () => {
     body = Buffer.concat(body).toString();
     const parsedBody = new URLSearchParams(body);
     const num1 = parseFloat(parsedBody.get("num1")); // Convert to number
     const num2 = parseFloat(parsedBody.get("num2"));
-    const sum = num1 + num2;
-    const sub = num1 - num2;
-    const multiplication = num1 * num2;
-    const division = num1 / num2;
+    sum = num1 + num2;
+    sub = num1 - num2;
+    multiplication = num1 * num2;
+    division = num1 / num2;
     res.setHeader("Content-Type", "text/html");
     res.write(`
       <html>
