@@ -20,6 +20,7 @@ const sumHandler = (req, res) => {
             <p>The difference when ${num2} is subtracted from ${num1} is <strong>${sub}</strong></p>
             <p>The product of ${num1} and ${num2} is <strong>${multiplication}</strong></p>
             <p>The quotient when ${num1} is divided by ${num2} is <strong>${division}</strong></p>
+            <p>------------------------------------------------</p>
             <a href="/calculator">Perform another calculation</a>
             <h3>OR</h3>
             <a href="/">go back to home page</a>
