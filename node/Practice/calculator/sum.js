@@ -8,6 +8,8 @@ const sumHandler = (req, res) => {
     const num2 = parseFloat(parsedBody.get("num2"));
     const sum = num1 + num2;
     const sub = num1 - num2;
+    const multiplication = num1 * num2;
+    const division = num1 / num2;
     res.setHeader("Content-Type", "text/html");
     res.write(`
       <html>
@@ -16,6 +18,8 @@ const sumHandler = (req, res) => {
             <h1>Calculation Result</h1>
             <p>The sum of ${num1} and ${num2} is <strong>${sum}</strong></p>
             <p>The difference when ${num2} is subtracted from ${num1} is <strong>${sub}</strong></p>
+            <p>The product of ${num1} and ${num2} is <strong>${multiplication}</strong></p>
+            <p>The quotient when ${num1} is divided by ${num2} is <strong>${division}</strong></p>
             <a href="/calculator">Perform another calculation</a>
             <h3>OR</h3>
             <a href="/">go back to home page</a>
