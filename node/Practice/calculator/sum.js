@@ -14,6 +14,10 @@ const sumHandler = (req, res) => {
     sub = num1 - num2;
     multiplication = num1 * num2;
     division = num1 / num2;
+    console.log(sum);
+    console.log(sub);
+    console.log(multiplication);
+    console.log(division);
     res.setHeader("Content-Type", "text/html");
     res.write(`
       <html>
