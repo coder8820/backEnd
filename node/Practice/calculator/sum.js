@@ -4,8 +4,11 @@ const sumHandler = (req, res) => {
   let sub;
   let multiplication;
   let division;
-  req.on("data", (chunk) => body.push(chunk));
+  req.on("data", (chunk) => {body.push(chunk);
+    console.log("2. Data event came")
+  });
   req.on("end", () => {
+    console.log("3. End event came")
     body = Buffer.concat(body).toString();
     const parsedBody = new URLSearchParams(body);
     const num1 = parseFloat(parsedBody.get("num1")); // Convert to number
@@ -18,6 +21,7 @@ const sumHandler = (req, res) => {
     console.log(sub);
     console.log(multiplication);
     console.log(division);
+    console.log("4. Before sending response");
     res.setHeader("Content-Type", "text/html");
     res.write(`
       <html>
