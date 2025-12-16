@@ -17,6 +17,7 @@ const requestHandler = (req, res) => {
       <html>
         <head><title>Calculator</title></head>
         <body>
+            <h1>This is the Calculator App</h1>
             <h1>Simple Calculator</h1>
             <form action="/calculator-result" method="POST">
                 <input type="number" name="num1" placeholder="First Number" required>
