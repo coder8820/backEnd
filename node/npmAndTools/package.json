@@ -1,0 +1,16 @@
+{
+  "name": "npmandtools",
+  "version": "1.0.0",
+  "description": "this project is about to learn npm",
+  "license": "ISC",
+  "author": "coder",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon myapp.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
