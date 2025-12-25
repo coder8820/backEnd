@@ -1,4 +1,5 @@
 // const http = require("http");
+const { error } = require("console");
 const fs = require("fs");
 
 const requestHandler = (req, res) => {
@@ -48,14 +49,13 @@ const requestHandler = (req, res) => {
       const jsonData = Object.fromEntries(params.entries());
       console.log(jsonData);
       const jsonString = JSON.stringify(jsonData);
-      fs.writeFile("userDetails.json", jsonString), error => {
-        console.error("Data written ");
-      };
+      fs.writeFile("users.txt", JSON.stringify(jsonString), (err) => { console.log("Data saved") })
+      res.statusCode = 302;
+      res.setHeader("Location", "/");
+      return res.end();
+
     });
 
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
-    // return res.end();
   }
 
   res.setHeader("Content-Type", "text/html");
