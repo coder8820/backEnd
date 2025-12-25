@@ -48,7 +48,9 @@ const requestHandler = (req, res) => {
       const jsonData = Object.fromEntries(params.entries());
       console.log(jsonData);
       const jsonString = JSON.stringify(jsonData);
-      fs.writeFileSync("userDetails.json", jsonString);
+      fs.writeFile("userDetails.json", jsonString), error => {
+        console.error("Data written ");
+      };
     });
 
     res.statusCode = 302;
