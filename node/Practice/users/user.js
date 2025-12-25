@@ -1,5 +1,5 @@
 // const http = require("http");
-const { error } = require("console");
+// const { error } = require("console");
 const fs = require("fs");
 
 const requestHandler = (req, res) => {
@@ -35,7 +35,6 @@ const requestHandler = (req, res) => {
   ) {
     const body = [];
     req.on("data", (chunk) => {
-      console.log(chunk);
       body.push(chunk); //Buffer data pushed into array of body
     });
     req.on("end", () => {
@@ -49,26 +48,29 @@ const requestHandler = (req, res) => {
       const jsonData = Object.fromEntries(params.entries());
       console.log(jsonData);
       const jsonString = JSON.stringify(jsonData);
-      fs.writeFile("users.txt", JSON.stringify(jsonString), (err) => { console.log("Data saved") })
-      res.statusCode = 302;
-      res.setHeader("Location", "/");
-      return res.end();
-
+      fs.writeFile("users.txt", JSON.stringify(jsonString), (err) => {
+        console.log("Data saved")
+        res.statusCode = 302;
+        res.setHeader("Location", "/");
+        return res.end();
+      });
     });
 
   }
 
-  res.setHeader("Content-Type", "text/html");
-  res.write('html lang="en">');
-  res.write("<head><title>Complete Node js</title></head>");
-  res.write("<body>");
-  res.write("<h1>Like / Share / Subscribe</h1>");
-  res.write(
-    "<h2>This is the only page Where Im learning Node js for backend </h2>"
-  );
-  res.write("</body>");
-  res.write("</html>");
-  res.end();
+  else {
+    res.setHeader("Content-Type", "text/html");
+    res.write('html lang="en">');
+    res.write("<head><title>Complete Node js</title></head>");
+    res.write("<body>");
+    res.write("<h1>Like / Share / Subscribe</h1>");
+    res.write(
+      "<h2>This is the only page Where Im learning Node js for backend </h2>"
+    );
+    res.write("</body>");
+    res.write("</html>");
+    res.end();
+  }
 };
 
 // exporting requestHandler function
