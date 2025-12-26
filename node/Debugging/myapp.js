@@ -6,10 +6,14 @@
 const http = require("http");
 
 const testingSyntex = require("./syntex");
+const testingSyntes = require("./runtime");
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
     testingSyntex();
+    testingSyntes();
+    res.end("Hello from the server!");
+
 })
 
 const PORT = 3000;
