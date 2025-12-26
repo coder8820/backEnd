@@ -5,8 +5,11 @@
 
 const http = require("http");
 
+const testingSyntex = require("./syntex");
+
 const server = http.createServer((req, res) => {
-    console.log(req);
+    console.log(req.url, req.method);
+    testingSyntex();
 })
 
 const PORT = 3000;
