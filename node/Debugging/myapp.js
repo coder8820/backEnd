@@ -6,12 +6,14 @@
 const http = require("http");
 
 const testingSyntex = require("./syntex");
-const testingSyntes = require("./runtime");
+const testingRuntime = require("./runtime");
+const testingLogical = require("./logical");
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
-    testingSyntex();
-    testingSyntes();
+    // testingSyntex();
+    // testingRuntime();
+    testingLogical();
     res.end("Hello from the server!");
 
 })
