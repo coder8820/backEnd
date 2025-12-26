@@ -8,12 +8,14 @@ const http = require("http");
 const testingSyntex = require("./syntex");
 const testingRuntime = require("./runtime");
 const testingLogical = require("./logical");
+const calculateAre = require("./practice");
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
     // testingSyntex();
     // testingRuntime();
-    testingLogical();
+    // testingLogical();
+    calculateAre(10, 20);
     res.end("Hello from the server!");
 
 })
