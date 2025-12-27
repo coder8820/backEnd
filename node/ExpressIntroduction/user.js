@@ -1,5 +1,3 @@
-// const http = require("http");
-// const { error } = require("console");
 const fs = require("fs");
 
 const requestHandler = (req, res) => {
@@ -41,10 +39,6 @@ const requestHandler = (req, res) => {
       const parsedBody = Buffer.concat(body).toString();
       console.log(parsedBody);
       const params = new URLSearchParams(parsedBody);
-      // const jsonData = {};
-      // for (const [key, value] of params.entries()) {
-      //   jsonData[key] = value;
-      // }
       const jsonData = Object.fromEntries(params.entries());
       console.log(jsonData);
       const jsonString = JSON.stringify(jsonData);
@@ -73,10 +67,4 @@ const requestHandler = (req, res) => {
   }
 };
 
-// exporting requestHandler function
 module.exports = requestHandler;
-
-// const PORT = 3000;
-// server.listen(PORT, () => {
-//   console.log(`Server is listening on http://localhost:${PORT}`);
-// });

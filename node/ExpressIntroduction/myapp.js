@@ -5,6 +5,7 @@ const requestHandler = require("./user")
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
+    requestHandler(req, res);
     res.end("Hello from the server!");
 
 })
