@@ -1,14 +1,16 @@
+// Core module
 const http = require("http");
 
+// External module or Third party module
+const express = require("express");
+
+// Local module
 const requestHandler = require("./user")
 
+const app = express();
 
-const server = http.createServer((req, res) => {
-    console.log(req.url, req.method);
-    requestHandler(req, res);
-    res.end("Hello from the server!");
 
-})
+const server = http.createServer(app)
 
 const PORT = 3000;
 
