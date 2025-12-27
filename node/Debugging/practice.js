@@ -13,6 +13,7 @@ if (area > 100) {
 
 if (width + height > 100) {
     console.log("Large area which is greater than 100");
+    console.log("Width: " + width + ", Height: " + height);
 }
 
 module.exports = calculateAre;
