@@ -9,6 +9,9 @@ const requestHandler = require("./user")
 
 const app = express();
 
+app.use((req, res, next) => {
+    console.log("Came in first middleware", req.url, req.method);
+})
 
 const server = http.createServer(app)
 
