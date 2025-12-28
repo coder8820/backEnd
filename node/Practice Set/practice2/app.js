@@ -24,7 +24,14 @@ app.get("/", (req, res, next) => {
 
 app.get("/contact-us", (req, res, next) => {
     console.log("Handling the Contact Us GET request");
-    res.send("<h1>This is the Contact Us GET request</h1>");
+    res.send(`
+        <h1>Contact Us Page</h1>
+        <form>
+            <input type="text" name="name" placeholder="Enter your name" /><br/><br/>
+            <input type="email" name="email" placeholder="Enter your email" /><br/><br/>
+            <button type="submit">Submit</button>
+        </form>
+    `);
 })
 
 const PORT = 3000;
