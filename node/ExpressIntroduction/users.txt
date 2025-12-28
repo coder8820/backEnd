@@ -1,1 +1,1 @@
-"{\"username\":\"anam\",\"email\":\"anam@gmail.com\",\"gender\":\"female\"}"
+"{\"username\":\"kumail\",\"email\":\"kumail@gmail.com\",\"gender\":\"male\"}"
