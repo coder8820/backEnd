@@ -12,6 +12,21 @@ app.use((req, res, next) => {
     next();
 })
 
+// app.use(((req, res, next) => {
+//     console.log("This is the Third Middleware for post request");
+//     res.send("<h1>This is the third middleware</h1>");
+// }))
+
+app.get("/", (req, res, next) => {
+    console.log("Handling the GET request");
+    res.send("<h1>This is the GET request</h1>");
+})
+
+app.get("/contact-us", (req, res, next) => {
+    console.log("Handling the Contact Us GET request");
+    res.send("<h1>This is the Contact Us GET request</h1>");
+})
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
