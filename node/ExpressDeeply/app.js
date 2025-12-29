@@ -1,6 +1,11 @@
 const express = require('express');
 
+const bodyParser = require('body-parser');
+
+
 const app = express();
+
+
 
 app.use((req, res, next) => {
     console.log("First Dummy Middleware", req.url, req.method);
@@ -36,7 +41,15 @@ app.get("/contact-us", (req, res, next) => {
 })
 
 app.post("/contact-us", (req, res, next) => {
-    console.log("Handling the Contact Us POST request");
+    console.log("Handling the Contact Us POST request", req.url, req.method, req.body);
+    // res.send("<h1>Thank you for contacting us!</h1>");
+    next();
+})
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.post("/contact-us", (req, res, next) => {
+    console.log("Handling the Contact Us POST request", req.url, req.method, req.body);
     res.send("<h1>Thank you for contacting us!</h1>");
 })
 
