@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false })); // to parse the incoming request body data.
 
 
 app.use((req, res, next) => {
@@ -32,7 +32,7 @@ app.get("/contact-us", (req, res, next) => {
     res.send(`
         <h1>Contact Us Page</h1>
         <form action="/contact-us" method="POST">
-            <input type="text" name="name" placeholder="Enter your name" /><br/><br/>
+            <input type="text" name="username" placeholder="Enter your name" /><br/><br/>
             <input type="email" name="email" placeholder="Enter your email" /><br/><br/>
             <input type="password" name="password" placeholder="Enter your password" /><br/><br/>
             <button type="submit">Submit</button>
