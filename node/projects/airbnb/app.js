@@ -1,4 +1,9 @@
+// External modules which is used to create server
 const express = require('express');
+
+// local module which is used for user related routes
+const userRouter = require('./routes/userRouter');
+const adminRouter = require('./routes/adminRouter')
 
 const app = express();
 
@@ -8,11 +13,16 @@ app.use((req, res, next) => {
 })
 
 app.use(express.urlencoded());
+app.use(userRouter);
+app.use(adminRouter)
 
 app.get("/", (req, res, next) => {
     res.send(`
         <h1>Welcome to Airbnb</h1>
-        <a href="/host/add-home">Add Home </a>
+        <a href="/host/add-home">Add Home </a><br/><br/>
+        <a href="/admin/dashboard">Dashboard</a><br/><br/>
+        <img src="https://share.google/flmNT9bwR39DYXZuh" alt="Airbnb Logo" width="200" height="200" /><br/><br/>
+        <a href="/profile">User Profile</a>
         `);
 })
 app.get("/host/add-home", (req, res, next) => {
