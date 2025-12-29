@@ -22,7 +22,7 @@ app.get("/", (req, res, next) => {
         <h1>Welcome to Airbnb</h1>
         <a href="/host/add-home">Add Home </a><br/><br/>
         <a href="/admin/dashboard">Dashboard</a><br/><br/>
-        <img src="download.jpg" alt="Airbnb Logo" width="200" height="200" /><br/><br/>
+        <img src="airbnb.jpg" alt="Airbnb Logo" width="200" height="200" /><br/><br/>
         <a href="/profile">User Profile</a>
         `);
 })
