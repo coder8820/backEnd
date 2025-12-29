@@ -12,14 +12,14 @@ app.use(express.urlencoded());
 app.get("/", (req, res, next) => {
     res.send(`
         <h1>Welcome to Airbnb</h1>
-        <a href="/add-home">Add Home </a>
+        <a href="/host/add-home">Add Home </a>
         `);
 })
-app.get("/add-home", (req, res, next) => {
+app.get("/host/add-home", (req, res, next) => {
     console.log("is this showing... ", req.body)
     res.send(`
         <h1>Register you home here</h1>
-        <form action="/add-home" method="POST">
+        <form action="/host/add-home" method="POST">
             <input type="text" name="housename" placeholder="Enter your home name" /><br/><br/>
             <input type="text" name="location" placeholder="Enter your home location" /><br/><br/>
             <input type="number" name="price" placeholder="Enter your home price" /><br/><br/>
@@ -27,7 +27,7 @@ app.get("/add-home", (req, res, next) => {
         </form>
         `);
 })
-app.post("/add-home", (req, res, next) => {
+app.post("/host/add-home", (req, res, next) => {
     console.log("is this showing... ", req.body)
     res.send(`
         <h1>Home Registered Successfully</h1>
