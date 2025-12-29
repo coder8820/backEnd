@@ -15,13 +15,14 @@ app.use((req, res, next) => {
 app.use(express.urlencoded());
 app.use(userRouter);
 app.use(adminRouter)
+app.use(express.static("public"))
 
 app.get("/", (req, res, next) => {
     res.send(`
         <h1>Welcome to Airbnb</h1>
         <a href="/host/add-home">Add Home </a><br/><br/>
         <a href="/admin/dashboard">Dashboard</a><br/><br/>
-        <img src="https://share.google/flmNT9bwR39DYXZuh" alt="Airbnb Logo" width="200" height="200" /><br/><br/>
+        <img src="download.jpg" alt="Airbnb Logo" width="200" height="200" /><br/><br/>
         <a href="/profile">User Profile</a>
         `);
 })
