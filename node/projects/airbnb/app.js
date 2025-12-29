@@ -1,5 +1,6 @@
 // External modules which is used to create server
 const express = require('express');
+const path = require('path');
 
 // local module which is used for related to routes
 const userRouter = require('./routes/userRouter');
@@ -15,21 +16,12 @@ app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
 
 app.get("/", (req, res, next) => {
-    res.send(`
-        <h1>Welcome to Airbnb</h1>
-        <a href="/host/add-home">Add Home </a><br/><br/>
-        <a href="/admin/dashboard">Dashboard</a><br/><br/>
-        <img src="/images/airbnb.jpg" alt="Airbnb Logo" width="200" height="200" /><br/><br/>
-        <a href="/profile">User Profile</a>
-        `);
+    res.sendFile(path.join(__dirname, 'views', 'home.html'));
 })
 
 // 404 Not found route handler
 app.use((req, res, next) => {
-    res.status(404).send(`
-        <h1>404 Not Found</h1>
-        <p>The page you are looking for does not exist.</p>
-        <a href="/">Go Back to Home</a>`)
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 })
 
 
