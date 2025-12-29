@@ -8,14 +8,12 @@ app.use((req, res, next) => {
 })
 
 app.get("/", (req, res, next) => {
-    console.log("First Middleware", req.url, req.method);
     res.send(`
         <h1>Welcome to Airbnb</h1>
         <a href="/add-home">Add Home </a>
         `);
 })
 app.get("/add-home", (req, res, nextd) => {
-    console.log("Add Home Middleware", req.url, req.method);
     res.send(`
         <h1>Add your Home</h1>
         <form action="/add-home" method="POST">
