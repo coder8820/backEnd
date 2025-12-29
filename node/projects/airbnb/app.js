@@ -1,23 +1,18 @@
 // External modules which is used to create server
 const express = require('express');
 
-// local module which is used for user related routes
+// local module which is used for related to routes
 const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
 const hostRouter = require('./routes/hostrouter')
 
 const app = express();
 
-app.use((req, res, next) => {
-    console.log(req.url, req.method);
-    next();
-})
-
 app.use(express.urlencoded());
 app.use(express.static("public"))
 app.use(userRouter);
 app.use(adminRouter)
-app.use(hostRouter);
+app.use("/host", hostRouter);
 
 app.get("/", (req, res, next) => {
     res.send(`
@@ -29,9 +24,16 @@ app.get("/", (req, res, next) => {
         `);
 })
 
+// 404 Not found route handler
+app.use((req, res, next) => {
+    res.status(404).send(`
+        <h1>404 Not Found</h1>
+        <p>The page you are looking for does not exist.</p>
+        <a href="/">Go Back to Home</a>`)
+})
+
 
 const PORT = 3000;
-
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
 })
