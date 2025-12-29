@@ -29,6 +29,7 @@ app.get("/contact-us", (req, res, next) => {
         <form action="/contact-us" method="POST">
             <input type="text" name="name" placeholder="Enter your name" /><br/><br/>
             <input type="email" name="email" placeholder="Enter your email" /><br/><br/>
+            <input type="password" name="password" placeholder="Enter your password" /><br/><br/>
             <button type="submit">Submit</button>
         </form>
     `);
