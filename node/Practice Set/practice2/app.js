@@ -3,15 +3,18 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+app.use(bodyParser.urlencoded());
+
+
 app.use((req, res, next) => {
     console.log("First Dummy Middleware", req.url, req.method);
     next();
 })
 
-app.use((req, res, next) => {
-    console.log("Second Dummy Middleware", req.url, req.method);
-    next();
-})
+// app.use((req, res, next) => {
+//     console.log("Second Dummy Middleware", req.url, req.method);
+//     next();
+// })   
 
 // app.use(((req, res, next) => {
 //     console.log("This is the Third Middleware for post request");
@@ -25,7 +28,7 @@ app.get("/", (req, res, next) => {
 
 
 app.get("/contact-us", (req, res, next) => {
-    console.log("Handling the Contact Us GET request");
+    console.log("Handling the Contact Us GET request", req.url, req.method);
     res.send(`
         <h1>Contact Us Page</h1>
         <form action="/contact-us" method="POST">
@@ -38,12 +41,12 @@ app.get("/contact-us", (req, res, next) => {
 })
 
 app.post("/contact-us", (req, res, next) => {
-    console.log("First handling body parse!");
+    console.log("First handling body parse!", req.url, req.method, req.body);
     // res.send("<h1>First handling body parse!</h1>");
     next();
 })
 
-app.use(bodyParser.urlencoded());
+
 
 app.post("/contact-us", (req, res, next) => {
     console.log("Handling the Contact Us POST request", req.url, req.method, req.body);
