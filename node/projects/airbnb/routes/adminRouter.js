@@ -4,7 +4,7 @@ const adminRouter = express.Router();
 
 
 
-adminRouter.get("/admin/dashboard", (req, res, next) => {
+adminRouter.get("/dashboard", (req, res, next) => {
     res.send(`
         <h1>Admin Dashboard</h1>
         <p>Welcome to the Admin Dashboard of Airbnb application.</p>
