@@ -11,7 +11,7 @@ const app = express();
 app.use(express.urlencoded());
 app.use(express.static("public"))
 app.use(userRouter);
-app.use(adminRouter)
+app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
 
 app.get("/", (req, res, next) => {
