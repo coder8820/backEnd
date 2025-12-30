@@ -11,7 +11,7 @@ const rootDir = require('./utils/pathUtils');
 const app = express();
 
 app.use(express.urlencoded());
-app.use(express.static("public"))
+app.use(express.static("public"))// why we use static the reason is to access css and image files because these files are static files it means these files will not change over time
 app.use(userRouter);
 app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
