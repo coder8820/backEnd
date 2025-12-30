@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #ff385c, #ff9a9e);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-in;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            animation: slideDown 0.9s ease-out;
+        }
+
+        main {
+            background-color: white;
+            width: 380px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            animation: popUp 0.8s ease-out;
+        }
+
+        p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #ff385c;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #e03150;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-25px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes popUp {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+        <header>
+            <h1>User Profile</h1>
+        </header>
+
+        <main>
+            <p>This is the user profile page of Airbnb application.</p>
+            <a href="/">🏠 Go Back to Home</a>
+        </main>
+
+</body>
+
+</html>
