@@ -1,27 +1,7 @@
+// External Modules
 const express = require('express');
 
-// local module to parse the incoming request body data.
-const bodyParser = require('body-parser');
-
 const app = express();
-
-app.use(bodyParser.urlencoded({ extended: false })); // to parse the incoming request body data.
-
-
-app.use((req, res, next) => {
-    console.log("First Dummy Middleware", req.url, req.method);
-    next();
-})
-
-// app.use((req, res, next) => {
-//     console.log("Second Dummy Middleware", req.url, req.method);
-//     next();
-// })   
-
-// app.use(((req, res, next) => {
-//     console.log("This is the Third Middleware for post request");
-//     res.send("<h1>This is the third middleware</h1>");
-// }))
 
 app.get("/", (req, res, next) => {
     console.log("Handling the GET request");
