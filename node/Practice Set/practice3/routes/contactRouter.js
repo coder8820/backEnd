@@ -14,11 +14,8 @@ contactRouter.get("/contact-us", (req, res, next) => {
 })
 
 contactRouter.post("/contact-us", (req, res, next) => {
+    console.log(req.url, req.method, req.body);
     res.sendFile(path.join(rootDir, 'views', 'contact-success.html'))
 })
-
-// contactRouter.get('/contact-us', (req, res, next) => {
-//     res.sendFile(path.join(rootDir, 'views', 'contact.html'));
-// })
 
 module.exports = contactRouter;
