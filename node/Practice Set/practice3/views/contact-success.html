@@ -2,18 +2,189 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact-success</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Success</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #0f2027, #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Background glow */
+        .bg-glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: #00ff9c;
+            filter: blur(160px);
+            opacity: 0.25;
+            animation: glowMove 8s infinite alternate ease-in-out;
+        }
+
+        @keyframes glowMove {
+            from {
+                transform: translate(-120px, -100px);
+            }
+
+            to {
+                transform: translate(120px, 120px);
+            }
+        }
+
+        /* Card */
+        .container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 45px 40px;
+            width: 420px;
+            text-align: center;
+            box-shadow: 0 0 35px rgba(0, 255, 156, 0.3);
+            animation: popUp 1s ease;
+            z-index: 2;
+        }
+
+        /* Check icon */
+        .check {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid #00ff9c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .check::after {
+            content: "✓";
+            font-size: 42px;
+            color: #00ff9c;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: #00ff9c;
+            text-shadow: 0 0 15px rgba(0, 255, 156, 0.8);
+        }
+
+        p {
+            font-size: 15px;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin: 8px;
+            padding: 10px 26px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #00ff9c;
+            border: 2px solid #00ff9c;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.4);
+        }
+
+        .buttons a:hover {
+            background: #00ff9c;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 255, 156, 0.9);
+        }
+
+        .countdown {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes popUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(0, 255, 156, 0.6);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 30px rgba(0, 255, 156, 0.9);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(0, 255, 156, 0.6);
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Thank you for contacting us!</h1>
-    </header>
-    <main>
-        <p>We have received your message and will get back to you shortly.</p>
-    </main>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <div class="check"></div>
+        <h1>Thank You!</h1>
+        <p>Your message has been successfully received.<br>
+            Our team will contact you shortly.</p>
+
+        <div class="buttons">
+            <a href="/">Home</a>
+            <a href="/contact-us">Contact Again</a>
+        </div>
+
+        <div class="countdown">
+            Redirecting to home in <span id="time">5</span> seconds...
+        </div>
+    </div>
+
+    <script>
+        let time = 5;
+        const timer = document.getElementById("time");
+
+        const interval = setInterval(() => {
+            time--;
+            timer.textContent = time;
+
+            if (time === 0) {
+                clearInterval(interval);
+                window.location.href = "/";
+            }
+        }, 2000);
+    </script>
+
 </body>
 
 </html>
