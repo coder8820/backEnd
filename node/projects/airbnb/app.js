@@ -5,7 +5,8 @@ const path = require('path');
 // local module which is used for related to routes
 const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
-const hostRouter = require('./routes/hostrouter')
+const hostRouter = require('./routes/hostrouter');
+const rootDir = require('./utils/pathUtils');
 
 const app = express();
 
@@ -16,12 +17,12 @@ app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
 
 app.get("/", (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'views', 'home.html'));
+    res.sendFile(path.join(rootDir, 'views', 'home.html'));
 })
 
 // 404 Not found route handler
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
 })
 
 
