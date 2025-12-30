@@ -10,7 +10,7 @@ const rootDir = require('../utils/pathUtils')
 const homeRouter = express.Router();
 
 homeRouter.get('/', (req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'index.html'));
+    res.sendFile(path.join(rootDir, 'views', 'home.html'));
 
 })
 
