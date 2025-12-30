@@ -1,10 +1,14 @@
 // External modules which is used for routing purpose
-const path = require('path');
 const express = require('express');
+// Core Module
+const path = require('path');
+
+// local module
 const userRouter = express.Router();
+const rootDir = require('../utils/pathUtils');
 
 userRouter.get("/profile", (req, res, next) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'profile.html'));
+    res.sendFile(path.join(rootDir, 'views', 'profile.html'));
 })
 
 
