@@ -2,26 +2,168 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact us</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #0f2027, #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Background glow */
+        .bg-glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: #00f2ff;
+            filter: blur(160px);
+            opacity: 0.25;
+            animation: glowMove 9s infinite alternate ease-in-out;
+        }
+
+        @keyframes glowMove {
+            from {
+                transform: translate(-120px, -80px);
+            }
+
+            to {
+                transform: translate(120px, 100px);
+            }
+        }
+
+        /* Card */
+        .container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 45px 40px;
+            width: 420px;
+            text-align: center;
+            box-shadow: 0 0 35px rgba(0, 242, 255, 0.25);
+            animation: popUp 1s ease;
+            z-index: 2;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: #00f2ff;
+            text-shadow: 0 0 18px rgba(0, 242, 255, 0.8);
+        }
+
+        form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        form input::placeholder {
+            color: #bbb;
+        }
+
+        form input:focus {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            border: none;
+            background: #00f2ff;
+            color: #000;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.9);
+        }
+
+        .back-link {
+            margin-top: 18px;
+        }
+
+        .back-link a {
+            color: #00f2ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .back-link a:hover {
+            text-shadow: 0 0 10px #00f2ff;
+        }
+
+        /* Animations */
+        @keyframes popUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                padding: 35px 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Contact Us Page</h1>
-    </header>
-    <main>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <h1>Contact Us</h1>
+
         <form action="/contact-us" method="POST">
-            <input type="text" name="username" placeholder="Enter your name" /><br /><br />
-            <input type="email" name="email" placeholder="Enter your email" /><br /><br />
-            <input type="password" name="password" placeholder="Enter your password" /><br /><br />
+            <input type="text" name="username" placeholder="Enter your name" required />
+            <input type="email" name="email" placeholder="Enter your email" required />
+            <input type="password" name="password" placeholder="Enter your password" required />
             <button type="submit">Submit</button>
         </form>
-    </main>
-    <div>
-        <a href="/">Go to Home Page</a>
+
+        <div class="back-link">
+            <a href="/">← Go to Home Page</a>
+        </div>
     </div>
+
 </body>
 
 </html>
