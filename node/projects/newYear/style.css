@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: radial-gradient(circle at top, #0f2027, #000);
+    font-family: "Segoe UI", sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Star animation */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(1px 1px at 20% 30%, white, transparent),
+        radial-gradient(1px 1px at 80% 40%, white, transparent),
+        radial-gradient(1px 1px at 50% 70%, white, transparent),
+        radial-gradient(1px 1px at 10% 80%, white, transparent);
+    animation: moveStars 20s linear infinite;
+}
+
+@keyframes moveStars {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 2s ease;
+}
+
+.year {
+    font-size: 140px;
+    font-weight: bold;
+    color: #00ffcc;
+    text-shadow: 0 0 30px #00ffcc;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px #00ffcc;
+    }
+
+    to {
+        text-shadow: 0 0 50px #00ffcc;
+    }
+}
+
+.title {
+    font-size: 36px;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.message {
+    font-size: 18px;
+    color: #ddd;
+    margin-bottom: 25px;
+    width: 80%;
+    max-width: 600px;
+    animation: slideUp 1s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.countdown {
+    font-size: 20px;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    color: #00ffcc;
+}
+
+button {
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: 2px solid #00ffcc;
+    background: transparent;
+    color: #00ffcc;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00ffcc;
+    color: #000;
+    box-shadow: 0 0 25px #00ffcc;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
