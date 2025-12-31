@@ -11,6 +11,13 @@ const { registeredHomes } = require('./routes/hostrouter');
 
 const app = express();
 
+
+app.set('view engine', 'ejs');// setting up ejs as template engine
+app.set('views', 'views'); // setting up views folder for ejs templates
+
+
+
+
 app.use(express.urlencoded());
 app.use(express.static("public"))// why we use static the reason is to access css and image files because these files are static files it means these files will not change over time
 app.use(userRouter);
