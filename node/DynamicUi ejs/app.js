@@ -5,8 +5,9 @@ const path = require('path');
 // local module which is used for related to routes
 const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
-const hostRouter = require('./routes/hostrouter');
+const { hostRouter } = require('./routes/hostrouter');
 const rootDir = require('./utils/pathUtils');
+const { registeredHomes } = require('./routes/hostrouter');
 
 const app = express();
 
@@ -16,7 +17,9 @@ app.use(userRouter);
 app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
 
+
 app.get("/", (req, res, next) => {
+    console.log("Registered Homes: ", registeredHomes);
     res.sendFile(path.join(rootDir, 'views', 'home.html'));
 })
 
