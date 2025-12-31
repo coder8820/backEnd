@@ -27,7 +27,7 @@ app.use("/host", hostRouter);
 
 app.get("/", (req, res, next) => {
     console.log("Registered Homes: ", registeredHomes);
-    res.sendFile(path.join(rootDir, 'views', 'home.html'));
+    res.render('home', { registeredHomes: registeredHomes || [] });
 })
 
 // 404 Not found route handler

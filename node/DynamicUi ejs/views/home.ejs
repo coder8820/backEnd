@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airbnb | Home</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-rose-500">DynamicUi</h2>
+
+            <ul class="flex gap-6 text-sm font-medium">
+                <li><a href="/" class="hover:text-rose-500">Home</a></li>
+                <li><a href="/host/add-home" class="hover:text-rose-500">Add Home</a></li>
+                <li><a href="/admin/dashboard" class="hover:text-rose-500">Dashboard</a></li>
+                <li><a href="/profile" class="hover:text-rose-500">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="bg-rose-500 text-white">
+        <div class="max-w-7xl mx-auto px-6 py-20 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+                Discover Homes, Designed Dynamically
+            </h1>
+            <p class="text-lg opacity-90">
+                Find beautiful places to stay, anywhere in the world
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-12">
+
+        <h2 class="text-2xl font-bold mb-6">Registered Homes</h2>
+
+        <% if (registeredHomes && registeredHomes.length> 0) { %>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% registeredHomes.forEach(function(home) { %>
+
+                    <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6">
+                        <h3 class="text-lg font-semibold mb-1">
+                            <%= home.name %>
+                        </h3>
+
+                        <p class="text-gray-600 text-sm mb-2">
+                            <%= home.description %>
+                        </p>
+
+                        <p class="text-sm text-gray-500">
+                            📍 <%= home.location %>
+                        </p>
+
+                        <p class="mt-3 font-bold text-rose-500">
+                            Rs <%= home.price %> / night
+                        </p>
+                    </div>
+
+                    <% }); %>
+            </div>
+
+            <% } else { %>
+
+                <p class="text-gray-500 text-center mt-10">
+                    No homes registered yet.
+                </p>
+
+                <% } %>
+
+    </main>
+
+</body>
+
+</html>

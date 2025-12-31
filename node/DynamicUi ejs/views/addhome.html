@@ -64,24 +64,27 @@
 
 <body>
 
-        <header>
-            <h1>Register Your Home</h1>
-        </header>
+    <header>
+        <h1>Register Your Home</h1>
+    </header>
 
-        <main>
-            <form action="/host/add-home" method="POST">
-                <input type="text" name="housename" placeholder="Enter your home name" required />
-                <br /><br />
+    <main>
+        <form action="/host/add-home" method="POST">
+            <input type="text" name="housename" placeholder="Enter your home name" required />
+            <br /><br />
 
-                <input type="text" name="location" placeholder="Enter your home location" required />
-                <br /><br />
+            <input type="text" name="location" placeholder="Enter your home location" required />
+            <br /><br />
 
-                <input type="number" name="price" placeholder="Enter your home price" required />
-                <br /><br />
+            <input type="text" name="description" placeholder="Enter your home description" required />
+            <br /><br />
 
-                <button type="submit">Submit</button>
-            </form>
-        </main>
+            <input type="number" name="price" placeholder="Enter your home price" required />
+            <br /><br />
+
+            <button type="submit">Submit</button>
+        </form>
+    </main>
 
 </body>
 
