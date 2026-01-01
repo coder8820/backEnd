@@ -20,20 +20,27 @@
                 <li><a href="/host/add-home" class="hover:text-rose-500">Add Home</a></li>
                 <li><a href="/admin/dashboard" class="hover:text-rose-500">Dashboard</a></li>
 
+
                 <!-- Profile Dropdown -->
-                <li class="relative group">
-                    <button class="flex items-center gap-2">
-                        <img src="/images/user.jpeg" class="w-8 h-8 rounded-full border" />
+                <li class="relative">
+                    <button id="profile-btn" class="flex items-center gap-2 focus:outline-none">
+                        <img src="/images/user.jpeg" class="w-8 h-8 rounded-full border" alt="User" />
                     </button>
 
-                    <div class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-md hidden group-hover:block">
-                        <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
-                        <a href="/settings" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                    <!-- Dropdown Menu -->
+                    <div id="profile-menu" class="absolute right-0 mt-2 w-60 bg-white rounded-lg shadow-lg hidden">
+                        <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">
+                            Profile
+                        </a>
+                        <a href="/settings" class="block px-4 py-2 hover:bg-gray-100">
+                            Settings
+                        </a>
                         <a href="/logout" class="block px-4 py-2 text-red-500 hover:bg-gray-100">
                             Logout
                         </a>
                     </div>
                 </li>
+
             </ul>
 
             <!-- Mobile Menu Button -->
@@ -54,3 +61,21 @@
         </ul>
     </div>
 </nav>
+
+<!-- Profile Dropdown Script -->
+
+<script>
+    const profileBtn = document.getElementById("profile-btn");
+    const profileMenu = document.getElementById("profile-menu");
+
+    // Toggle dropdown
+    profileBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        profileMenu.classList.toggle("hidden");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", () => {
+        profileMenu.classList.add("hidden");
+    });
+</script>
