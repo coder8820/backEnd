@@ -12,6 +12,10 @@ const { registeredHomes } = require('./routes/hostrouter');
 const app = express();
 
 
+// Serve static files (CSS, JS, images) from public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 app.set('view engine', 'ejs');// setting up ejs as template engine
 app.set('views', 'views'); // setting up views folder for ejs templates
 
