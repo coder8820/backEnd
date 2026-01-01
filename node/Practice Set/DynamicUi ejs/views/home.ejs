@@ -30,8 +30,10 @@
                                         📍 <%= home.location %>
                                     </p>
 
-                                    <img src="<%= home.imageurl %>" alt="Home Image"
-                                        class="w-full h-48 object-cover rounded-lg mt-4 mb-4" />
+                                    <img src="<%= home.imageurl ? home.imageurl : '/images/home.jpg' %>"
+                                        alt="Home Image" class="w-full h-48 object-cover rounded-lg mt-4 mb-4" />
+
+
 
                                     <!-- Rating -->
                                     <!-- check the number and on the base on number show the starts -->
