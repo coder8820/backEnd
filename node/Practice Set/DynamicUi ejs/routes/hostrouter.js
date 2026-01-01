@@ -8,7 +8,7 @@ const rootDir = require('../utils/pathUtils');
 
 
 hostRouter.get("/add-home", (req, res, next) => {
-    res.render('addhome', { pageTitle: 'Add New Home' });
+    res.render('addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
 })
 
 const registeredHomes = [];
@@ -24,7 +24,7 @@ hostRouter.post("/add-home", (req, res, next) => {
             rating: req.body.rating
         }
     );
-    res.render('homeadded', { pageTitle: 'Home Added' });
+    res.render('homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
 })
 
 

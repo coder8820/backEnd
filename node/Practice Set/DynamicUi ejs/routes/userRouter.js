@@ -12,8 +12,11 @@ const userRouter = express.Router();
 const rootDir = require('../utils/pathUtils');
 
 userRouter.get("/profile", (req, res, next) => {
-    res.render('profile', { pageTitle: 'User Profile' });
+    res.render('profile', { pageTitle: 'User Profile', currentPage: 'profile' });
 })
 
+userRouter.get("/settings", (req, res) => {
+    res.render("settings", { title: "Settings", currentPage: 'settings' });
+});
 
 module.exports = userRouter;
