@@ -16,7 +16,7 @@ const rootDir = require('../utils/pathUtils');
 
 
 adminRouter.get("/dashboard", (req, res, next) => {
-    res.render('admin', { pageTitle: 'Admin Dashboard' });
+    res.render('admin', { pageTitle: 'Admin Dashboard', currentPage: 'dashboard' });
 })
 
 module.exports = adminRouter;

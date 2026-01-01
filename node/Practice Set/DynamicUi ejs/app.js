@@ -31,12 +31,12 @@ app.use("/host", hostRouter);
 
 app.get("/", (req, res, next) => {
     console.log("Registered Homes: ", registeredHomes);
-    res.render('home', { registeredHomes: registeredHomes || [] });
+    res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' });
 })
 
 // 404 Not found route handler
 app.use((req, res, next) => {
-    res.status(404).render('404', { pageTitle: 'Page Not Found' });
+    res.status(404).render('404', { pageTitle: 'Page Not Found', currentPage: '404' });
 })
 
 
