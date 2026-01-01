@@ -8,7 +8,7 @@ const rootDir = require('../utils/pathUtils');
 
 
 hostRouter.get("/add-home", (req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'addhome.html'));
+    res.render('addhome', { pageTitle: 'Add New Home' });
 })
 
 const registeredHomes = [];
