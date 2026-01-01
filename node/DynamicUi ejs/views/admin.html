@@ -2,145 +2,107 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(120deg, #ff385c, #ff9a9e);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            animation: fadeIn 1s ease-in;
-        }
-
-        header {
-            background-color: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(6px);
-            color: white;
-            text-align: center;
-            padding: 25px;
-            animation: slideDown 0.9s ease-out;
-        }
-
-        main {
-            background-color: white;
-            width: 80%;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-            animation: popUp 0.8s ease-out;
-        }
-
-        main p {
-            color: #555;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        img {
-            display: block;
-            margin: 20px auto;
-            border-radius: 50%;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .actions {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        a {
-            text-decoration: none;
-            background-color: #ff385c;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 15px;
-            margin: 8px;
-            display: inline-block;
-            transition: transform 0.3s, background-color 0.3s;
-        }
-
-        a:hover {
-            background-color: #e03150;
-            transform: translateY(-3px);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-30px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes popUp {
-            from {
-                transform: scale(0.9);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-        }
-    </style>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen">
 
-    <header>
-        <h1>Admin Dashboard</h1>
+    <!-- Top Header -->
+    <header class="bg-white border-b sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-semibold">Admin Dashboard</h1>
+
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-600">Admin</span>
+                <img src="/images/user.png" class="w-9 h-9 rounded-full border" />
+            </div>
+        </div>
     </header>
 
-    <main>
-        <p>Welcome to the Admin Dashboard of Airbnb application.</p>
+    <!-- Main -->
+    <main class="max-w-7xl mx-auto px-6 py-8">
 
-        <img src="/images/airbnb.jpg" alt="Airbnb Logo" width="200" height="200" />
-
-        <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis velit iure corporis neque eveniet
-            minima rem assumenda ab, perspiciatis sed dolorum id harum excepturi dolorem consectetur, dicta
-            necessitatibus atque ad.
-        </p>
-
-        <div class="actions">
-            <a href="/">🏠 Go Back to Home</a>
-            <a href="/contact-us">📞 Contact Us</a>
+        <!-- Welcome -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-1">Welcome back 👋</h2>
+            <p class="text-gray-600">
+                Manage your listings, hosts, and platform activity.
+            </p>
         </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+
+            <div class="bg-white rounded-xl p-6 shadow">
+                <p class="text-sm text-gray-500">Total Homes</p>
+                <h3 class="text-2xl font-bold mt-2">124</h3>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow">
+                <p class="text-sm text-gray-500">Active Hosts</p>
+                <h3 class="text-2xl font-bold mt-2">38</h3>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow">
+                <p class="text-sm text-gray-500">Bookings</p>
+                <h3 class="text-2xl font-bold mt-2">412</h3>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow">
+                <p class="text-sm text-gray-500">Revenue</p>
+                <h3 class="text-2xl font-bold mt-2 text-rose-500">$18,240</h3>
+            </div>
+
+        </div>
+
+        <!-- Recent Homes -->
+        <section class="bg-white rounded-xl shadow p-6 mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Recently Added Homes</h3>
+                <a href="/" class="text-sm text-rose-500 hover:underline">
+                    View all
+                </a>
+            </div>
+
+            <div class="divide-y">
+                <div class="py-4 flex justify-between">
+                    <div>
+                        <p class="font-medium">Luxury Villa</p>
+                        <p class="text-sm text-gray-500">Karachi</p>
+                    </div>
+                    <p class="font-semibold">$120 / night</p>
+                </div>
+
+                <div class="py-4 flex justify-between">
+                    <div>
+                        <p class="font-medium">Mountain Cabin</p>
+                        <p class="text-sm text-gray-500">Hunza</p>
+                    </div>
+                    <p class="font-semibold">$90 / night</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="flex flex-wrap gap-4">
+            <a href="/" class="px-5 py-3 bg-gray-900 text-white rounded-lg text-sm hover:bg-black">
+                🏠 Go to Home
+            </a>
+
+            <a href="/host/add-home" class="px-5 py-3 bg-rose-500 text-white rounded-lg text-sm hover:bg-rose-600">
+                ➕ Add New Home
+            </a>
+
+            <a href="/contact-us" class="px-5 py-3 bg-gray-200 text-gray-800 rounded-lg text-sm hover:bg-gray-300">
+                📞 Contact Support
+            </a>
+        </div>
+
     </main>
 
 </body>

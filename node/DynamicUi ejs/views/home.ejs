@@ -1,54 +1,56 @@
 <%- include('partials/head', { title: 'Home' }) %>
-    <%- include('partials/header') %>
-        <!DOCTYPE html>
-        <html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-        <body class="bg-gray-100 text-gray-800 font-sans">
-            <!-- Main Content -->
-            <main class="max-w-7xl mx-auto px-6 py-12">
+    <body class="bg-gray-100 text-gray-800 font-sans">
+        <!-- Navbar Section -->
+        <%- include('partials/navbar') %>
+            <%- include('partials/header') %>
+                <!-- Main Content -->
+                <main class="max-w-7xl mx-auto px-6 py-12">
 
-                <h2 class="text-2xl font-bold mb-6">Registered Homes</h2>
+                    <h2 class="text-2xl font-bold mb-6">Registered Homes</h2>
 
-                <% if (registeredHomes && registeredHomes.length> 0) { %>
+                    <% if (registeredHomes && registeredHomes.length> 0) { %>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <% registeredHomes.forEach(function(home) { %>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <% registeredHomes.forEach(function(home) { %>
 
-                            <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6">
-                                <h3 class="text-lg font-semibold mb-1">
-                                    <%= home.name %>
-                                </h3>
+                                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6">
+                                    <h3 class="text-lg font-semibold mb-1">
+                                        <%= home.name %>
+                                    </h3>
 
-                                <p class="text-gray-600 text-sm mb-2">
-                                    <%= home.description %>
-                                </p>
+                                    <p class="text-gray-600 text-sm mb-2">
+                                        <%= home.description %>
+                                    </p>
 
-                                <p class="text-sm text-gray-500">
-                                    📍 <%= home.location %>
-                                </p>
+                                    <p class="text-sm text-gray-500">
+                                        📍 <%= home.location %>
+                                    </p>
 
-                                <p class="mt-3 font-bold text-rose-500">
-                                    $ <%= home.price %> / night
-                                </p>
-                            </div>
+                                    <p class="mt-3 font-bold text-rose-500">
+                                        $ <%= home.price %> / night
+                                    </p>
+                                </div>
 
-                            <% }); %>
-                    </div>
+                                <% }); %>
+                        </div>
 
-                    <% } else { %>
+                        <% } else { %>
 
-                        <p class="text-gray-500 text-center mt-10">
-                            No homes registered yet.
-                        </p>
+                            <p class="text-gray-500 text-center mt-10">
+                                No homes registered yet.
+                            </p>
 
-                        <% } %>
+                            <% } %>
 
-            </main>
-            <!-- Footer Section -->
-            <%- include('partials/footer') %>
+                </main>
+                <!-- Footer Section -->
+                <%- include('partials/footer') %>
 
 
 
-        </body>
+    </body>
 
-        </html>
+    </html>

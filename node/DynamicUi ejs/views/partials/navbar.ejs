@@ -1,0 +1,56 @@
+<!-- Transparent Navbar -->
+<nav class="sticky top-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/30">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+
+            <!-- Logo -->
+            <h2 class="text-2xl font-bold text-rose-500">
+                DynamicUi
+            </h2>
+
+            <!-- Desktop Search -->
+            <div class="hidden md:flex items-center bg-white/70 rounded-full px-4 py-2 text-sm shadow-sm">
+                <input type="text" placeholder="Search homes..."
+                    class="bg-transparent outline-none w-48 placeholder-gray-600" />
+            </div>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-800">
+                <li><a href="/" class="hover:text-rose-500">Home</a></li>
+                <li><a href="/host/add-home" class="hover:text-rose-500">Add Home</a></li>
+                <li><a href="/admin/dashboard" class="hover:text-rose-500">Dashboard</a></li>
+
+                <!-- Profile Dropdown -->
+                <li class="relative group">
+                    <button class="flex items-center gap-2">
+                        <img src="/images/user.jpeg" class="w-8 h-8 rounded-full border" />
+                    </button>
+
+                    <div class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-md hidden group-hover:block">
+                        <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                        <a href="/settings" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                        <a href="/logout" class="block px-4 py-2 text-red-500 hover:bg-gray-100">
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-gray-900 text-xl">
+                ☰
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur border-t">
+        <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+            <li><a href="/" class="hover:text-rose-500">Home</a></li>
+            <li><a href="/host/add-home" class="hover:text-rose-500">Add Home</a></li>
+            <li><a href="/admin/dashboard" class="hover:text-rose-500">Dashboard</a></li>
+            <li><a href="/profile" class="hover:text-rose-500">Profile</a></li>
+            <li><a href="/logout" class="text-red-500">Logout</a></li>
+        </ul>
+    </div>
+</nav>
