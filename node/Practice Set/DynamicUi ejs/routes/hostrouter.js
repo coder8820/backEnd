@@ -14,7 +14,7 @@ hostRouter.get("/add-home", (req, res, next) => {
 const registeredHomes = [];
 
 hostRouter.post("/add-home", (req, res, next) => {
-    registeredHomes.push({ name: req.body.housename, location: req.body.location, description: req.body.description, price: req.body.price })
+    registeredHomes.push({ name: req.body.housename, location: req.body.location, description: req.body.description, price: req.body.price, image: req.body.imageurl, rating: req.body.rating });
     res.render('homeadded', { pageTitle: 'Home Added' });
 })
 
