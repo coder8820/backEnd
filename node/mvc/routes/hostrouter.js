@@ -10,8 +10,6 @@ const hostController = require('../Controllers/homes')
 
 
 hostRouter.get("/add-home", hostController.getAddHome)
-
-
 hostRouter.post("/add-home", hostController.postAddHome)
 
 
