@@ -1,10 +1,7 @@
-const express = require('express');
-// Core Module
-const path = require('path');
+const express = require('express'); 
 
 // local module
 const hostRouter = express.Router();
-const rootDir = require('../utils/pathUtils');
 
 const hostController = require('../Controllers/homes')
 

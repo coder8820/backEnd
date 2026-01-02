@@ -6,8 +6,6 @@ const path = require('path');
 const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
 const { hostRouter } = require('./routes/hostrouter');
-const rootDir = require('./utils/pathUtils');
-const { registeredHomes } = require('./Controllers/homes');
 
 const app = express();
 
@@ -23,7 +21,6 @@ app.set('views', 'views'); // setting up views folder for ejs templates
 
 
 app.use(express.urlencoded());
-app.use(express.static("public"))// why we use static the reason is to access css and image files because these files are static files it means these files will not change over time
 app.use(userRouter);
 app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
