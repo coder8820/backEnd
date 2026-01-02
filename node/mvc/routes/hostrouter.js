@@ -11,10 +11,8 @@ const hostController = require('../Controllers/homes')
 
 hostRouter.get("/add-home", hostController.getAddHome)
 
-const registeredHomes = [];
 
 hostRouter.post("/add-home", hostController.postAddHome)
 
 
 exports.hostRouter = hostRouter;
-exports.registeredHomes = registeredHomes;

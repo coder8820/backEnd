@@ -3,6 +3,8 @@ exports.getAddHome = (req, res, next) => {
 }
 
 
+
+const registeredHomes = [];
 exports.postAddHome = (req, res, next) => {
     registeredHomes.push(
         {
@@ -16,3 +18,5 @@ exports.postAddHome = (req, res, next) => {
     );
     res.render('homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
 }
+
+exports.registeredHomes = registeredHomes;
