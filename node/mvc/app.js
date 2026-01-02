@@ -7,7 +7,7 @@ const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
 const { hostRouter } = require('./routes/hostrouter');
 const rootDir = require('./utils/pathUtils');
-// const { registeredHomes } = require('./Controllers/homes');
+const { registeredHomes } = require('./Controllers/homes');
 
 const app = express();
 
