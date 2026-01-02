@@ -6,10 +6,10 @@ const path = require('path');
 const hostRouter = express.Router();
 const rootDir = require('../utils/pathUtils');
 
+const hostController = require('../Controllers/homes')
 
-hostRouter.get("/add-home", (req, res, next) => {
-    res.render('addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
-})
+
+hostRouter.get("/add-home", hostController.getAddHome)
 
 const registeredHomes = [];
 
