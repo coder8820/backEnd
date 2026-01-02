@@ -22,13 +22,14 @@
                                         <%= home.name %>
                                     </h3>
 
+                                    <p class="text-sm text-gray-500">
+                                        📍 <%= home.location %>
+                                    </p>
+
                                     <p class="text-gray-600 text-sm mb-2">
                                         <%= home.description %>
                                     </p>
 
-                                    <p class="text-sm text-gray-500">
-                                        📍 <%= home.location %>
-                                    </p>
 
                                     <img src="<%= home.imageurl ? home.imageurl : '/images/home.jpg' %>"
                                         alt="Home Image" class="w-full h-48 object-cover rounded-lg mt-4 mb-4" />
