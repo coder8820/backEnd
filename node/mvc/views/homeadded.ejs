@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('partials/head', { title: 'Home Added Successfully' }) %>
+
+    <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+
+        <!-- Navbar -->
+        <%- include('partials/navbar') %>
+
+            <!-- Main Content -->
+            <main class="flex-grow flex items-center justify-center px-6 py-12">
+
+                <div class="bg-white max-w-lg w-full rounded-2xl shadow-lg p-8 text-center">
+
+                    <!-- Success Icon -->
+                    <div class="flex justify-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rose-500" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-2xl font-bold mb-2">
+                        Home Registered Successfully 🎉
+                    </h1>
+
+                    <p class="text-gray-500 mb-6">
+                        Your home has been added and is now visible to users.
+                    </p>
+
+                    <!-- Image -->
+                    <img src="/images/home.jpg" alt="Home Image" class="w-full h-52 object-cover rounded-xl mb-6" />
+
+                    <!-- Actions -->
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <a href="/"
+                            class="px-6 py-3 bg-rose-500 text-white rounded-lg font-medium hover:bg-rose-600 transition">
+                            🏠 Go to Home
+                        </a>
+
+                        <a href="/admin/dashboard"
+                            class="px-6 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-100 transition">
+                            📊 View Dashboard
+                        </a>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- Footer -->
+            <%- include('partials/footer') %>
+
+    </body>
+
+</html>

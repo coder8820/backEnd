@@ -1,0 +1,32 @@
+const express = require('express');
+// Core Module
+const path = require('path');
+
+// local module
+const hostRouter = express.Router();
+const rootDir = require('../utils/pathUtils');
+
+
+hostRouter.get("/add-home", (req, res, next) => {
+    res.render('addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
+})
+
+const registeredHomes = [];
+
+hostRouter.post("/add-home", (req, res, next) => {
+    registeredHomes.push(
+        {
+            name: req.body.housename,
+            location: req.body.location,
+            description: req.body.description,
+            price: req.body.price,
+            image: req.body.imageurl,
+            rating: req.body.rating
+        }
+    );
+    res.render('homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
+})
+
+
+exports.hostRouter = hostRouter;
+exports.registeredHomes = registeredHomes;
