@@ -13,10 +13,10 @@ app.set('views', 'views'); // setting up views folder for ejs templates
 // local module
 const adminRouter = express.Router();
 const rootDir = require('../utils/pathUtils');
+const hostController = require('../Controllers/homes')
 
 
-adminRouter.get("/dashboard", (req, res, next) => {
-    res.render('admin', { pageTitle: 'Admin Dashboard', currentPage: 'dashboard' });
-})
+
+adminRouter.get("/dashboard", hostController.getDashboard)
 
 module.exports = adminRouter;

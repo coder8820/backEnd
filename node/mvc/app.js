@@ -7,7 +7,7 @@ const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
 const { hostRouter } = require('./routes/hostrouter');
 const rootDir = require('./utils/pathUtils');
-const { registeredHomes } = require('./Controllers/homes');
+// const { registeredHomes } = require('./Controllers/homes');
 
 const app = express();
 
@@ -28,11 +28,9 @@ app.use(userRouter);
 app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
 
+const hostController = require('./Controllers/homes')
 
-app.get("/", (req, res, next) => {
-    console.log("Registered Homes: ", registeredHomes);
-    res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' });
-})
+app.get("/", hostController.getHomes)
 
 // 404 Not found route handler
 app.use((req, res, next) => {
