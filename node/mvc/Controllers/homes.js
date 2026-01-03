@@ -3,9 +3,6 @@ exports.getAddHome = (req, res, next) => {
     res.render('addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
 }
 
-
-
-const registeredHomes = [];
 exports.postAddHome = (req, res, next) => {
     registeredHomes.push(
         {
