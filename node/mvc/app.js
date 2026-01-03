@@ -6,7 +6,7 @@ const path = require('path');
 const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
 const { hostRouter } = require('./routes/hostrouter');
-
+const errorController = require('./Controllers/errors')
 const app = express();
 
 
@@ -30,7 +30,7 @@ const hostController = require('./Controllers/homes')
 app.get("/", hostController.getHomes)
 
 // 404 Not found route handler
-app.use()
+app.use(errorController.pageNotFound)
 
 
 const PORT = 3000;
