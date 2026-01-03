@@ -30,9 +30,7 @@ const hostController = require('./Controllers/homes')
 app.get("/", hostController.getHomes)
 
 // 404 Not found route handler
-app.use((req, res, next) => {
-    res.status(404).render('404', { pageTitle: 'Page Not Found', currentPage: '404' });
-})
+app.use()
 
 
 const PORT = 3000;
