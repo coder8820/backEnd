@@ -14,7 +14,6 @@ exports.postAddHome = (req, res, next) => {
 
     res.render('homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
 }
-exports.registeredHomes = registeredHomes;
 
 // Home page
 exports.getHomes = (req, res, next) => {
