@@ -1,25 +1,24 @@
+const Home = require("../models/home");
+
 // add home
 exports.getAddHome = (req, res, next) => {
     res.render('addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
 }
 
 exports.postAddHome = (req, res, next) => {
-    registeredHomes.push(
-        {
-            name: req.body.housename,
-            location: req.body.location,
-            description: req.body.description,
-            price: req.body.price,
-            image: req.body.imageurl,
-            rating: req.body.rating
-        }
-    );
+    console.log('home Register successful', req.body)
+    const { housename, location, description, price, imageurl, rating } = req.body
+
+    const home = new Home(housename, location, description, price, imageurl, rating)
+    home.save()
+
     res.render('homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
 }
 exports.registeredHomes = registeredHomes;
 
 // Home page
 exports.getHomes = (req, res, next) => {
+    const registeredHomes = Home.fetchAll()
     console.log("Registered Homes: ", registeredHomes);
     res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' });
 }
