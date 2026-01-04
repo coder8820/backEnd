@@ -6,9 +6,7 @@ exports.getAddHome = (req, res, next) => {
 }
 
 exports.postAddHome = (req, res, next) => {
-    console.log('home Register successful', req.body)
     const { housename, location, description, price, imageurl, rating } = req.body
-
     const home = new Home(housename, location, description, price, rating, imageurl)
     home.save()
 
@@ -18,7 +16,6 @@ exports.postAddHome = (req, res, next) => {
 // Home page
 exports.getHomes = (req, res, next) => {
     const registeredHomes = Home.fetchAll()
-    console.log("Registered Homes: ", registeredHomes);
     res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' });
 }
 
