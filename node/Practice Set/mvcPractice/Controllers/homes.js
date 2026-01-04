@@ -16,7 +16,7 @@ exports.postAddHome = (req, res, next) => {
 // Home page
 exports.getHomes = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
-    res.render('store/home', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' }));
+    res.render('store/home-list', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' }));
 }
 
 // Dashboard
