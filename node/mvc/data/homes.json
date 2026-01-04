@@ -1,10 +1,1 @@
-[
-  {
-    "housename": "kumail",
-    "location": "skardu",
-    "description": "decsription is best",
-    "price": "343",
-    "rating": "4",
-    "imageurl": "url"
-  }
-]
+[{"housename":"kumail","location":"skardu","description":"decsription is best","price":"343","rating":"4","imageurl":"url"},{"housename":"Anam House","location":"Skardu","description":"parizad house in beautiful vally","price":"234","rating":"5","imageurl":"image url"}]

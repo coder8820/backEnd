@@ -16,12 +16,12 @@ module.exports = class Home {
     }
 
     save() {
-        registeredHomes.push(this);
+       Home.fetchAll((registeredHomes) => {registeredHomes.push(this)
         const homeDataPath = path.join(rootDir,'data','homes.json');
         fs.writeFile(homeDataPath, JSON.stringify(registeredHomes),(err) =>{
             if(err) throw err
             console.log('file written successfully')
-        })
+        })})
     }
 
     static fetchAll(callback) {
