@@ -9,7 +9,7 @@ exports.postAddHome = (req, res, next) => {
     console.log('home Register successful', req.body)
     const { housename, location, description, price, imageurl, rating } = req.body
 
-    const home = new Home(housename, location, description, price, imageurl, rating)
+    const home = new Home(housename, location, description, price, rating, imageurl)
     home.save()
 
     res.render('homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });

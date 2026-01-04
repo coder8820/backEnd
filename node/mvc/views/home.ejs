@@ -31,12 +31,14 @@
                                     </p>
 
                                     <img src="<%= home.imageurl ? home.imageurl : '/images/home.jpg' %>"
-                                        alt="Home Image" class="w-full h-48 object-cover rounded-lg mt-4 mb-4" />
+                                        alt="Home Image" class="w-full h-48 object-cover rounded-lg mt-4 mb-4"
+                                        onerror="this.src='/images/home.jpg'" />
 
-                                    <!-- check the number and on the base on number show the starts -->
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-400 mr-2">⭐⭐⭐⭐⭐</span>
-                                        <span class="text-sm text-green-500">Total(120 reviews)</span>
+                                    <!-- Rating -->
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex items-center">
+                                            <span class="text-yellow-400 mr-2">⭐ <%= home.rating || 'N/A' %></span>
+                                        </div>
                                     </div>
 
                                     <!-- pricing -->
