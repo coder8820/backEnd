@@ -7,6 +7,7 @@ const { error } = require('console');
 
 module.exports = class Home {
     constructor(housename, location, description, price, rating, imageurl) {
+        this.id = Date.now().toString(),
         this.housename = housename,
             this.location = location,
             this.description = description,
@@ -28,6 +29,13 @@ module.exports = class Home {
         const homeDataPath = path.join(rootDir,'data','homes.json');
         fs.readFile(homeDataPath,(err,data) =>{
             callback(!err ? JSON.parse(data): [])
+        })
+    }
+
+    static fetchById(id, callback) {
+        Home.fetchAll((homes) => {
+            const home = homes.find(h => h.id === id);
+            callback(home);
         })
     }
 

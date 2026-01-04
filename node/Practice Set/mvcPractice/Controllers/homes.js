@@ -21,17 +21,29 @@ exports.getHomes = (req, res, next) => {
 
 // Dashboard
 exports.getDashboard = (req, res, next) => {
-    res.render('admin', { pageTitle: 'Admin Dashboard', currentPage: 'dashboard' });
+    res.render('store/admin', { pageTitle: 'Admin Dashboard', currentPage: 'dashboard' });
 }
 
 // profile
 
 exports.getProfile = (req, res, next) => {
-    res.render('profile', { pageTitle: 'User Profile', currentPage: 'profile' });
+    res.render('host/profile', { pageTitle: 'User Profile', currentPage: 'profile' });
 }
+
+// booking
+exports.getBooking = (req, res, next) => {
+    const homeId = req.params.id;
+    Home.fetchById(homeId, (home) => {
+        if (!home) {
+            return res.status(404).render('404', { pageTitle: '404' });
+        }
+        res.render('store/booking', { home: home, pageTitle: 'Bookings', currentPage: 'Bookings' })
+    })
+}
+
 
 // setting 
 
 exports.getSetting = (req, res) => {
-    res.render("settings", { title: "Settings", currentPage: 'settings' });
+    res.render("store/settings", { title: "Settings", currentPage: 'settings' });
 }
