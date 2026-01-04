@@ -2,7 +2,7 @@ const Home = require("../models/home");
 
 // add home
 exports.getAddHome = (req, res, next) => {
-    res.render('addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
+    res.render('host/addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
 }
 
 exports.postAddHome = (req, res, next) => {
@@ -10,13 +10,13 @@ exports.postAddHome = (req, res, next) => {
     const home = new Home(housename, location, description, price, rating, imageurl)
     home.save()
 
-    res.render('homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
+    res.render('host/homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
 }
 
 // Home page
 exports.getHomes = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
-    res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' }));
+    res.render('store/home', { registeredHomes: registeredHomes, pageTitle: 'Home', currentPage: 'home' }));
 }
 
 // Dashboard
