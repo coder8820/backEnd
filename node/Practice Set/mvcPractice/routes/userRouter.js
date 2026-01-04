@@ -17,6 +17,8 @@ userRouter.get("/profile", hostController.getProfile)
 
 userRouter.get("/settings", hostController.getSetting);
 
+userRouter.get("/bookings", hostController.getBookings)
+
 userRouter.get("/booking/:id", hostController.getBooking)
 
 module.exports = userRouter;
