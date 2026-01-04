@@ -1,1 +1,10 @@
-[{"housename":"Anam and coder House","location":"Skardu, Pakistan","description":"This is the only famous house","price":"150","rating":"5","imageurl":"asdf"},{"housename":"Kumail Abbas","location":"Skardu,Pakistan","description":"King villa in skardu","price":"304","rating":"4","imageurl":"https://www.istockphoto.com/photos/nice-house-and-car"}]
+[
+  {
+    "housename": "kumail",
+    "location": "skardu",
+    "description": "decsription is best",
+    "price": "343",
+    "rating": "4",
+    "imageurl": "url"
+  }
+]
