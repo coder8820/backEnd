@@ -36,7 +36,8 @@
                         <!-- Image Container -->
                         <div class="relative h-48 overflow-hidden bg-gray-200">
                             <img src="<%= home.imageurl %>" alt="<%= home.housename %>" 
-                                class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                                onerror="this.src='/images/home.jpg'">
                             
                             <!-- Badge -->
                             <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-semibold text-rose-500 shadow-md">
