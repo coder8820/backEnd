@@ -18,6 +18,8 @@ storeRouter.get("/profile", hostController.getProfile)
 storeRouter.get("/settings", hostController.getSetting);
 
 storeRouter.get("/bookings", hostController.getBookings)
+storeRouter.get("/index", hostController.getIndex)
+storeRouter.get("/favorit-list", hostController.getFavorits)
 
 storeRouter.get("/booking/:id", hostController.getBooking)
 
