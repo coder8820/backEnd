@@ -62,3 +62,9 @@ exports.postAddHome = (req, res, next) => {
     home.save();
     res.redirect('/');
 }
+
+// Host home list
+exports.getHostHomeList = (req, res, next) => {
+    Home.fetchAll(registeredHomes =>
+        res.render('host/host-home-list', { registeredHomes: registeredHomes, pageTitle: 'My Listings', currentPage: 'listings' }));
+}

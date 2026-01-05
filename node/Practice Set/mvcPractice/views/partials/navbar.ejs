@@ -30,6 +30,13 @@
                         Add Home
                     </a>
                 </li>
+
+                <li>
+                    <a href="/host/listings" data-path="/host/listings"
+                        class="<%= currentPage === 'listings'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition">
+                        My Listings
+                    </a>
+                </li>
                 <!-- bookings -->
                 <li>
                     <a href="/bookings"
@@ -83,6 +90,10 @@
 
             <a href="/host/add-home" data-path="/host/add-home" class=" nav-link px-4 py-2 rounded-lg transition">
                 Add Home
+            </a>
+
+            <a href="/host/listings" data-path="/host/listings" class=" nav-link px-4 py-2 rounded-lg transition">
+                My Listings
             </a>
 
             <a href="/admin/dashboard" data-path="/admin/dashboard" class=" nav-link px-4 py-2 rounded-lg transition">
