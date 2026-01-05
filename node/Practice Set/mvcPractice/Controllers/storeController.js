@@ -17,7 +17,6 @@ exports.getDashboard = (req, res, next) => {
 }
 
 // profile
-
 exports.getProfile = (req, res, next) => {
     res.render('host/profile', { pageTitle: 'User Profile', currentPage: 'profile' });
 }

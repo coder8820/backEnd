@@ -13,7 +13,8 @@ const rootDir = require('../utils/pathUtils');
 const hostController = require('../Controllers/storeController')
 
 
-storeRouter.get("/index", hostController.getIndex)
+storeRouter.get("/", hostController.getIndex)
+storeRouter.get("/index", hostController.getHomes)
 storeRouter.get("/profile", hostController.getProfile)
 storeRouter.get("/settings", hostController.getSetting);
 storeRouter.get("/bookings", hostController.getBookings)
