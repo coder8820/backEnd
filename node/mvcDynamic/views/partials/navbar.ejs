@@ -48,6 +48,14 @@
                     </a>
                 </li>
 
+                <!-- My Favorites -->
+                <li>
+                    <a href="/my-favorites" data-path="/my-favorites"
+                        class="<%= currentPage === 'favorites'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition">
+                        ❤️ Favorites
+                    </a>
+                </li>
+
 
                 <li>
                     <a href="/admin/dashboard" data-path="/admin/dashboard"
@@ -98,6 +106,10 @@
 
             <a href="/admin/dashboard" data-path="/admin/dashboard" class=" nav-link px-4 py-2 rounded-lg transition">
                 Dashboard
+            </a>
+
+            <a href="/my-favorites" data-path="/my-favorites" class=" nav-link px-4 py-2 rounded-lg transition">
+                ❤️ Favorites
             </a>
 
             <a href="/profile" data-path="/profile" class=" nav-link px-4 py-2 rounded-lg transition">

@@ -17,6 +17,7 @@ storeRouter.get("/", hostController.getIndex)
 storeRouter.get("/index", hostController.getHomes)
 storeRouter.get("/home/:id", hostController.getHomeDetail)
 storeRouter.get("/bookings", hostController.getBookings)
+storeRouter.get("/my-favorites", hostController.getMyFavorites)
 storeRouter.get("/favorit-list", hostController.getFavorits)
 storeRouter.get("/booking/:id", hostController.getBooking)
 

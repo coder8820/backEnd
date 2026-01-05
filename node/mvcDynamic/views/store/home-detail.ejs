@@ -73,6 +73,15 @@
                             <a href="#reviews" class="text-rose-500 hover:underline">See reviews</a>
                         </div>
                     </div>
+                    
+                    <!-- Add to Favorites Button -->
+                    <button id="favorite-btn-<%= home.id %>" onclick="toggleFavorite('<%= home.id %>', '<%= home.housename %>')" 
+                        class="mt-4 flex items-center gap-2 px-6 py-3 bg-white border-2 border-rose-500 text-rose-500 font-semibold rounded-lg hover:bg-rose-50 transition duration-200">
+                        <svg id="heart-<%= home.id %>" class="w-6 h-6 fill-current" viewBox="0 0 20 20">
+                            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path>
+                        </svg>
+                        <span id="favorite-text-<%= home.id %>">Add to Favorites</span>
+                    </button>
                 </div>
 
                 <!-- Description -->
@@ -191,6 +200,61 @@
 
     <!-- Footer -->
     <%- include('../partials/footer') %>
+
+    <script>
+        // Load favorites from localStorage on page load
+        function initFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const homeId = '<%= home.id %>';
+            
+            if (favorites.find(fav => fav.id === homeId)) {
+                updateFavoriteButton(homeId, true);
+            }
+        }
+
+        function toggleFavorite(homeId, houseName) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const isFavorite = favorites.find(fav => fav.id === homeId);
+
+            if (isFavorite) {
+                // Remove from favorites
+                favorites = favorites.filter(fav => fav.id !== homeId);
+                updateFavoriteButton(homeId, false);
+                alert(houseName + ' removed from favorites');
+            } else {
+                // Add to favorites
+                favorites.push({
+                    id: homeId,
+                    housename: houseName
+                });
+                updateFavoriteButton(homeId, true);
+                alert(houseName + ' added to favorites');
+            }
+
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        function updateFavoriteButton(homeId, isFavorite) {
+            const btn = document.getElementById('favorite-btn-' + homeId);
+            const heart = document.getElementById('heart-' + homeId);
+            const text = document.getElementById('favorite-text-' + homeId);
+
+            if (isFavorite) {
+                btn.classList.remove('border-rose-500', 'text-rose-500', 'bg-white', 'hover:bg-rose-50');
+                btn.classList.add('bg-rose-500', 'text-white', 'hover:bg-rose-600');
+                text.textContent = 'Added to Favorites';
+                heart.classList.add('text-white');
+            } else {
+                btn.classList.remove('bg-rose-500', 'text-white', 'hover:bg-rose-600');
+                btn.classList.add('border-rose-500', 'text-rose-500', 'bg-white', 'hover:bg-rose-50');
+                text.textContent = 'Add to Favorites';
+                heart.classList.remove('text-white');
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', initFavorites);
+    </script>
 
 </body>
 

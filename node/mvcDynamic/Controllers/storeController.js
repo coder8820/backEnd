@@ -74,6 +74,11 @@ exports.postAddHome = (req, res, next) => {
     res.redirect('/');
 }
 
+// My Favorites page
+exports.getMyFavorites = (req, res, next) => {
+    res.render('store/my-favorites', { pageTitle: 'My Favorites', currentPage: 'favorites' });
+}
+
 // Host home list
 exports.getHostHomeList = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
