@@ -13,14 +13,11 @@ const rootDir = require('../utils/pathUtils');
 const hostController = require('../Controllers/storeController')
 
 
-storeRouter.get("/profile", hostController.getProfile)
-
-storeRouter.get("/settings", hostController.getSetting);
-
-storeRouter.get("/bookings", hostController.getBookings)
 storeRouter.get("/index", hostController.getIndex)
+storeRouter.get("/profile", hostController.getProfile)
+storeRouter.get("/settings", hostController.getSetting);
+storeRouter.get("/bookings", hostController.getBookings)
 storeRouter.get("/favorit-list", hostController.getFavorits)
-
 storeRouter.get("/booking/:id", hostController.getBooking)
 
 module.exports = storeRouter;

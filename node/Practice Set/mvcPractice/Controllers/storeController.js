@@ -50,3 +50,16 @@ exports.getFavorits = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
         res.render('store/favorit-list', { registeredHomes: registeredHomes, pageTitle: 'Favorites', currentPage: 'favorites' }));
 }
+
+// Add home - GET
+exports.getAddHome = (req, res, next) => {
+    res.render('host/addhome', { pageTitle: 'Add Home', currentPage: 'add-home' });
+}
+
+// Add home - POST
+exports.postAddHome = (req, res, next) => {
+    const { housename, location, description, price, rating, imageurl } = req.body;
+    const home = new Home(housename, location, description, price, rating, imageurl);
+    home.save();
+    res.redirect('/');
+}
