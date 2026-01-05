@@ -1,4 +1,4 @@
-const express = require('express'); 
+const express = require('express');
 
 // local module
 const hostRouter = express.Router();
@@ -10,4 +10,4 @@ hostRouter.get("/add-home", hostController.getAddHome)
 hostRouter.post("/add-home", hostController.postAddHome)
 
 
-exports.hostRouter = hostRouter;
+module.exports = hostRouter

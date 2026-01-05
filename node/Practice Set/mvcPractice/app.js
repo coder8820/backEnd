@@ -5,7 +5,7 @@ const path = require('path');
 // local module which is used for related to routes
 const storeRouter = require('./routes/storeRouter');
 const adminRouter = require('./routes/adminRouter');
-const { hostRouter } = require('./routes/hostrouter');
+const hostRouter = require('./routes/hostrouter');
 const errorController = require('./Controllers/errors')
 
 const app = express();
