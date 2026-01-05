@@ -8,17 +8,17 @@ app.set("view engine", "ejs");
 app.set("views", "views"); //
 
 // local module
-const userRouter = express.Router();
+const storeRouter = express.Router();
 const rootDir = require('../utils/pathUtils');
 const hostController = require('../Controllers/homes')
 
 
-userRouter.get("/profile", hostController.getProfile)
+storeRouter.get("/profile", hostController.getProfile)
 
-userRouter.get("/settings", hostController.getSetting);
+storeRouter.get("/settings", hostController.getSetting);
 
-userRouter.get("/bookings", hostController.getBookings)
+storeRouter.get("/bookings", hostController.getBookings)
 
-userRouter.get("/booking/:id", hostController.getBooking)
+storeRouter.get("/booking/:id", hostController.getBooking)
 
-module.exports = userRouter;
+module.exports = storeRouter;

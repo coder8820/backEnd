@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 
 // local module which is used for related to routes
-const userRouter = require('./routes/userRouter');
+const storeRouter = require('./routes/storeRouter');
 const adminRouter = require('./routes/adminRouter');
 const { hostRouter } = require('./routes/hostrouter');
 const errorController = require('./Controllers/errors')
@@ -22,7 +22,7 @@ app.set('views', 'views'); // setting up views folder for ejs templates
 
 
 app.use(express.urlencoded());
-app.use(userRouter);
+app.use(storeRouter);
 app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
 
