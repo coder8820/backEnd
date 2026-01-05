@@ -1,0 +1,152 @@
+<!-- Transparent Navbar -->
+<nav class="sticky top-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/30">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+
+            <!-- Logo -->
+            <h2 class="text-2xl font-bold text-rose-500 cursor-pointer">
+                DynamicUi
+            </h2>
+
+            <!-- Desktop Search -->
+            <div class="hidden md:flex items-center bg-white/70 rounded-full px-4 py-2 text-sm shadow-sm">
+                <input type="text" placeholder="Search Favorite Homes..."
+                    class="bg-transparent outline-none w-48 placeholder-gray-600" />
+            </div>
+
+            <!-- Desktop Menu -->
+            <ul id="desktop-menu" class="hidden md:flex items-center gap-2 text-sm font-medium text-gray-800">
+
+                <li>
+                    <a href="/" data-path="/"
+                        class="<%= currentPage === 'home'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/host/add-home" data-path="/host/add-home"
+                        class="<%= currentPage === 'add-home'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition">
+                        Add Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/host/listings" data-path="/host/listings"
+                        class="<%= currentPage === 'listings'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition">
+                        My Listings
+                    </a>
+                </li>
+                <!-- bookings -->
+                <li>
+                    <a href="/bookings"
+                    class="<%= currentPage === 'bookings'
+                    ? 'bg-rose-700 text-white shadow'
+                    : 'hover:bg-rose-100' %>
+                    nav-link px-4 py-2 rounded-full transition">
+                        Bookings
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="/admin/dashboard" data-path="/admin/dashboard"
+                        class="<%= currentPage === 'dashboard'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition">
+                        Dashboard
+                    </a>
+                </li>
+
+                <!-- Profile Dropdown -->
+                <li class="relative">
+                    <button id="profile-btn" class="flex items-center gap-2 focus:outline-none">
+                        <img src="/images/user.jpeg" class="w-8 h-8 rounded-full border" />
+                    </button>
+
+                    <div id="profile-menu" class="absolute right-0 mt-2 w-60 bg-white rounded-lg shadow-lg hidden">
+                        <a href="/host/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                        <a href="/favorit-list" class="block px-4 py-2 hover:bg-gray-100">favorit-list</a>
+                        <a href="/host/settings" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                        <a href="/logout" class="block px-4 py-2 text-red-500 hover:bg-gray-100">
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-gray-900 text-xl">
+                ☰
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur border-t">
+        <ul id="mobile-nav" class="flex flex-col px-6 py-4 gap-2 text-sm font-medium">
+
+            <!-- <a href="/" data-path="/" class=" nav-link px-4 py-2 rounded-lg transition"> -->
+            Home
+            </a>
+
+            <a href="/host/add-home" data-path="/host/add-home" class=" nav-link px-4 py-2 rounded-lg transition">
+                Add Home
+            </a>
+
+            <a href="/host/listings" data-path="/host/listings" class=" nav-link px-4 py-2 rounded-lg transition">
+                My Listings
+            </a>
+
+            <a href="/admin/dashboard" data-path="/admin/dashboard" class=" nav-link px-4 py-2 rounded-lg transition">
+                Dashboard
+            </a>
+
+            <a href="/profile" data-path="/profile" class=" nav-link px-4 py-2 rounded-lg transition">
+                Profile
+            </a>
+
+            <a href="/logout" class="px-4 py-2 text-red-500">
+                Logout
+            </a>
+        </ul>
+    </div>
+</nav>
+
+<!-- javaScript -->
+<script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+
+    // Profile dropdown
+    const profileBtn = document.getElementById("profile-btn");
+    const profileMenu = document.getElementById("profile-menu");
+
+    profileBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        profileMenu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", () => {
+        profileMenu.classList.add("hidden");
+    });
+
+    // 🔥 ACTIVE NAV LOGIC
+    // const currentPath = window.location.pathname;
+    // const navLinks = document.querySelectorAll(".nav-link");
+
+    // navLinks.forEach(link => {
+    //     if (link.dataset.path === currentPath) {
+    //         link.classList.add(
+    //             "bg-rose-700",  // maroon
+    //             "text-white",
+    //             "shadow"
+    //         );
+    //     } else {
+    //         link.classList.add("hover:bg-rose-100");
+    //     }
+    // });
+</script>

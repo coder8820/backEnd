@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('../partials/head', { title: 'Settings' }) %>
+
+    <body class="bg-gray-100 min-h-screen">
+
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+
+            <!-- Page Wrapper -->
+            <main class="max-w-7xl mx-auto px-6 py-12">
+
+                <!-- Page Title -->
+                <div class="mb-10">
+                    <h1 class="text-3xl font-bold text-gray-900">Account Settings</h1>
+                    <p class="text-gray-500 mt-2">
+                        Manage your personal information, security and preferences
+                    </p>
+                </div>
+
+                <!-- Settings Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+                    <!-- Sidebar -->
+                    <aside class="bg-white rounded-2xl shadow p-6 h-fit">
+                        <ul class="space-y-3 text-sm font-medium">
+                            <li class="bg-rose-100 text-rose-600 rounded-lg px-4 py-2">
+                                Profile
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-lg px-4 py-2 cursor-pointer">
+                                Account
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-lg px-4 py-2 cursor-pointer">
+                                Security
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-lg px-4 py-2 cursor-pointer">
+                                Preferences
+                            </li>
+                            <li class="hover:bg-gray-100 rounded-lg px-4 py-2 cursor-pointer">
+                                Notifications
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <!-- Content -->
+                    <section class="lg:col-span-3 space-y-8">
+
+                        <!-- Profile Card -->
+                        <div class="bg-white rounded-2xl shadow p-8">
+                            <h2 class="text-xl font-semibold mb-6">Profile Information</h2>
+
+                            <div class="flex items-center gap-6 mb-6">
+                                <img src="/images/user.jpeg" class="w-20 h-20 rounded-full border object-cover" />
+                                <button
+                                    class="px-4 py-2 text-sm bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition">
+                                    Change Photo
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <input type="text" placeholder="Full Name"
+                                    class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-400 outline-none" />
+                                <input type="email" placeholder="Email Address"
+                                    class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-400 outline-none" />
+                                <input type="text" placeholder="Phone Number"
+                                    class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-400 outline-none" />
+                                <input type="text" placeholder="Location"
+                                    class="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-400 outline-none" />
+                            </div>
+
+                            <button
+                                class="mt-6 px-6 py-3 bg-rose-500 text-white rounded-lg font-medium hover:bg-rose-600 transition">
+                                Save Changes
+                            </button>
+                        </div>
+
+                        <!-- Security -->
+                        <div class="bg-white rounded-2xl shadow p-8">
+                            <h2 class="text-xl font-semibold mb-6">Security</h2>
+
+                            <div class="space-y-4">
+                                <input type="password" placeholder="Current Password"
+                                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-400 outline-none" />
+                                <input type="password" placeholder="New Password"
+                                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-400 outline-none" />
+                                <input type="password" placeholder="Confirm New Password"
+                                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-400 outline-none" />
+                            </div>
+
+                            <button class="mt-6 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-black transition">
+                                Update Password
+                            </button>
+                        </div>
+
+                        <!-- Preferences -->
+                        <div class="bg-white rounded-2xl shadow p-8">
+                            <h2 class="text-xl font-semibold mb-6">Preferences</h2>
+
+                            <div class="space-y-4 text-sm">
+                                <label class="flex items-center gap-3">
+                                    <input type="checkbox" checked class="accent-rose-500 w-4 h-4" />
+                                    Receive booking notifications
+                                </label>
+                                <label class="flex items-center gap-3">
+                                    <input type="checkbox" class="accent-rose-500 w-4 h-4" />
+                                    Receive promotional emails
+                                </label>
+                                <label class="flex items-center gap-3">
+                                    <input type="checkbox" checked class="accent-rose-500 w-4 h-4" />
+                                    Enable dark mode
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Danger Zone -->
+                        <div class="bg-white rounded-2xl shadow p-8 border border-red-200">
+                            <h2 class="text-xl font-semibold text-red-600 mb-4">
+                                Danger Zone
+                            </h2>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Deleting your account is permanent and cannot be undone.
+                            </p>
+                            <button class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                                Delete Account
+                            </button>
+                        </div>
+
+                    </section>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>
