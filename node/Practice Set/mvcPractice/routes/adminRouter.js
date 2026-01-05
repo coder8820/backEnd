@@ -12,7 +12,7 @@ app.set('views', 'views'); // setting up views folder for ejs templates
 
 // local module
 const adminRouter = express.Router();
-const hostController = require('../Controllers/homes')
+const hostController = require('../Controllers/storeController')
 
 
 

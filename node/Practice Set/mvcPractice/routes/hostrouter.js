@@ -3,7 +3,7 @@ const express = require('express');
 // local module
 const hostRouter = express.Router();
 
-const hostController = require('../Controllers/homes')
+const hostController = require('../Controllers/storeController')
 
 
 hostRouter.get("/add-home", hostController.getAddHome)

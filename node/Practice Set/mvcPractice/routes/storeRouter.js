@@ -10,7 +10,7 @@ app.set("views", "views"); //
 // local module
 const storeRouter = express.Router();
 const rootDir = require('../utils/pathUtils');
-const hostController = require('../Controllers/homes')
+const hostController = require('../Controllers/storeController')
 
 
 storeRouter.get("/profile", hostController.getProfile)

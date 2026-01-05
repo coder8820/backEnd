@@ -26,7 +26,7 @@ app.use(storeRouter);
 app.use("/admin", adminRouter);
 app.use("/host", hostRouter);
 
-const hostController = require('./Controllers/homes')
+const hostController = require('./Controllers/storeController')
 
 app.get("/", hostController.getHomes)
 
