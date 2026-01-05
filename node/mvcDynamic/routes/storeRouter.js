@@ -15,6 +15,7 @@ const hostController = require('../Controllers/storeController')
 
 storeRouter.get("/", hostController.getIndex)
 storeRouter.get("/index", hostController.getHomes)
+storeRouter.get("/home/:id", hostController.getHomeDetail)
 storeRouter.get("/bookings", hostController.getBookings)
 storeRouter.get("/favorit-list", hostController.getFavorits)
 storeRouter.get("/booking/:id", hostController.getBooking)

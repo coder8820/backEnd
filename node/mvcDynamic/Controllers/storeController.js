@@ -50,6 +50,17 @@ exports.getFavorits = (req, res, next) => {
         res.render('store/favorit-list', { registeredHomes: registeredHomes, pageTitle: 'Favorites', currentPage: 'favorites' }));
 }
 
+// Home detail page
+exports.getHomeDetail = (req, res, next) => {
+    const homeId = req.params.id;
+    Home.fetchById(homeId, (home) => {
+        if (!home) {
+            return res.status(404).render('404', { pageTitle: '404' });
+        }
+        res.render('store/home-detail', { home: home, pageTitle: home.housename, currentPage: 'home-detail' })
+    })
+}
+
 // Add home - GET
 exports.getAddHome = (req, res, next) => {
     res.render('host/addhome', { pageTitle: 'Add Home', currentPage: 'add-home' });
