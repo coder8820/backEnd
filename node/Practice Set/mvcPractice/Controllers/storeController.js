@@ -1,18 +1,5 @@
 const Home = require("../models/home");
 
-// add home
-exports.getAddHome = (req, res, next) => {
-    res.render('host/addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
-}
-
-exports.postAddHome = (req, res, next) => {
-    const { housename, location, description, price, imageurl, rating } = req.body
-    const home = new Home(housename, location, description, price, rating, imageurl)
-    home.save()
-
-    res.render('host/homeadded', { pageTitle: 'Home Added', currentPage: 'add-home' });
-}
-
 // Home page
 exports.getHomes = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
