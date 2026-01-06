@@ -49,7 +49,6 @@ module.exports = class Favourite {
     static removeFavourite(homeId, callback) {
         Favourite.getFavourite((favourites) => {
             const filtered = favourites.filter(fav => fav.id !== homeId);
-
             fs.writeFile(favouriteDataPath, JSON.stringify(filtered, null, 2), (err) => {
                 if (err) {
                     return callback(err, null);
