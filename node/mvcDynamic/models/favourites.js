@@ -5,29 +5,57 @@ const path = require('path')
 const rootDir = require('../utils/pathUtils');
 const favouriteDataPath = path.join(rootDir, 'data', 'favourite.json');
 
-
 module.exports = class Favourite {
 
-    static addToFavourite(homeId, callback) {
+    static addToFavourite(homeData, callback) {
         Favourite.getFavourite((favourite) => {
-            registeredHomes.push(this)
-            if (favourite.include(homeId)) {
-                alert('Home is already marked')
-            } else {
-                favourite.push(homeId)
-                fs.writeFile(favouriteDataPath, JSON.stringify(favourite), (callback))
+            // Check if already in favorites using homeData.id
+            const exists = favourite.some(fav => fav.id === homeData.id);
+
+            if (exists) {
+                return callback({ error: 'Home is already marked as favorite' }, null);
             }
 
-            // const homeDataPath = path.join(rootDir, 'data', 'homes.json');
+            // Add the complete home data (not just ID)
+            favourite.push(homeData);
 
-        })
-
+            // Write to file with proper error handling
+            fs.writeFile(favouriteDataPath, JSON.stringify(favourite, null, 2), (err) => {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, { success: 'Added to favorites' });
+            });
+        });
     }
 
     static getFavourite(callback) {
         fs.readFile(favouriteDataPath, (err, data) => {
-            callback(!err ? JSON.parse(data) : [])
-        })
+            if (err) {
+                // Create file if it doesn't exist
+                fs.writeFile(favouriteDataPath, JSON.stringify([]), (writeErr) => {
+                    callback(!writeErr ? [] : []);
+                });
+            } else {
+                try {
+                    callback(JSON.parse(data));
+                } catch (parseErr) {
+                    callback([]);
+                }
+            }
+        });
     }
 
+    static removeFavourite(homeId, callback) {
+        Favourite.getFavourite((favourites) => {
+            const filtered = favourites.filter(fav => fav.id !== homeId);
+
+            fs.writeFile(favouriteDataPath, JSON.stringify(filtered, null, 2), (err) => {
+                if (err) {
+                    return callback(err, null);
+                }
+                callback(null, { success: 'Removed from favorites' });
+            });
+        });
+    }
 }

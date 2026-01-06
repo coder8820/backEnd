@@ -47,7 +47,7 @@ exports.getSetting = (req, res) => {
 // Favorite list
 exports.getFavorits = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
-        res.render('store/favorit-list', { registeredHomes: registeredHomes, pageTitle: 'Favorites', currentPage: 'favorites' }));
+        res.render('store/favorit-list', { registeredHomes: registeredHomes, pageTitle: 'Favorites', currentPage: 'favorit-list' }));
 }
 
 // Home detail page

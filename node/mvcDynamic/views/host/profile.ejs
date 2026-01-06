@@ -11,70 +11,161 @@
 <!-- Head -->
 <%- include('../partials/head', { title: 'User Profile' }) %>
 
-    <body class="bg-gray-100 text-gray-800 min-h-screen">
+    <body class="bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-800 min-h-screen">
 
         <!-- Header -->
         <%- include('../partials/navbar') %>
 
             <!-- Main Content -->
-            <main class="max-w-6xl mx-auto px-6 py-10">
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
 
-                <!-- Profile Card -->
-                <div class="bg-white rounded-2xl shadow p-8 flex flex-col md:flex-row gap-8">
+                <!-- Profile Header with Background -->
+                <div class="relative mb-12">
+                    <!-- Background gradient -->
+                    <div class="absolute inset-0 h-48 bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 rounded-3xl blur-2xl opacity-10"></div>
+                    
+                    <!-- Profile Card -->
+                    <div class="relative bg-white rounded-3xl shadow-xl overflow-hidden">
+                        <!-- Top decorative bar -->
+                        <div class="h-2 bg-gradient-to-r from-rose-500 to-red-500"></div>
 
-                    <!-- Avatar -->
-                    <div class="flex-shrink-0 text-center">
-                        <img src="/images/user.png" alt="User Avatar"
-                            class="w-32 h-32 rounded-full mx-auto border-4 border-rose-500" />
-                        <button class="mt-4 text-sm text-rose-500 hover:underline">
-                            Change Photo
-                        </button>
-                    </div>
+                        <div class="p-8 sm:p-12 flex flex-col md:flex-row gap-10">
 
-                    <!-- User Info -->
-                    <div class="flex-1">
-                        <h2 class="text-2xl font-bold mb-1">Kumail Abbas</h2>
-                        <p class="text-gray-500 mb-4">Frontend Developer · Airbnb Host</p>
+                            <!-- Avatar Section -->
+                            <div class="flex-shrink-0">
+                                <div class="relative inline-block group">
+                                    <div class="absolute -inset-2 bg-gradient-to-r from-rose-500 to-red-500 rounded-full opacity-0 group-hover:opacity-100 transition duration-300 blur"></div>
+                                    
+                                    <img id="profileImage" src="/images/user.png" alt="User Avatar"
+                                        class="relative w-48 h-48 rounded-full object-cover shadow-2xl border-4 border-white" />
+                                    
+                                    <!-- Overlay on hover -->
+                                    <div class="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center cursor-pointer">
+                                        <div class="text-center">
+                                            <span class="text-white text-xl mb-2 block">📸</span>
+                                            <span class="text-white text-sm font-semibold">Change Photo</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                            <p><span class="font-medium">Email:</span> coder8820@gmail.com</p>
-                            <p><span class="font-medium">Phone:</span> +92 340 8514235</p>
-                            <p><span class="font-medium">Location:</span> Pakistan</p>
-                            <p><span class="font-medium">Joined:</span> March 2024</p>
-                        </div>
+                                <!-- Hidden file input -->
+                                <input type="file" id="imageUpload" accept="image/*" style="display: none;" 
+                                    onchange="handleImageUpload(event)" />
 
-                        <!-- Actions -->
-                        <div class="mt-6 flex flex-wrap gap-3">
-                            <a href="/profile/edit"
-                                class="px-5 py-2 bg-rose-500 text-white rounded-lg text-sm font-medium hover:bg-rose-600 transition">
-                                Edit Profile
-                            </a>
-                            <a href="/host/settings"
-                                class="px-5 py-2 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-100 transition">
-                                Settings
-                            </a>
-                            <a href="/logout" class="px-5 py-2 text-sm font-medium text-red-500 hover:underline">
-                                Logout
-                            </a>
+                                <button onclick="document.getElementById('imageUpload').click()" 
+                                    class="mt-6 w-full px-6 py-2 bg-gradient-to-r from-rose-500 to-red-500 text-white rounded-xl font-semibold hover:shadow-lg transition duration-300 transform hover:scale-105">
+                                    📸 Upload Photo
+                                </button>
+                            </div>
+
+                            <!-- User Info -->
+                            <div class="flex-1 flex flex-col justify-center">
+                                <div class="mb-2 inline-block w-fit">
+                                    <span class="px-3 py-1 bg-gradient-to-r from-rose-100 to-red-100 text-rose-700 rounded-full text-xs font-semibold">⭐ VERIFIED HOST</span>
+                                </div>
+                                
+                                <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">Kumail Abbas</h1>
+                                <p class="text-lg text-gray-600 mb-8 flex items-center gap-2">
+                                    <span>💻</span> Frontend Developer · Airbnb Host
+                                </p>
+
+                                <!-- Info Grid -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-2xl">📧</span>
+                                        <div>
+                                            <p class="text-xs text-gray-500 font-semibold uppercase">Email</p>
+                                            <p class="text-gray-900 font-medium">coder8820@gmail.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-2xl">📱</span>
+                                        <div>
+                                            <p class="text-xs text-gray-500 font-semibold uppercase">Phone</p>
+                                            <p class="text-gray-900 font-medium">+92 340 8514235</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-2xl">📍</span>
+                                        <div>
+                                            <p class="text-xs text-gray-500 font-semibold uppercase">Location</p>
+                                            <p class="text-gray-900 font-medium">Pakistan</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-2xl">🗓️</span>
+                                        <div>
+                                            <p class="text-xs text-gray-500 font-semibold uppercase">Joined</p>
+                                            <p class="text-gray-900 font-medium">March 2024</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="/profile/edit"
+                                        class="px-6 py-3 bg-gradient-to-r from-rose-500 to-red-500 text-white rounded-xl font-semibold hover:shadow-lg transition duration-300 transform hover:scale-105">
+                                        ✏️ Edit Profile
+                                    </a>
+                                    <a href="/host/settings"
+                                        class="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold hover:bg-gray-200 transition duration-300 transform hover:scale-105">
+                                        ⚙️ Settings
+                                    </a>
+                                    <a href="/logout" class="px-6 py-3 bg-red-50 text-red-600 rounded-xl font-semibold hover:bg-red-100 transition duration-300 transform hover:scale-105">
+                                        🚪 Logout
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Stats Section -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
-                    <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <h3 class="text-2xl font-bold text-rose-500">12</h3>
-                        <p class="text-sm text-gray-500">Homes Listed</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                    <div class="group bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 cursor-pointer">
+                        <div class="text-5xl mb-3">🏠</div>
+                        <h3 class="text-4xl font-bold bg-gradient-to-r from-rose-500 to-red-500 bg-clip-text text-transparent mb-2">12</h3>
+                        <p class="text-gray-600 font-semibold">Homes Listed</p>
+                        <p class="text-xs text-gray-500 mt-2">Active properties</p>
                     </div>
 
-                    <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <h3 class="text-2xl font-bold text-rose-500">4.9 ★</h3>
-                        <p class="text-sm text-gray-500">Average Rating</p>
+                    <div class="group bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 cursor-pointer">
+                        <div class="text-5xl mb-3">⭐</div>
+                        <h3 class="text-4xl font-bold bg-gradient-to-r from-amber-500 to-yellow-500 bg-clip-text text-transparent mb-2">4.9</h3>
+                        <p class="text-gray-600 font-semibold">Average Rating</p>
+                        <p class="text-xs text-gray-500 mt-2">From 580 reviews</p>
                     </div>
 
-                    <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <h3 class="text-2xl font-bold text-rose-500">340</h3>
-                        <p class="text-sm text-gray-500">Total Bookings</p>
+                    <div class="group bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 cursor-pointer">
+                        <div class="text-5xl mb-3">📅</div>
+                        <h3 class="text-4xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent mb-2">340</h3>
+                        <p class="text-gray-600 font-semibold">Total Bookings</p>
+                        <p class="text-xs text-gray-500 mt-2">Lifetime bookings</p>
+                    </div>
+                </div>
+
+                <!-- Additional Info Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- About Card -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <span>ℹ️</span> About Me
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            I'm a passionate host dedicated to providing exceptional experiences to our guests. With over 3 years of hosting experience, I maintain high standards of cleanliness and hospitality.
+                        </p>
+                    </div>
+
+                    <!-- Badges Card -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <span>🏆</span> Badges
+                        </h2>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">🌟 Superhost</span>
+                            <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold">✅ Verified</span>
+                            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">🚀 Quick Response</span>
+                        </div>
                     </div>
                 </div>
 
@@ -83,6 +174,51 @@
 
             <!-- Footer -->
             <%- include('../partials/footer') %>
+
+    <script>
+        // Handle image upload
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            
+            if (!file) return;
+            
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file');
+                return;
+            }
+            
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File size must be less than 5MB');
+                return;
+            }
+            
+            // Create FileReader to preview image
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                // Update the image preview
+                const profileImage = document.getElementById('profileImage');
+                profileImage.src = e.target.result;
+                
+                // Save to localStorage for persistence
+                localStorage.setItem('userProfileImage', e.target.result);
+                
+                alert('Profile photo updated successfully! 📸');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        // Load saved profile image from localStorage on page load
+        window.addEventListener('load', function() {
+            const savedImage = localStorage.getItem('userProfileImage');
+            if (savedImage) {
+                document.getElementById('profileImage').src = savedImage;
+            }
+        });
+    </script>
 
     </body>
 
