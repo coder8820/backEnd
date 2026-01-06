@@ -51,11 +51,17 @@
                 <!-- My Favorites -->
                 <li>
                     <a href="/my-favorites" data-path="/my-favorites"
-                        class="<%= currentPage === 'favorites'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition">
+                        class="<%= currentPage === 'favorites'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition-all duration-200">
                         ❤️ Favorites
                     </a>
                 </li>
 
+                <li>
+                    <a href="/favorit-list" data-path="/favorit-list"
+                        class="<%= currentPage === 'favorit-list'? 'bg-rose-700 text-white shadow' : 'hover:bg-rose-100' %> nav-link px-4 py-2 rounded-full transition-all duration-200">
+                        📋 Favorite List
+                    </a>
+                </li>
 
                 <li>
                     <a href="/admin/dashboard" data-path="/admin/dashboard"
@@ -65,16 +71,15 @@
                 </li>
 
                 <!-- Profile Dropdown -->
-                <li class="relative">
-                    <button id="profile-btn" class="flex items-center gap-2 focus:outline-none">
-                        <img src="/images/user.jpeg" class="w-8 h-8 rounded-full border" />
+                <li class="relative group">
+                    <button id="profile-btn" class="flex items-center gap-2 focus:outline-none hover:opacity-80 transition-opacity duration-200">
+                        <img src="/images/user.jpeg" class="w-8 h-8 rounded-full border-2 border-rose-500 hover:border-rose-600 transition-colors duration-200" />
                     </button>
 
-                    <div id="profile-menu" class="absolute right-0 mt-2 w-60 bg-white rounded-lg shadow-lg hidden">
-                        <a href="/host/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
-                        <a href="/favorit-list" class="block px-4 py-2 hover:bg-gray-100">favorit-list</a>
-                        <a href="/host/settings" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
-                        <a href="/logout" class="block px-4 py-2 text-red-500 hover:bg-gray-100">
+                    <div id="profile-menu" class="absolute right-0 mt-1 w-60 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 origin-top-right z-50">
+                        <a href="/host/profile" class="block px-4 py-2 hover:bg-rose-50 transition-colors duration-150 first:rounded-t-lg">Profile</a>
+                        <a href="/host/settings" class="block px-4 py-2 hover:bg-rose-50 transition-colors duration-150">Settings</a>
+                        <a href="/logout" class="block px-4 py-2 text-red-500 hover:bg-red-50 transition-colors duration-150 last:rounded-b-lg">
                             Logout
                         </a>
                     </div>
@@ -133,17 +138,28 @@
         mobileMenu.classList.toggle("hidden");
     });
 
-    // Profile dropdown
+    // Profile dropdown with smooth toggle using group-hover via JS backup
     const profileBtn = document.getElementById("profile-btn");
     const profileMenu = document.getElementById("profile-menu");
 
     profileBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         profileMenu.classList.toggle("hidden");
+        profileMenu.classList.toggle("opacity-0");
+        profileMenu.classList.toggle("invisible");
     });
 
-    document.addEventListener("click", () => {
-        profileMenu.classList.add("hidden");
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", (e) => {
+        if (profileBtn && !profileBtn.contains(e.target) && !profileMenu.contains(e.target)) {
+            profileMenu.classList.add("hidden", "opacity-0", "invisible");
+            profileMenu.classList.remove("opacity-100", "visible");
+        }
+    });
+
+    // Prevent menu from closing when clicking inside
+    profileMenu.addEventListener("click", (e) => {
+        e.stopPropagation();
     });
 
     // 🔥 ACTIVE NAV LOGIC
