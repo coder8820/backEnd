@@ -60,12 +60,12 @@
             >
               🏨 View Details
             </a>
-            <button
+            <!-- <button
               onclick="addToFavorite('<%= home.id %>', '<%= home.housename %>', '<%= home.location %>', '<%= home.price %>', '<%= home.rating %>', '<%= home.imageurl %>')"
               class="mt-2 w-full px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition duration-200"
             >
               ❤️ Save to Favorites
-            </button>
+            </button> -->
           </div>
         </div>
 
@@ -81,7 +81,7 @@
     <!-- Footer Section -->
     <%- include('../partials/footer') %>
 
-    <script>
+    <!-- <script>
         function addToFavorite(id, housename, location, price, rating, imageurl) {
             // Get existing favorites from localStorage
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -109,6 +109,6 @@
             
             alert('Added to your favorites! 🎉');
         }
-    </script>
+    </script> -->
   </body>
 </html>
