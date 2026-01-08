@@ -84,7 +84,7 @@ exports.postAddHome = (req, res, next) => {
     const { housename, location, description, price, rating, imageurl } = req.body;
     const home = new Home(housename, location, description, price, rating, imageurl);
     home.save();
-    res.redirect('/host/host-home-list');
+    res.redirect('/');
 };
 
 exports.postEditHome = (req, res, next) => {
@@ -92,7 +92,7 @@ exports.postEditHome = (req, res, next) => {
     const home = new Home(housename, location, description, price, rating, imageurl);
     home.id = id
     home.save();
-    res.redirect('/host-home-list');
+    res.redirect('/host/listings');
 };
 
 // Host home list
