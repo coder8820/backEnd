@@ -4,6 +4,23 @@ const Home = require("../models/home");
 exports.getAddHome = (req, res, next) => {
     res.render('host/edit-home', { pageTitle: 'Add New Home', currentPage: 'add-home' });
 }
+// add edit home
+// exports.getEdithome = (req, res, next) => {
+//     res.render('host/edit-home', { pageTitle: 'Add New Home', currentPage: 'add-home' });
+// }
+
+// Add to storeController.js
+
+exports.getEditHome = (req, res, next) => {
+    const homeId = req.params.id;
+    Home.fetchById(homeId, (home) => {
+        if (!home) {
+            return res.status(404).render('404', { pageTitle: '404' });
+        }
+        res.render('host/edit-home', { home: home, pageTitle: 'Edit Home', currentPage: 'edit-home' });
+    });
+};
+
 
 exports.postAddHome = (req, res, next) => {
     const { housename, location, description, price, imageurl, rating } = req.body
@@ -52,3 +69,4 @@ exports.getBookings = (req, res, next) => {
 exports.getSetting = (req, res) => {
     res.render("store/settings", { title: "Settings", currentPage: 'settings' });
 }
+

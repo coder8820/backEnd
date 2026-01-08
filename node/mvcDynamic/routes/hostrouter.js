@@ -1,16 +1,20 @@
 const express = require('express');
-
-// local module
 const hostRouter = express.Router();
+const hostController = require('../Controllers/storeController'); // make sure folder name matches exactly
 
-const hostController = require('../Controllers/storeController')
+// Dashboard & Profile
+hostRouter.get("/dashboard", hostController.getDashboard);
+hostRouter.get("/profile", hostController.getProfile);
+hostRouter.get("/settings", hostController.getSetting);
 
-hostRouter.get("/dashboard", hostController.getDashboard)
-hostRouter.get("/profile", hostController.getProfile)
-hostRouter.get("/settings", hostController.getSetting)
-hostRouter.get("/listings", hostController.getHostHomeList)
-hostRouter.get("/add-home", hostController.getAddHome)
-hostRouter.post("/add-home", hostController.postAddHome)
+// Host Listings
+hostRouter.get("/listings", hostController.getHostHomeList);
 
+// Add Home
+hostRouter.get("/add-home", hostController.getAddHome);
+hostRouter.post("/add-home", hostController.postAddHome);
 
-module.exports = hostRouter
+// Edit Home
+hostRouter.get("/edit-home/:id", hostController.getEditHome);
+
+module.exports = hostRouter;
