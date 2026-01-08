@@ -71,7 +71,11 @@ exports.getHomeDetail = (req, res, next) => {
 
 // Add Home - GET
 exports.getAddHome = (req, res, next) => {
-    res.render('host/edit-home', { pageTitle: 'Add Home', currentPage: 'add-home' });
+    res.render('host/edit-home', {
+        pageTitle: 'Add Home',
+        currentPage: 'add-home',
+        editing: false
+    });
 };
 
 // Add Home - POST
@@ -80,6 +84,14 @@ exports.postAddHome = (req, res, next) => {
     const home = new Home(housename, location, description, price, rating, imageurl);
     home.save();
     res.redirect('/');
+};
+
+exports.postEditHome = (req, res, next) => {
+    const { id, housename, location, description, price, rating, imageurl } = req.body;
+    const home = new Home(housename, location, description, price, rating, imageurl);
+    home.id = id
+    home.save();
+    res.redirect('/host-home-list');
 };
 
 // Host home list
@@ -101,9 +113,11 @@ exports.getEditHome = (req, res, next) => {
         }
         console.log('id=', homeId, 'editing = ', editing, 'homeData = ', home)
         res.render('host/edit-home', {
-            home, pageTitle: 'Edit you Home',
+            home: home,
+            pageTitle: 'Edit you Home',
             currentPage: 'edit-home',
             editing: editing
         });
     });
 };
+

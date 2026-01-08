@@ -4,13 +4,6 @@ const Home = require("../models/home");
 exports.getAddHome = (req, res, next) => {
     res.render('host/edit-home', { pageTitle: 'Add New Home', currentPage: 'add-home' });
 }
-// add edit home
-// exports.getEdithome = (req, res, next) => {
-//     res.render('host/edit-home', { pageTitle: 'Add New Home', currentPage: 'add-home' });
-// }
-
-// Add to storeController.js
-
 exports.getEditHome = (req, res, next) => {
     const homeId = req.params.id;
     Home.fetchById(homeId, (home) => {
@@ -57,6 +50,9 @@ exports.getBooking = (req, res, next) => {
         res.render('store/booking', { home: home, pageTitle: 'Bookings', currentPage: 'Bookings' })
     })
 }
+
+
+
 
 // all bookings list
 exports.getBookings = (req, res, next) => {
