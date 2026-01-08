@@ -1,6 +1,7 @@
 const Favourite = require("../models/favourites");
 const Home = require("../models/home");
 
+
 // Home page
 exports.getHomes = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
@@ -57,6 +58,10 @@ exports.getFavorits = (req, res, next) => {
 exports.getMyFavorites = (req, res, next) => {
     res.render('store/my-favorites', { pageTitle: 'My Favorites', currentPage: 'favorites' });
 };
+
+
+
+
 
 // Home detail page
 exports.getHomeDetail = (req, res, next) => {
@@ -134,3 +139,4 @@ exports.postDeleteHome = (req, res, next) => {
         res.redirect('/host/listings');
     })
 };
+

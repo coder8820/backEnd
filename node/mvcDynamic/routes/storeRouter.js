@@ -2,6 +2,8 @@
 const express = require('express');
 // Core Module
 // const path = require('path');
+
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -9,7 +11,6 @@ app.set("views", "views"); //
 
 // local module
 const storeRouter = express.Router();
-const rootDir = require('../utils/pathUtils');
 const hostController = require('../Controllers/storeController')
 
 
