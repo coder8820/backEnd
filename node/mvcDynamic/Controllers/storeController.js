@@ -95,6 +95,7 @@ exports.postEditHome = (req, res, next) => {
     res.redirect('/host/listings');
 };
 
+
 // Host home list
 exports.getHostHomeList = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
@@ -112,7 +113,7 @@ exports.getEditHome = (req, res, next) => {
         if (!home) {
             return res.status(404).render('404', { pageTitle: '404' });
         }
-        console.log('id=', homeId, 'editing = ', editing, 'homeData = ', home)
+        // console.log('id=', homeId, 'editing = ', editing, 'homeData = ', home)
         res.render('host/edit-home', {
             home: home,
             pageTitle: 'Edit you Home',
@@ -122,3 +123,14 @@ exports.getEditHome = (req, res, next) => {
     });
 };
 
+// Delete funtionality
+exports.postDeleteHome = (req, res, next) => {
+    const homeId = req.params.id;
+    console.log('home deleted', homeId)
+    Home.deleteById(homeId, err => {
+        if (err) {
+            console.log('Error while deletign', err)
+        }
+        res.redirect('/host/listings');
+    })
+};

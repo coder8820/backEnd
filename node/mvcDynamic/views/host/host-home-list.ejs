@@ -78,10 +78,12 @@
                                     class="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition duration-200 text-center">
                                     Edit
                                 </a>
-                                <button onclick="deleteHome('<%= home.id %>')" 
-                                    class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition duration-200">
-                                    Delete
-                                </button>
+                                <form action="/host/delete-home/<%= home.id%>" method="POST">                          
+                                    <button type="submit" onclick="deleteHome('<%= home.id %>')" 
+                                        class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition duration-200">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
