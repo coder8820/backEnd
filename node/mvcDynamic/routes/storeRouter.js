@@ -21,5 +21,6 @@ storeRouter.get("/bookings", hostController.getBookings)
 storeRouter.get("/my-favorites", hostController.getMyFavorites)
 storeRouter.get("/favorit-list", hostController.getFavorits)
 storeRouter.get("/booking/:id", hostController.getBooking)
+storeRouter.post("/my-favorites/delete/:id", hostController.postRemoveFavourite)
 
 module.exports = storeRouter;

@@ -64,18 +64,21 @@
 
                     <!-- Actions -->
                     <div class="mt-4 flex gap-2">
-                        <button onclick="addToFavorite('<%= home.id %>', '<%= home.housename %>', '<%= home.location %>', '<%= home.price %>', '<%= home.rating %>', '<%= home.imageurl %>')"
+                        <!-- <button onclick="addToFavorite('<%= home.id %>', '<%= home.housename %>', '<%= home.location %>', '<%= home.price %>', '<%= home.rating %>', '<%= home.imageurl %>')"
                            class="flex-1 text-center text-sm font-medium
                                   bg-rose-500 text-white py-2 rounded-lg
                                   hover:bg-rose-600 transition">
                             ❤️ Add to Favorite
-                        </button>
-                        <a href="/booking/<%= home.id %>"
-                           class="flex-1 text-center text-sm font-medium
+                        </button> -->
+                        <form action="/my-favorites/delete/<%= home.id %>" method="POST"
+                            class="flex-1 text-center text-sm font-medium
                                   bg-blue-500 text-white py-2 rounded-lg
                                   hover:bg-blue-600 transition">
-                            Book now
+                            <a href="/my-favorites/<%= home.id %>"
+                           >
+                            Remove from favourites
                         </a>
+                        </form>
                     </div>
 
                 </div>
