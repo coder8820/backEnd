@@ -89,13 +89,21 @@ exports.getHostHomeList = (req, res, next) => {
     );
 };
 
+
+
 // Edit Home - GET
 exports.getEditHome = (req, res, next) => {
     const homeId = req.params.id;
+    const editing = req.query.editing === 'true'
     Home.fetchById(homeId, home => {
         if (!home) {
             return res.status(404).render('404', { pageTitle: '404' });
         }
-        res.render('host/edit-home', { home, pageTitle: 'Edit you Home', currentPage: 'edit-home' });
+        console.log('id=', homeId, 'editing = ', editing, 'homeData = ', home)
+        res.render('host/edit-home', {
+            home, pageTitle: 'Edit you Home',
+            currentPage: 'edit-home',
+            editing: editing
+        });
     });
 };
