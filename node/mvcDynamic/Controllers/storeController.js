@@ -74,7 +74,8 @@ exports.getAddHome = (req, res, next) => {
     res.render('host/edit-home', {
         pageTitle: 'Add Home',
         currentPage: 'add-home',
-        editing: false
+        editing: false,
+        home: {},
     });
 };
 
@@ -83,7 +84,7 @@ exports.postAddHome = (req, res, next) => {
     const { housename, location, description, price, rating, imageurl } = req.body;
     const home = new Home(housename, location, description, price, rating, imageurl);
     home.save();
-    res.redirect('/');
+    res.redirect('/host/host-home-list');
 };
 
 exports.postEditHome = (req, res, next) => {

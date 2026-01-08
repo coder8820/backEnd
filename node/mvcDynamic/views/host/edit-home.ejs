@@ -32,7 +32,9 @@
                     <form action="/host/<%= editing ? 'edit-home':'add-home'%>" method="POST" class="space-y-5 relative z-10">
 
                         <!-- Home Name -->
-                            <input type="hidden"value="<%=editing ? home.id : ''%>">
+                            <% if (editing) { %>
+                                <input type="hidden" name="id" value="<%= home.id %>">
+                            <% } %>
                         <div>
                             <label class="block text-sm font-medium mb-1">Home Name</label>
                             <input type="text" name="housename"

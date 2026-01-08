@@ -4,11 +4,13 @@ const path = require('path')
 
 const rootDir = require('../utils/pathUtils');
 const { error } = require('console');
+const homeDataPath = path.join(rootDir, 'data', 'homes.json');
 
 module.exports = class Home {
     constructor(housename, location, description, price, rating, imageurl) {
-        this.id = Date.now().toString(),
-        this.housename = housename,
+        // this.id = Date.now().toString(),
+        this.id = this.id,
+            this.housename = housename,
             this.location = location,
             this.description = description,
             this.price = price,
@@ -17,18 +19,28 @@ module.exports = class Home {
     }
 
     save() {
-       Home.fetchAll((registeredHomes) => {registeredHomes.push(this)
-        const homeDataPath = path.join(rootDir,'data','homes.json');
-        fs.writeFile(homeDataPath, JSON.stringify(registeredHomes),(err) =>{
-            if(err) throw err
-            console.log('file written successfully')
-        })})
+        Home.fetchAll((registeredHomes) => {
+            if (this.id) {// edit case
+                registeredHomes = registeredHomes.map(home => home.id === this.id ? this : home)
+                fs.writeFile(homeDataPath, JSON.stringify(registeredHomes, null, 2), err => {
+                    if (err) throw err
+                    console.log("Home updated Successfully")
+                })
+            } else {// add home case
+                this.id = Math.random().toString()
+                registeredHomes.push(this)
+                fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (err) => {
+                    if (err) throw err
+                    console.log('Home added successfully')
+                })
+            }
+        })
     }
 
     static fetchAll(callback) {
-        const homeDataPath = path.join(rootDir,'data','homes.json');
-        fs.readFile(homeDataPath,(err,data) =>{
-            callback(!err ? JSON.parse(data): [])
+        const homeDataPath = path.join(rootDir, 'data', 'homes.json');
+        fs.readFile(homeDataPath, (err, data) => {
+            callback(!err ? JSON.parse(data) : [])
         })
     }
 
