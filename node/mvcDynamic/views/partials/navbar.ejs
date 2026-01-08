@@ -163,18 +163,18 @@
     });
 
     // 🔥 ACTIVE NAV LOGIC
-    // const currentPath = window.location.pathname;
-    // const navLinks = document.querySelectorAll(".nav-link");
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll(".nav-link");
 
-    // navLinks.forEach(link => {
-    //     if (link.dataset.path === currentPath) {
-    //         link.classList.add(
-    //             "bg-rose-700",  // maroon
-    //             "text-white",
-    //             "shadow"
-    //         );
-    //     } else {
-    //         link.classList.add("hover:bg-rose-100");
-    //     }
-    // });
+    navLinks.forEach(link => {
+        if (link.dataset.path === currentPath) {
+            link.classList.add(
+                "bg-rose-700",  // maroon
+                "text-white",
+                "shadow"
+            );
+        } else {
+            link.classList.add("hover:bg-rose-100");
+        }
+    });
 </script>

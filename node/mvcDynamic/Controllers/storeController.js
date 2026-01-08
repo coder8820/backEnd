@@ -85,7 +85,7 @@ exports.postAddHome = (req, res, next) => {
 // Host home list
 exports.getHostHomeList = (req, res, next) => {
     Home.fetchAll(registeredHomes =>
-        res.render('host/host-home-list', { registeredHomes, pageTitle: 'My Listings', currentPage: 'listings' })
+        res.render('host/host-home-list', { registeredHomes, pageTitle: 'Host Home', currentPage: 'host-home' })
     );
 };
 
@@ -96,6 +96,6 @@ exports.getEditHome = (req, res, next) => {
         if (!home) {
             return res.status(404).render('404', { pageTitle: '404' });
         }
-        res.render('host/edit-home', { home, pageTitle: 'Edit Home', currentPage: 'edit-home' });
+        res.render('host/edit-home', { home, pageTitle: 'Edit you Home', currentPage: 'edit-home' });
     });
 };
