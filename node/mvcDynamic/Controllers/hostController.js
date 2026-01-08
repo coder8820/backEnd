@@ -2,7 +2,7 @@ const Home = require("../models/home");
 
 // add home
 exports.getAddHome = (req, res, next) => {
-    res.render('host/addhome', { pageTitle: 'Add New Home', currentPage: 'add-home' });
+    res.render('host/edit-home', { pageTitle: 'Add New Home', currentPage: 'add-home' });
 }
 
 exports.postAddHome = (req, res, next) => {

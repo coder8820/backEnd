@@ -65,7 +65,7 @@ exports.getHomeDetail = (req, res, next) => {
 
 // Add home - GET
 exports.getAddHome = (req, res, next) => {
-    res.render('host/addhome', { pageTitle: 'Add Home', currentPage: 'add-home' });
+    res.render('host/edit-home', { pageTitle: 'Add Home', currentPage: 'add-home' });
 }
 
 // Add home - POST
