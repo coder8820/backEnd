@@ -63,23 +63,7 @@
                     </p>
 
                     <!-- Actions -->
-                    <div class="mt-4 flex gap-2">
-                        <!-- <button 
-                           class="flex-1 text-center text-sm font-medium
-                                  bg-rose-500 text-white py-2 rounded-lg
-                                  hover:bg-rose-600 transition">
-                            ❤️ Add to Favorite
-                        </button> -->
-                        <!-- <form action="/my-favorites/delete/<%= home.id %>" method="POST"
-                            class="flex-1 text-center text-sm font-medium
-                                  bg-blue-500 text-white py-2 rounded-lg
-                                  hover:bg-blue-600 transition">
-                            <a href="/my-favorites/<%= home.id %>"
-                                onclick="addToFavorite('<%= home.id %>', '<%= home.housename %>', '<%= home.location %>', '<%= home.price %>', '<%= home.rating %>', '<%= home.imageurl %>')"
-                           >
-                            Remove from favourites
-                        </a>
-                        </form> -->
+                    <div class="mt-4 flex gap-2">                       
                         <button
                             onclick="removeFromFavourite('<%= home.id %>', this)"
                             class="flex-1 text-center text-sm font-medium
