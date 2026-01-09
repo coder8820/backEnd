@@ -1,4 +1,5 @@
-const Favourite = require("../models/favourites");
+const Favourite = require('../models/favourite');
+
 const Home = require("../models/home");
 
 
@@ -139,4 +140,41 @@ exports.postDeleteHome = (req, res, next) => {
         res.redirect('/host/listings');
     })
 };
+
+
+exports.postAddToFavourite = (req, res) => {
+    const homeId = req.params.id;
+
+    // 1. Get full home data first
+    Home.fetchById(homeId, (home) => {
+        if (!home) {
+            console.error('Home not found');
+            return res.redirect('/');
+        }
+
+        // 2. Add full home object to favourites
+        Favourite.addToFavourite(home, (err) => {
+            if (err) {
+                console.error(err);
+            }
+            res.redirect('/my-favorites');
+        });
+    });
+};
+
+
+//  removeing
+exports.postRemoveFavourite = (req, res) => {
+    const homeId = req.params.id;
+
+    Favourite.removeFavourite(homeId, (err) => {
+        if (err) {
+            console.error(err);
+            return res.redirect('/my-favorites');
+        }
+        res.redirect('/my-favorites');
+    });
+};
+
+
 

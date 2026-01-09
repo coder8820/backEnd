@@ -11,7 +11,8 @@ app.set("views", "views"); //
 
 // local module
 const storeRouter = express.Router();
-const hostController = require('../Controllers/storeController')
+const hostController = require('../Controllers/storeController');
+
 
 
 storeRouter.get("/", hostController.getIndex)
@@ -21,6 +22,9 @@ storeRouter.get("/bookings", hostController.getBookings)
 storeRouter.get("/my-favorites", hostController.getMyFavorites)
 storeRouter.get("/favorit-list", hostController.getFavorits)
 storeRouter.get("/booking/:id", hostController.getBooking)
-storeRouter.post("/my-favorites/delete/:id", hostController.postRemoveFavourite)
+
+storeRouter.post('/favourite/:id', hostController.postAddToFavourite);
+storeRouter.post('/favourite/remove/:id', hostController.postRemoveFavourite);
+
 
 module.exports = storeRouter;

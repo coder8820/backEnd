@@ -64,21 +64,30 @@
 
                     <!-- Actions -->
                     <div class="mt-4 flex gap-2">
-                        <!-- <button onclick="addToFavorite('<%= home.id %>', '<%= home.housename %>', '<%= home.location %>', '<%= home.price %>', '<%= home.rating %>', '<%= home.imageurl %>')"
+                        <!-- <button 
                            class="flex-1 text-center text-sm font-medium
                                   bg-rose-500 text-white py-2 rounded-lg
                                   hover:bg-rose-600 transition">
                             ❤️ Add to Favorite
                         </button> -->
-                        <form action="/my-favorites/delete/<%= home.id %>" method="POST"
+                        <!-- <form action="/my-favorites/delete/<%= home.id %>" method="POST"
                             class="flex-1 text-center text-sm font-medium
                                   bg-blue-500 text-white py-2 rounded-lg
                                   hover:bg-blue-600 transition">
                             <a href="/my-favorites/<%= home.id %>"
+                                onclick="addToFavorite('<%= home.id %>', '<%= home.housename %>', '<%= home.location %>', '<%= home.price %>', '<%= home.rating %>', '<%= home.imageurl %>')"
                            >
                             Remove from favourites
                         </a>
-                        </form>
+                        </form> -->
+                        <button
+                            onclick="removeFromFavourite('<%= home.id %>', this)"
+                            class="flex-1 text-center text-sm font-medium
+                                    bg-blue-500 text-white py-2 rounded-lg
+                                    hover:bg-blue-600 transition">
+                            Remove from favourites
+                        </button>
+
                     </div>
 
                 </div>
@@ -105,35 +114,24 @@
 
     <%- include('../partials/footer') %>
 
-    <script>
-        function addToFavorite(id, housename, location, price, rating, imageurl) {
-            // Get existing favorites from localStorage
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            
-            // Check if already in favorites
-            const exists = favorites.some(fav => fav.id === id);
-            
-            if (exists) {
-                alert('This home is already in your favorites!');
-                return;
-            }
-            
-            // Add to favorites
-            const favorite = {
-                id: id,
-                housename: housename,
-                location: location,
-                price: price,
-                rating: rating,
-                imageurl: imageurl
-            };
-            
-            favorites.push(favorite);
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            
-            alert('Added to your favorites! 🎉');
-        }
-    </script>
+   <script>
+function removeFromFavourite(homeId, btn) {
+    fetch(`/favourite/remove/${homeId}`, {
+        method: 'POST'
+    })
+    .then(res => {
+        if (!res.ok) throw new Error('Failed');
+        
+        // Remove card ONLY from favorites page
+        const card = btn.closest('.group');
+        card.remove();
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Failed to remove from favorites');
+    });
+}
+</script>
 
 </body>
 </html>
