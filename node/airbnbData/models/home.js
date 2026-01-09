@@ -1,5 +1,5 @@
 // Core Modules
-const db = require("./utils/databaseUtil");
+const db = require("../utils/databaseUtil");
 
 
 module.exports = class Home {
@@ -14,12 +14,7 @@ module.exports = class Home {
   save() { }
 
   static fetchAll(callback) {
-    // db.execute('SELECT * FROM homes').then(([rows, fields]) => {
-    //   console.log("Getting from Database ", rows)
-    // }).catch(err => {
-    //   console.log('Error while getting data: ', err)
-    // })
-
+    return db.execute('SELECT * FROM homes');
   }
 
   static findById(homeId, callback) {
