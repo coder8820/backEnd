@@ -12,13 +12,13 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getHomes = (req, res, next) => {
-  Home.fetchAll((registeredHomes) =>
+  Home.fetchAll().then(([registeredHomes]) => {
     res.render("store/home-list", {
       registeredHomes: registeredHomes,
       pageTitle: "Homes List",
       currentPage: "Home",
     })
-  );
+  });
 };
 
 exports.getBookings = (req, res, next) => {
@@ -30,7 +30,7 @@ exports.getBookings = (req, res, next) => {
 
 exports.getFavouriteList = (req, res, next) => {
   Favourite.getFavourites(favourites => {
-    Home.fetchAll((registeredHomes) => {
+    Home.fetchAll().then(([registeredHomes]) => {
       const favouriteHomes = registeredHomes.filter(home => favourites.includes(home.id));
       res.render("store/favourite-list", {
         favouriteHomes: favouriteHomes,
