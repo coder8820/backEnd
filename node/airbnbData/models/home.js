@@ -14,19 +14,18 @@ module.exports = class Home {
   }
 
   save() {
-    return db.execute(`INSERT INTO homes (houseName,price, location,rating,photoUrl,description) 
-      VALUES('${this.houseName}',${this.price},'${this.location}',${this.rating},'${this.photoUrl}','${this.description}')`)
+    return db.execute('INSERT INTO homes (houseName,price, location,rating,photoUrl,description)VALUES(?, ?, ?, ?, ?, ?)', [this.houseName, this.price, this.location, this.rating, this.photoUrl, this.description])
   }
 
   static fetchAll(callback) {
     return db.execute('SELECT * FROM homes');
   }
 
-  static findById(homeId, callback) {
+  static findById(homeId) {
 
   }
 
-  static deleteById(homeId, callback) {
+  static deleteById(homeId) {
 
   }
 };
