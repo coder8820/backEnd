@@ -27,6 +27,6 @@ module.exports = class Home {
   }
 
   static deleteById(homeId) {
-    return db.execute('DELETE * FROM homes WHERE id=?', [homeId])
+    return db.execute('DELETE FROM homes WHERE id=?', [homeId])
   }
 };
