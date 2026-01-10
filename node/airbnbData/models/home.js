@@ -17,15 +17,16 @@ module.exports = class Home {
     return db.execute('INSERT INTO homes (houseName,price, location,rating,photoUrl,description)VALUES(?, ?, ?, ?, ?, ?)', [this.houseName, this.price, this.location, this.rating, this.photoUrl, this.description])
   }
 
-  static fetchAll(callback) {
+  static fetchAll() {
     return db.execute('SELECT * FROM homes');
   }
 
   static findById(homeId) {
+    return db.execute('SELECT * FROM homes WHERE id=?', [homeId]);
 
   }
 
   static deleteById(homeId) {
-
+    return db.execute('DELETE * FROM homes WHERE id=?', [homeId])
   }
 };
