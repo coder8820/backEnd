@@ -13,7 +13,10 @@ module.exports = class Home {
     this.id = id;
   }
 
-  save() { }
+  save() {
+    return db.execute(`INSERT INTO homes (houseName,price, location,rating,photoUrl,description) 
+      VALUES('${this.houseName}',${this.price},'${this.location}',${this.rating},'${this.photoUrl}','${this.description}')`)
+  }
 
   static fetchAll(callback) {
     return db.execute('SELECT * FROM homes');
