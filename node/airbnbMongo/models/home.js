@@ -22,6 +22,8 @@ module.exports = class Home {
   }
 
   static findById(homeId) {
+    const db = getDB();
+    return db.collection('homes').find({ _id: homeId }).next();
   }
 
   static deleteById(homeId) {
