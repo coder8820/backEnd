@@ -50,7 +50,9 @@ exports.postAddHome = (req, res, next) => {
 exports.postEditHome = (req, res, next) => {
   const { _id, houseName, price, location, rating, photoUrl, description } = req.body;
   const home = new Home(houseName, price, location, rating, photoUrl, description, _id);
-  home.save();
+  home.save().then(result => {
+    console.log("Home updated", result);
+  });
   res.redirect("/host/host-home-list");
 };
 

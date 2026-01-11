@@ -16,7 +16,14 @@ module.exports = class Home {
 
   save() {
     const db = getDB();
-    return db.collection('homes').insertOne(this);
+    if (this._id) {// Update
+      return db.collection('homes').updateOne({ _id: new ObjectId(String(this._id)) }, {
+        $set: this
+      })
+
+    } else {// Insert
+      return db.collection('homes').insertOne(this);
+    }
   }
 
   static fetchAll() {
