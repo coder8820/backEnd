@@ -15,7 +15,7 @@ const mongoConnect = (callback) => {
     })
 }
 
-const getDb = () => {
+const getDB = () => {
     if (!_db) {
         throw new Error('Mongo not connected')
     }
@@ -23,5 +23,5 @@ const getDb = () => {
 }
 
 
-module.exports = mongoConnect;
-exports.getDb = getDb;
+exports.mongoConnect = mongoConnect;
+exports.getDB = getDB;
