@@ -17,6 +17,8 @@ module.exports = class Home {
   }
 
   static fetchAll() {
+    const db = getDB();
+    return db.collection('homes').find().toArray();
   }
 
   static findById(homeId) {
