@@ -43,10 +43,13 @@ exports.getFavouriteList = (req, res, next) => {
 };
 
 exports.postAddToFavourite = (req, res, next) => {
-  Favourite.addToFavourite(req.body.id, error => {
-    if (error) {
-      console.log("Error while marking favourite: ", error);
-    }
+  const homeId = req.body.id;
+  const fav = new Favourite(homeId);
+  fav.save().then(reseult => {
+    console.log('Fav added ', reseult)
+  }).catch(err => {
+    console.log('error while add to favourite', err)
+  }).finally(() => {
     res.redirect("/favourites");
   })
 }

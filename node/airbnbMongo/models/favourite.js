@@ -1,10 +1,17 @@
+const { getDB } = require("../utils/databaseUtil");
+
 module.exports = class Favourite {
 
-  static addToFavourite(homeId, callback) {
-
+  constructor(houseId) {
+    this.houseId = houseId;
   }
 
-  static getFavourites(callback) {
+  save() {
+    const db = getDB();
+    return db.collection('favourites').insertOne(this)
+  }
+
+  static getFavourites() {
 
   }
 
