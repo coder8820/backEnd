@@ -1,0 +1,72 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/nav') %>
+
+  <main class="container mx-auto bg-white shadow-md rounded-lg p-8 mt-10 max-w-6xl">
+    
+    <!-- Title -->
+    <h2 class="text-3xl text-red-500 font-bold text-center mb-8">
+      Details of <%= home.houseName %>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Image -->
+      <div class="rounded-lg overflow-hidden border">
+        <img 
+          src="/<%= home.photoUrl %>" 
+          alt="<%= home.houseName %>" 
+          class="w-full h-96 object-cover"
+        >
+      </div>
+
+      <!-- Details -->
+      <div class="space-y-6">
+
+        <div>
+          <h3 class="text-xl font-semibold mb-1">Description</h3>
+          <p class="text-gray-600 leading-relaxed">
+            <%= home.description %>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-1">Location</h3>
+          <p class="text-gray-600">
+            <%= home.location %>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-1">Price</h3>
+          <p class="text-green-600 text-2xl font-bold">
+            Rs <%= home.price %> / night
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-1">Rating</h3>
+          <div class="flex items-center">
+            <span class="text-yellow-400 text-xl mr-1">★</span>
+            <span class="text-gray-700 font-medium">
+              <%= home.rating %> / 5
+            </span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="pt-4 flex gap-4">
+          <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md transition">
+            Book Now
+          </button>
+
+          <%- include('../partials/favourite') %>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>
