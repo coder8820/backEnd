@@ -9,7 +9,12 @@ module.exports = class Favourite {
 
   save() {
     const db = getDB();
-    return db.collection('favourites').insertOne(this)
+    return db.collection('favourites').findOne({ houseId: this.houseId }).then(exsistingFav => {
+      if (!exsistingFav) {
+        return db.collection('favourites').insertOne(this)
+      }
+      return new Promise.resolve();
+    })
   }
 
   static getFavourites() {
@@ -19,6 +24,6 @@ module.exports = class Favourite {
 
   static deleteById(delHomeId) {
     const db = getDB();
-    return db.collection('favourites').deleteOne({ houseId: delHomeId })
+    return db.collection('favourites').deleteOne({ houseId: new ObjectId(delHomeId) })
   }
 };
