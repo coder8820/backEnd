@@ -28,7 +28,7 @@ exports.getEditHome = (req, res, next) => {
 };
 
 exports.getHostHomes = (req, res, next) => {
-  Home.fetchAll().then(registeredHomes => {
+  Home.find().then(registeredHomes => {
     res.render("host/host-home-list", {
       registeredHomes: registeredHomes,
       pageTitle: "Host Homes List",
@@ -39,7 +39,7 @@ exports.getHostHomes = (req, res, next) => {
 
 exports.postAddHome = (req, res, next) => {
   const { houseName, price, location, rating, photoUrl, description } = req.body;
-  const home = new Home(houseName, price, location, rating, photoUrl, description);
+  const home = new Home({ houseName, price, location, rating, photoUrl, description });
   home.save().then(() => {
     console.log("Home saved successfully.")
   });
@@ -47,14 +47,39 @@ exports.postAddHome = (req, res, next) => {
   res.redirect("/host/host-home-list");
 };
 
+
+
 exports.postEditHome = (req, res, next) => {
   const { _id, houseName, price, location, rating, photoUrl, description } = req.body;
-  const home = new Home(houseName, price, location, rating, photoUrl, description, _id);
-  home.save().then(result => {
-    console.log("Home updated", result);
-  });
-  res.redirect("/host/host-home-list");
+
+  console.log("EDIT HOME ID RECEIVED:", _id); // 👈 ADD THIS
+
+  Home.findById(_id)
+    .then(home => {
+      if (!home) {
+        console.log("❌ Home NOT FOUND for id:", _id);
+        return res.redirect("/host/host-home-list");
+      }
+
+      home.houseName = houseName;
+      home.price = price;
+      home.location = location;
+      home.rating = rating;
+      home.photoUrl = photoUrl;
+      home.description = description;
+
+      return home.save();
+    })
+    .then(() => {
+      console.log("✅ Home updated successfully");
+      res.redirect("/host/host-home-list");
+    })
+    .catch(err => {
+      console.log("Error while updating home", err);
+      res.redirect("/host/host-home-list");
+    });
 };
+
 
 exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;

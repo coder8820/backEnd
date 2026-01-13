@@ -5,6 +5,9 @@ const homeSchema = mongoose.Schema({
   price: { type: Number, required: true },
   location: { type: String, required: true },
   rating: { type: Number, default: 0 },
-  photoUrl: { String },
-  description: { String }
+  photoUrl: String,
+  description: String
 })
+
+
+module.exports = mongoose.model('Home', homeSchema)
