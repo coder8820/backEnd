@@ -29,7 +29,7 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getFavouriteList = (req, res, next) => {
-  Favourite.getFavourites().then(favourites => {
+  Favourite.find().then(favourites => {
     favourites = favourites.map(fav => fav.houseId.toString())
     Home.find().then(registeredHomes => {
       const favouriteHomes = registeredHomes.filter((home) => favourites.includes(home._id.toString()));
@@ -45,7 +45,7 @@ exports.getFavouriteList = (req, res, next) => {
 
 exports.postAddToFavourite = (req, res, next) => {
   const homeId = req.body._id;
-  const fav = new Favourite(homeId);
+  const fav = new Favourite({ houseId: homeId })
   fav.save().then(reseult => {
     console.log('Fav added ', reseult)
   }).catch(err => {
