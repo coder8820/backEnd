@@ -48,14 +48,12 @@ exports.postAddHome = (req, res, next) => {
 
 
 exports.postEditHome = (req, res, next) => {
-  const { _id, houseName, price, location, rating, photoUrl, description } = req.body;
+  const { id, houseName, price, location, rating, photoUrl, description } = req.body;
 
-  console.log("EDIT HOME ID RECEIVED:", _id); // 👈 ADD THIS
-
-  Home.findById(_id)
+  Home.findById(id)
     .then(home => {
       if (!home) {
-        console.log("❌ Home NOT FOUND for id:", _id);
+        console.log("❌ Home NOT FOUND for id:", id);
         return res.redirect("/host/host-home-list");
       }
 
