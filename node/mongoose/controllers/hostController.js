@@ -14,7 +14,6 @@ exports.getEditHome = (req, res, next) => {
 
   Home.findById(homeId).then(home => {
     if (!home) {
-      console.log("Home not found for editing.");
       return res.redirect("/host/host-home-list");
     }
     // console.log(homeId, editing, home);
@@ -43,7 +42,6 @@ exports.postAddHome = (req, res, next) => {
   home.save().then(() => {
     console.log("Home saved successfully.")
   });
-
   res.redirect("/host/host-home-list");
 };
 

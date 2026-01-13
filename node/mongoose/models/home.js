@@ -14,7 +14,6 @@ const homeSchema = mongoose.Schema({
 homeSchema.pre('findOneAndDelete', async function (next) {
   const homeId = this.getQuery()._id;
   await Favourite.deleteMany({ houseId: homeId });
-  console.log('Related favourites Deleted')
 })
 
 module.exports = mongoose.model('Home', homeSchema)
