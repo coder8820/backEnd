@@ -29,18 +29,14 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getFavouriteList = (req, res, next) => {
-  Favourite.find().then(favourites => {
-    favourites = favourites.map(fav => fav.houseId.toString())
-    Home.find().then(registeredHomes => {
-      const favouriteHomes = registeredHomes.filter((home) => favourites.includes(home._id.toString()));
-      res.render("store/favourite-list", {
-        favouriteHomes: favouriteHomes,
-        pageTitle: "My Favourites",
-        currentPage: "favourites",
-      })
-    });
-  })
-
+  Favourite.find().populate('houseId').then(favourites => {
+    const favouriteHomes = favourites.map((fav) => fav.houseId)
+    res.render("store/favourite-list", {
+      favouriteHomes: favouriteHomes,
+      pageTitle: "My Favourites",
+      currentPage: "favourites",
+    })
+  });
 };
 
 exports.postAddToFavourite = (req, res, next) => {
