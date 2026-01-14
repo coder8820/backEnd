@@ -6,3 +6,7 @@ exports.getLogin = (req, res, next) => {
     currentPage: 'login'
   })
 }
+
+exports.postLogin = (req, res, next) => {
+  res.redirect("/")
+}
