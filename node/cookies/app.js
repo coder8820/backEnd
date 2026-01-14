@@ -19,9 +19,29 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.isloggedIn;
+  next();
+});
+
+app.use((req, res, next) => {
+  // console.log('cookie check middleware', req.get('cookie'))
+  req.isloggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true' : false;
+  next();
+})
+
 app.use(express.urlencoded({ extended: true }));
 app.use(storeRouter);
 app.use(authRouter);
+
+app.use("/host", (req, res, next) => {
+  if (req.isloggedIn) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+});
 app.use("/host", hostRouter);
 
 app.use(express.static(path.join(rootDir, 'public')))
