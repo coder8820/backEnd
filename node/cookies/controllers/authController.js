@@ -8,11 +8,11 @@ exports.getAddHome = (req, res, next) => {
   });
 };
 
-exports.getLogin = (req, res, next) => {
-  console.log("login functionality");
-  res.render("host/login", {
-    pageTitleL: 'login form',
-    currentPage: 'login',
-    editing: false
-  })
-}
+// exports.getLogin = (req, res, next) => {
+//   console.log("login functionality");
+//   res.render("host/login", {
+//     pageTitleL: 'login form',
+//     currentPage: 'login',
+//     editing: false
+//   })
+// }
