@@ -7,6 +7,7 @@ const express = require('express');
 //Local Module
 const storeRouter = require("./routes/storeRouter")
 const hostRouter = require("./routes/hostRouter")
+const authRouter = require('./routes/authRouter')
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
 const { default: mongoose } = require('mongoose');
@@ -20,6 +21,7 @@ app.set('views', 'views');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(storeRouter);
+app.use(authRouter);
 app.use("/host", hostRouter);
 
 app.use(express.static(path.join(rootDir, 'public')))
