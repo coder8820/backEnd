@@ -16,7 +16,14 @@ exports.postLogin = (req, res, next) => {
   res.redirect("/")
 }
 
-exports.postLogout = (req, res, next) => {
+// exports.postLogout = (req, res, next) => {
+//   res.clearCookie('isLoggedIn');
+//   res.redirect('/logout')
+// }
+
+exports.postLogout = (req, res) => {
   res.clearCookie('isLoggedIn');
-  res.redirect('/logout')
-}
+  res.render('auth/logout', {
+    pageTitle: 'Logged Out'
+  });
+};
