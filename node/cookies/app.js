@@ -20,23 +20,28 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 
+// app.use((req, res, next) => {
+//   req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true' : false;
+//   res.locals.isLoggedIn = req.isLoggedIn;
+//   next();
+// })
+
 app.use((req, res, next) => {
-  res.locals.isLoggedIn = req.isloggedIn;
+  const cookie = req.headers.cookie;
+
+  req.isLoggedIn = cookie && cookie.includes("isLoggedIn=true");
+  res.locals.isLoggedIn = req.isLoggedIn;
+
   next();
 });
 
-app.use((req, res, next) => {
-  // console.log('cookie check middleware', req.get('cookie'))
-  req.isloggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true' : false;
-  next();
-})
 
 app.use(express.urlencoded({ extended: true }));
 app.use(storeRouter);
 app.use(authRouter);
 
 app.use("/host", (req, res, next) => {
-  if (req.isloggedIn) {
+  if (req.isLoggedIn) {
     next()
   } else {
     res.redirect('/login')
