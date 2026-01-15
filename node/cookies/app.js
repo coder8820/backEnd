@@ -19,6 +19,9 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true' : false;
