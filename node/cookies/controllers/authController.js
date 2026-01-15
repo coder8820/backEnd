@@ -13,5 +13,10 @@ exports.postLogin = (req, res, next) => {
   res.cookie('isLoggedIn', true, {
     httpOnly: true
   })
-  res.redirect("/host/host-home-list")
+  res.redirect("/")
+}
+
+exports.postLogout = (req, res, next) => {
+  res.clearCookie('isLoggedIn');
+  res.redirect('/logout')
 }

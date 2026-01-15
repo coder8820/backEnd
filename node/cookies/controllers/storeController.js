@@ -7,7 +7,7 @@ exports.getIndex = (req, res, next) => {
       registeredHomes: registeredHomes,
       pageTitle: "airbnb Home",
       currentPage: "index",
-      isLoggedIn: req.isLoggedI
+      isLoggedIn: req.isLoggedIn
     })
   })
 };
