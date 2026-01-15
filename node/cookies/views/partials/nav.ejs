@@ -1,7 +1,6 @@
 <header class="bg-red-500 text-white p-4 shadow-md">
   <nav class="container mx-auto flex justify-between items-center">
     <ul class="flex space-x-4">
-      <% if (!isLoggedIn){ %>
       <li>
         <a
           href="/"
@@ -9,13 +8,6 @@
           >airbnb</a
         >
       </li>
-      <li>
-        <a href="/login"
-        class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-        >Login</a>
-      </li>
-      <% } %>
-
       <% if (isLoggedIn){ %>
       <li>
         <a
@@ -57,6 +49,20 @@
         class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
         >Logout</a>
       </li>
+      <% } %>
+
+      <% if (!isLoggedIn){ %>
+       <li>
+        <a href="/login"
+        class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
+        >Login</a>
+      </li>
+      <% } else { %>
+      <form action="/logout" method="POST">
+        <button type="submit"
+        class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
+        >Logout</button>
+      </form>
       <% } %>
     </ul>
   </nav>
