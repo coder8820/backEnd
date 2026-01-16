@@ -21,7 +21,6 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(express.urlencoded({ extended: true }));
-// const cookieParser = require('cookie-parser');
 
 app.use(session({
   secret: 'Complete coding with coder',
@@ -29,10 +28,8 @@ app.use(session({
   saveUninitialized:true
 }))
 
-// app.use(cookieParser());
-
 app.use((req, res, next) => {
-  req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true' : false;
+  req.isLoggedIn = req.session.isLoggedIn;
   next();
 })
 
