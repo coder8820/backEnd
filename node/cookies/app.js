@@ -3,6 +3,7 @@ const path = require('path');
 
 // External Module
 const express = require('express');
+const session = require('express-session');
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
@@ -19,8 +20,13 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+app.use(express.urlencoded({ extended: true }));
 const cookieParser = require('cookie-parser');
-
+app.use(session({
+  secret: 'Complete coding with coder',
+  resave: false,
+  saveUninitialized:true
+}))
 app.use(cookieParser());
 
 app.use((req, res, next) => {
@@ -29,7 +35,6 @@ app.use((req, res, next) => {
 })
 
 
-app.use(express.urlencoded({ extended: true }));
 app.use(storeRouter);
 app.use(authRouter);
 
