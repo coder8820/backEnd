@@ -4,6 +4,9 @@ const path = require('path');
 // External Module
 const express = require('express');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const DB_PATH = "mongodb+srv://coder:coder@cluster0.7it96af.mongodb.net/airbnb";
+
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
@@ -13,19 +16,23 @@ const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
 const { default: mongoose } = require('mongoose');
 
-
-
 const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+const store = new MongoDBStore({
+  uri: DB_PATH,
+  collection: 'session'
+})
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
   secret: 'Complete coding with coder',
   resave: false,
-  saveUninitialized:true
+  saveUninitialized: true,
+  store: store
 }))
 
 app.use((req, res, next) => {
@@ -51,7 +58,6 @@ app.use(express.static(path.join(rootDir, 'public')))
 app.use(errorsController.pageNotFound);
 
 const PORT = 3001;
-const DB_PATH = "mongodb+srv://coder:coder@cluster0.7it96af.mongodb.net/airbnb";
 
 mongoose.connect(DB_PATH).then(() => {
   console.log("Successfully Connect to mongoose")
