@@ -11,15 +11,12 @@ exports.getLogin = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
   console.log(req.body);
   req.session.isLoggedIn = true;
-  // res.cookie('isLoggedIn', true, {
-  //   httpOnly: true
-  // })
   res.redirect("/")
 }
 
 // exports.postLogout = (req, res, next) => {
 //   res.clearCookie('isLoggedIn');
-//   res.redirect('/logout')
+//   res.redirect('/login')
 // }
 
 exports.postLogout = (req, res) => {
