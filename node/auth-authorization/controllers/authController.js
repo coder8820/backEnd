@@ -21,7 +21,6 @@ exports.postLogout = (req, res) => {
 };
 
 exports.getSignup = (req, res, next) => {
-  console.log(req.body);
   res.render('auth/signup', {
     pageTitle: 'signup page',
     currentPage: 'signup',
