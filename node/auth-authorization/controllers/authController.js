@@ -13,11 +13,18 @@ exports.postLogin = (req, res, next) => {
   req.session.isLoggedIn = true;
   res.redirect("/")
 }
-
-
 exports.postLogout = (req, res) => {
   res.clearCookie('isLoggedIn');
   req.session.destroy(() => {
     res.redirect('/login')
   })
 };
+
+exports.postSignup = (req, res, next) => {
+  console.log(req.body);
+  res.render('auth/signUp', {
+    pageTitle: 'signup page',
+    currentPage: 'signup',
+    isLoggedIn: false
+  })
+}
