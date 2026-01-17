@@ -44,9 +44,9 @@ exports.postSignup = [
     .normalizeEmail(),
   
   check('password').isLength({ min: 8 }).withMessage('must me 8 character long')
-    .matches(/[A-Za-z]/).withMessage('at-least one Capital letter')
-    .matches(/[0 - 9]/).withMessage('add one number')
-    .matches(/[@#!$%^&]/)
+    .matches(/[A-Z]/).withMessage('At least one capital letter')
+    .matches(/[0-9]/).withMessage('Add at least one number')
+    .matches(/[@#!$%^&]/).withMessage('Add one special character')
     .trim(),
   
   check('confimPassword').trim()
@@ -74,7 +74,7 @@ exports.postSignup = [
         pageTitle: 'SignUp',
         currentPage: 'signup',
         isLoggedIn: false,
-        errors: errors.array().map(err => err.map),
+        errors: errors.array().map(err => err.msg),
         oldInput:{firstName,lastName,email,password,userType}
       })
     }
