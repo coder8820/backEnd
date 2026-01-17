@@ -25,7 +25,9 @@ exports.getSignup = (req, res, next) => {
   res.render('auth/signup', {
     pageTitle: 'signup page',
     currentPage: 'signup',
-    isLoggedIn: false
+    isLoggedIn: false,
+    errors: [],
+    oldInput: { firstName: '',lastName:'',email:'',password:'',userType:''}
   })
 }
 exports.postSignup = [
@@ -56,6 +58,7 @@ exports.postSignup = [
     }),
   check('userType').notEmpty().withMessage('user type is required')
     .isIn(['guest', 'host']).withMessage('Invalid user type'),
+  
   check('terms').notEmpty().withMessage('Please accept the terms and conditions')
     .custom((value, { req }) => {
       if (value !== 'on') {
