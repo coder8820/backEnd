@@ -1,3 +1,4 @@
+const { check } = require("express-validator");
 
 exports.getLogin = (req, res, next) => {
   console.log("login functionality");
@@ -27,8 +28,17 @@ exports.getSignup = (req, res, next) => {
     isLoggedIn: false
   })
 }
-exports.postSignup = (req, res, next) => {
+exports.postSignup = [
+  check('firstName').trim().isLength({ min: 2 })
+    .withMessage('First name should be 2 character long')
+    .matches(/^[A-Za-z\s]+$/)
+    .withMessage('First name should only be alphabets'),
+  
+  check('lastName')
+    .matches(/^[A-Za-z\s]*$/)
+    .withMessage('First name should only be alphabets')
+  
+,(req, res, next) => {
    console.log(req.body);
-  // req.session.isLoggedIn = true;
   res.redirect("/")
-}
+}]
