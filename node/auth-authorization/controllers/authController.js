@@ -1,4 +1,5 @@
 const { check, validationResult } = require("express-validator");
+const User = require("../models/user");
 
 exports.getLogin = (req, res, next) => {
   console.log("login functionality");
@@ -78,5 +79,6 @@ exports.postSignup = [
         oldInput:{firstName,lastName,email,password,userType}
       })
     }
+    const user = User({firstName,lastName,email,password,userType})
     res.redirect("/login")
   }] 
