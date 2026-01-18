@@ -27,7 +27,7 @@ exports.getSignup = (req, res, next) => {
     currentPage: 'signup',
     isLoggedIn: false,
     errors: [],
-    oldInput: { firstName: '',lastName:'',email:'',password:'',userType:''}
+    oldInput: { firstName: '',lastName:'',email:'',userType:''}
   })
 }
 exports.postSignup = [
@@ -47,12 +47,12 @@ exports.postSignup = [
     .matches(/[A-Z]/).withMessage('At least one capital letter')
     .matches(/[0-9]/).withMessage('Add at least one number')
     .matches(/[@#!$%^&]/).withMessage('Add one special character')
-    .trim(),
+    .trim(), 
   
-  check('confimPassword').trim()
+  check('confirmPassword').trim()
     .custom((value, { req })=> {
     if(value !== req.body.password) {
-        throw new Error('password do not match')
+        throw new Error('Confirm password must match password')
       }
      return true;
     }),
@@ -79,4 +79,4 @@ exports.postSignup = [
       })
     }
     res.redirect("/login")
-}] 
+  }] 

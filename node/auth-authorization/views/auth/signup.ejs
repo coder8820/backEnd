@@ -14,7 +14,7 @@
             <strong class="font-bold text-red-500">Error!</strong>
             <ul class="list-disc list-inside mt-1">
             <% errors.forEach(error => { %>
-                <li><%= error %></li>
+                <li class="text-red-700"><%= error %></li>
             <% }) %>
             </ul>
         </div>
@@ -54,6 +54,7 @@
         type="password"
         name="password"
         placeholder="Password"
+        value="<%= oldInput && oldInput.password ? oldInput.password : '' %>"
         required
         class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
       />
@@ -63,6 +64,7 @@
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password"
+        value="<%= oldInput && oldInput.confirmPassword ? oldInput.confirmPassword : '' %>"
         required
         class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
       />
@@ -74,8 +76,8 @@
         class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
       >
         <option value="" disabled selected>Select User Type</option>
-        <option value="host">Host</option>
-        <option value="guest">Guest</option>
+        <option value="host" <%= oldInput.userType === 'host'? 'selected':'' %>>Host</option>
+        <option value="guest" <%= oldInput.userType === 'guest'? 'selected':'' %>>Guest</option>
       </select>
 
       <!-- Terms and Conditions -->
