@@ -79,6 +79,17 @@ exports.postSignup = [
         oldInput:{firstName,lastName,email,password,userType}
       })
     }
-    const user = User({firstName,lastName,email,password,userType})
-    res.redirect("/login")
+    const user = User({ firstName, lastName, email, password, userType })
+    user.save().then(() => {
+      res.redirect('/login')
+    }).catch((err) => {
+      return res.status(422).render("auth/signup", {
+        pageTitle: 'SignUp',
+        currentPage: 'signup',
+        isLoggedIn: false,
+        errors: [err.msg],
+        oldInput:{firstName,lastName,email,password,userType}
+      })
+    })
+    // res.redirect("/login")
   }] 
