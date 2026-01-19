@@ -1,5 +1,6 @@
 const { check, validationResult } = require("express-validator");
 const User = require("../models/user");
+const bcrypt = require('bcryptjs')
 
 exports.getLogin = (req, res, next) => {
   console.log("login functionality");
@@ -90,23 +91,9 @@ exports.postSignup = [
         pageTitle: 'Signup',
         currentPage: 'signup',
         isLoggedIn: false,
-        errors: [err.msg],
-        oldInput:{firstName,lastName,email,userType}
+        errors: [err.message],
+        oldInput:{firstName,lastName,email,password,userType}
       })
     })
 
-
-    // const user = User({ firstName, lastName, email, password, userType })
-    // user.save().then(() => {
-    //   res.redirect('/login')
-    // }).catch((err) => {
-    //   return res.status(422).render("auth/signup", {
-    //     pageTitle: 'SignUp',
-    //     currentPage: 'signup',
-    //     isLoggedIn: false,
-    //     errors: [err.msg],
-    //     oldInput:{firstName,lastName,email,password,userType}
-    //   })
-    // })
-    // // res.redirect("/login")
   }] 
