@@ -8,6 +8,7 @@ exports.getLogin = (req, res, next) => {
     pageTitle: 'login form',
     currentPage: 'login',
     isLoggedIn: false,
+    oldInput:{email:'',password:''}
   })
 }
 
