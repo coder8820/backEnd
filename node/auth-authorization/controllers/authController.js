@@ -21,12 +21,21 @@ exports.postLogin = async (req, res, next) => {
       currentPage: 'login',
       isLoggedIn: false,
       errors: ['User does not exist'],
-      oldInput:{email}
+      oldInput: { email }
+    })
+  }
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(422).render('auth/login', {
+      pageTitle: 'Login',
+      currentPage: 'login',
+      isLoggedIn: false,
+      errors: ['Invalid Password'],
+      oldInput:{password}
     })
   }
 
-
-
+  req.session.user = user;
   req.session.isLoggedIn = true;
   res.redirect("/")
 }
