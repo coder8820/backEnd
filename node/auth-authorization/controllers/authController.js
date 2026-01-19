@@ -79,6 +79,23 @@ exports.postSignup = [
         oldInput:{firstName,lastName,email,password,userType}
       })
     }
+
+    bcrypt.hash(password, 12).then(hashedPassword => {
+      const user = new User({ firstName, lastName, email, password: hashedPassword, userType });
+      return user.save();
+    }).then(() => {
+      res.redirect('/login')
+    }).catch(err => {
+      return res.status(422).render('auth/signup', {
+        pageTitle: 'Signup',
+        currentPage: 'signup',
+        isLoggedIn: false,
+        errors: [err.msg],
+        oldInput:{firstName,lastName,email,userType}
+      })
+    })
+
+
     const user = User({ firstName, lastName, email, password, userType })
     user.save().then(() => {
       res.redirect('/login')
