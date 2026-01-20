@@ -21,7 +21,7 @@ exports.postLogin = async (req, res, next) => {
       currentPage: 'login',
       isLoggedIn: false,
       errors: ['User does not exist'],
-      oldInput: { email }
+      oldInput: { email ,password:''}
     })
   }
   const isMatch = await bcrypt.compare(password, user.password);
@@ -31,9 +31,9 @@ exports.postLogin = async (req, res, next) => {
       currentPage: 'login',
       isLoggedIn: false,
       errors: ['Invalid Password'],
+      oldInput:{email,password:''}
     })
   }
-
   req.session.user = {
   _id: user._id.toString(),  // store as string
   firstName: user.firstName,
@@ -46,9 +46,8 @@ req.session.save(err => {
   if (err) console.log(err);
   res.redirect('/');
 });
-
-
 }
+
 exports.postLogout = (req, res) => {
   // res.clearCookie('isLoggedIn');
   req.session.destroy(() => {
