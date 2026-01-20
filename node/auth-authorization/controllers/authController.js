@@ -7,7 +7,7 @@ exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     pageTitle: 'login form',
     currentPage: 'login',
-    isLoggedIn: false,
+    // isLoggedIn: false,
     oldInput:{email:'',password:''}
   })
 }
@@ -19,7 +19,7 @@ exports.postLogin = async (req, res, next) => {
     return res.status(422).render('auth/login', {
       pageTitle: 'login',
       currentPage: 'login',
-      isLoggedIn: false,
+      // isLoggedIn: false,
       errors: ['User does not exist'],
       oldInput: { email }
     })
@@ -29,9 +29,8 @@ exports.postLogin = async (req, res, next) => {
     return res.status(422).render('auth/login', {
       pageTitle: 'Login',
       currentPage: 'login',
-      isLoggedIn: false,
+      // isLoggedIn: false,
       errors: ['Invalid Password'],
-      oldInput:{password}
     })
   }
 
@@ -50,7 +49,7 @@ exports.getSignup = (req, res, next) => {
   res.render('auth/signup', {
     pageTitle: 'signup page',
     currentPage: 'signup',
-    isLoggedIn: false,
+    // isLoggedIn: false,
     errors: [],
     oldInput: { firstName: '',lastName:'',email:'',userType:''}
   })
@@ -98,7 +97,7 @@ exports.postSignup = [
       return res.status(422).render("auth/signup", {
         pageTitle: 'SignUp',
         currentPage: 'signup',
-        isLoggedIn: false,
+        // isLoggedIn: false,
         errors: errors.array().map(err => err.msg),
         oldInput:{firstName,lastName,email,password,userType}
       })
@@ -113,7 +112,7 @@ exports.postSignup = [
       return res.status(422).render('auth/signup', {
         pageTitle: 'Signup',
         currentPage: 'signup',
-        isLoggedIn: false,
+        // isLoggedIn: false,
         errors: [err.message],
         oldInput:{firstName,lastName,email,password,userType}
       })
