@@ -32,7 +32,8 @@ app.use(session({
   secret: 'Complete coding with coder',
   resave: false,
   saveUninitialized: false,
-  store: store
+  store: store,
+  cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
 }))
 
 app.use((req, res, next) => {

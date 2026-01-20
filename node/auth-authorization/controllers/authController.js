@@ -34,9 +34,26 @@ exports.postLogin = async (req, res, next) => {
     })
   }
 
-  req.session.user = user;
-  req.session.isLoggedIn = true;
-  res.redirect("/")
+//   req.session.user = user;
+//   req.session.isLoggedIn = true;
+//   req.session.save(err => {
+//   if (err) console.log(err);
+//   res.redirect('/');
+  // });
+  req.session.user = {
+  _id: user._id.toString(),  // store as string
+  firstName: user.firstName,
+  lastName: user.lastName,
+  email: user.email,
+  userType: user.userType
+};
+req.session.isLoggedIn = true;
+req.session.save(err => {
+  if (err) console.log(err);
+  res.redirect('/');
+});
+
+
 }
 exports.postLogout = (req, res) => {
   // res.clearCookie('isLoggedIn');
