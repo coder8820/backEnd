@@ -35,17 +35,17 @@ exports.postLogin = async (req, res, next) => {
     })
   }
   req.session.user = {
-  _id: user._id.toString(),  // store as string
-  firstName: user.firstName,
-  lastName: user.lastName,
-  email: user.email,
-  userType: user.userType
-};
-req.session.isLoggedIn = true;
-req.session.save(err => {
-  if (err) console.log(err);
-  res.redirect('/');
-});
+    _id: user._id.toString(),  // store as string
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    userType: user.userType
+  };
+  req.session.isLoggedIn = true;
+  await req.session.save(err => {
+    if (err) console.log(err);
+    res.redirect('/');
+  });
 }
 
 exports.postLogout = (req, res) => {
