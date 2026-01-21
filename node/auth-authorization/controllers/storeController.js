@@ -1,5 +1,6 @@
-const Favourite = require("../models/favourite");
+// const Favourite = require("../models/favourite");
 const Home = require("../models/home");
+const User = require("../models/user");
 
 exports.getIndex = (req, res, next) => {
   console.log('Session value', req.session)
@@ -29,38 +30,37 @@ exports.getBookings = (req, res, next) => {
   })
 };
 
-exports.getFavouriteList = (req, res, next) => {
-  Favourite.find().populate('houseId').then(favourites => {
-    const favouriteHomes = favourites.map((fav) => fav.houseId)
+exports.getFavouriteList = async (req, res, next) => {
+  const userId = req.session.user._id;
+  const user = await User.findById(userId).populate('favourites');
+  console.log('user', user)
     res.render("store/favourite-list", {
-      favouriteHomes: favouriteHomes,
+      favouriteHomes: user.favourites,
       pageTitle: "My Favourites",
       currentPage: "favourites",
     })
-  });
 };
 
-exports.postAddToFavourite = (req, res, next) => {
+exports.postAddToFavourite = async (req, res, next) => {
   const homeId = req.body._id;
-  const fav = new Favourite({ houseId: homeId })
-  fav.save().then(reseult => {
-    console.log('Fav added ', reseult)
-  }).catch(err => {
-    console.log('error while add to favourite', err)
-  }).finally(() => {
+  const userId = req.session.user._id;
+  const user = await User.findById(userId);
+  if (!user.favourites.includes(homeId)) {
+    user.favourites.push(homeId);
+    await user.save()
+  }
     res.redirect("/favourites");
-  })
 }
 
-exports.postRemoveFromFavourite = (req, res, next) => {
+exports.postRemoveFromFavourite = async (req, res, next) => {
   const homeId = req.params.homeId;
-  Favourite.deleteOne({ houseId: homeId }).then(reseult => {
-    console.log('Fav removed ', reseult)
-  }).catch(err => {
-    console.log('error while removing from favourite', err)
-  }).finally(() => {
+  const userId = req.session.user._id;
+  const user = await User.findById(userId);
+  if(user.favourites.includes(homeId)) {
+    user.favourites = user.favourites.filter(fav => fav.toString() !== homeId);
+    await user.save();
+  }
     res.redirect("/favourites");
-  })
 }
 
 exports.getHomeDetails = (req, res, next) => {
