@@ -11,6 +11,7 @@
     <!-- Middle: Menu (only if logged in) -->
     <% if (isLoggedIn){ %>
       <ul class="flex space-x-3 md:space-x-4">
+        <% if(user && user.userType === 'guest') {%>
         <li>
           <a href="/homes"
              class="<%= currentPage === 'Home' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
@@ -29,6 +30,7 @@
             Bookings
           </a>
         </li>
+        <% } else { %>
         <li>
           <a href="/host/host-home-list"
              class="<%= currentPage === 'host-homes' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
@@ -41,6 +43,7 @@
             Add Home
           </a>
         </li>
+        <% } %>
       </ul>
     <% } %>
 
