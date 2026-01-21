@@ -8,7 +8,8 @@ exports.getLogin = (req, res, next) => {
     pageTitle: 'login form',
     currentPage: 'login',
     isLoggedIn: false,
-    oldInput:{email:'',password:''}
+    oldInput: { email: '', password: '' },
+    user: {}
   })
 }
 
@@ -21,7 +22,8 @@ exports.postLogin = async (req, res, next) => {
       currentPage: 'login',
       isLoggedIn: false,
       errors: ['User does not exist'],
-      oldInput: { email ,password:''}
+      oldInput: { email, password: '' },
+      user:{}
     })
   }
   const isMatch = await bcrypt.compare(password, user.password);
@@ -31,7 +33,8 @@ exports.postLogin = async (req, res, next) => {
       currentPage: 'login',
       isLoggedIn: false,
       errors: ['Invalid Password'],
-      oldInput:{email,password:''}
+      oldInput: { email, password: '' },
+      user:{}
     })
   }
   req.session.user = {
@@ -61,7 +64,8 @@ exports.getSignup = (req, res, next) => {
     currentPage: 'signup',
     isLoggedIn: false,
     errors: [],
-    oldInput: { firstName: '',lastName:'',email:'',userType:''}
+    oldInput: { firstName: '', lastName: '', email: '', userType: '' },
+    user: {}
   })
 }
 exports.postSignup = [
@@ -109,7 +113,8 @@ exports.postSignup = [
         currentPage: 'signup',
         isLoggedIn: false,
         errors: errors.array().map(err => err.msg),
-        oldInput:{firstName,lastName,email,password,userType}
+        oldInput: { firstName, lastName, email, password, userType },
+        user:{}
       })
     }
 
@@ -124,7 +129,8 @@ exports.postSignup = [
         currentPage: 'signup',
         isLoggedIn: false,
         errors: [err.message],
-        oldInput:{firstName,lastName,email,password,userType}
+        oldInput: { firstName, lastName, email, password, userType },
+        user:{}
       })
     })
 
