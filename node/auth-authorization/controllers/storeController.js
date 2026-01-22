@@ -56,6 +56,7 @@ exports.postRemoveFromFavourite = async (req, res, next) => {
   const homeId = req.params.homeId;
   const userId = req.session.user._id;
   const user = await User.findById(userId);
+  console.log('deleted favourite',user)
   if(user.favourites.includes(homeId)) {
     user.favourites = user.favourites.filter(fav => fav.toString() !== homeId);
     await user.save();
