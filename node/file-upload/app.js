@@ -5,6 +5,8 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const { default: mongoose } = require('mongoose');
+const multer = require('multer')
 const DB_PATH = "mongodb+srv://coder:coder@cluster0.7it96af.mongodb.net/airbnb";
 
 
@@ -14,7 +16,6 @@ const hostRouter = require("./routes/hostRouter")
 const authRouter = require('./routes/authRouter')
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
-const { default: mongoose } = require('mongoose');
 
 const app = express();
 
@@ -26,7 +27,13 @@ const store = new MongoDBStore({
   collection: 'session'
 })
 
+const upload = multer({
+  dest: 'uploads/'
+});
+
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(rootDir, 'public')));
+app.use(upload.single('photo'))
 
 app.use(session({
   secret: 'Complete coding with coder',
@@ -55,7 +62,6 @@ app.use("/host", (req, res, next) => {
 });
 app.use("/host", hostRouter);
 
-app.use(express.static(path.join(rootDir, 'public')))
 
 app.use(errorsController.pageNotFound);
 
