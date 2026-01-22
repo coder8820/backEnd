@@ -45,11 +45,10 @@
 
 
         <input
-          type="url"
+          type="file"
           name="photo"
+          accept="image/jpg,image/jpeg,image/png"
           required
-          value="<%= editing ? home.photo : ''%>"
-          placeholder="https://example.com/photo.jpg"
           class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"/>
         <input type="submit" value="<%= editing ? "Update Home" : "Add Home"%>" class="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300" />
       </form>
