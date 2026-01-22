@@ -22,10 +22,23 @@
                   <span class="text-gray-700"><%= home.rating %></span>
                 </div>
               </div>
-              <a href="/host/edit-home/<%=home._id%>?editing=true" class="bg-blue-500 p-2">Edit</a>
+             <!-- <div class="mt-4 space-y-2"> -->
+              <a
+                href="/host/edit-home/<%= home._id %>?editing=true"
+                class="block w-full text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Edit
+              </a><br/><br/>
+
               <form action="/host/delete-home/<%= home._id %>" method="POST">
-                <button type="submit" class="bg-red-500 p-2">Delete</button>
+                <button
+                  type="submit"
+                  class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">
+                  Delete
+                </button>
               </form>
+            <!-- </div> -->
+
+
             </div>
           </div>
         <% }) %>
