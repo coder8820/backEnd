@@ -39,6 +39,10 @@ exports.getHostHomes = (req, res, next) => {
 exports.postAddHome = (req, res, next) => {
   const { houseName, price, location, rating, photo, description } = req.body;
   console.log(req.file)
+  if (!req.file) {
+    console.log('No image provided');
+    return req.status(422).send('No image provided')
+  }
   const home = new Home({ houseName, price, location, rating, photo, description });
   home.save().then(() => {
     console.log("Home saved successfully.")
