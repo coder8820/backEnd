@@ -27,13 +27,13 @@ const store = new MongoDBStore({
   collection: 'session'
 })
 
-const upload = multer({
-  dest: 'uploads/'
-});
+// const upload = multer({
+//   dest: 'uploads/'
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(rootDir, 'public')));
-app.use(upload.single('photo'))
+app.use(multer().single('photo'))
 
 app.use(session({
   secret: 'Complete coding with coder',
