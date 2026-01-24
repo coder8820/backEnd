@@ -16,7 +16,6 @@ exports.getEditHome = (req, res, next) => {
     if (!home) {
       return res.redirect("/host/host-home-list");
     }
-    // console.log(homeId, editing, home);
     res.render("host/edit-home", {
       home: home,
       pageTitle: "Edit your Home",
