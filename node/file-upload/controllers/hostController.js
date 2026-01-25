@@ -18,7 +18,7 @@ exports.getEditHome = (req, res, next) => {
     }
     res.render("host/edit-home", {
       home: home,
-      pageTitle: "Edit your Home",
+      pageTitle: "Edit Home",
       currentPage: "host-homes",
       editing: editing,
     });
@@ -49,7 +49,6 @@ exports.postAddHome = (req, res, next) => {
   });
   res.redirect("/host/host-home-list");
 };
-
 
 
 exports.postEditHome = (req, res, next) => {
