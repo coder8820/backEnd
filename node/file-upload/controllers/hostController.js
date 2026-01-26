@@ -53,7 +53,7 @@ exports.postAddHome = (req, res, next) => {
 
 exports.postEditHome = (req, res, next) => {
   const { id, houseName, price, location, rating, description } = req.body;
-  const photo = req.file.path;
+  const photo = req.file.path.replace('\\','/');
   Home.findById(id)
     .then(home => {
       home.houseName = houseName;
@@ -62,7 +62,7 @@ exports.postEditHome = (req, res, next) => {
       home.rating = rating;
       home.description = description;
       if (req.file) {
-        home.photo = req.file.path;
+        photo = req.file.path;
       }
       return home.save();
     })
