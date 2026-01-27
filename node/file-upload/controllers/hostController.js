@@ -37,6 +37,9 @@ exports.getHostHomes = (req, res, next) => {
 
 exports.postAddHome = (req, res, next) => {
   const { houseName, price, location, rating, description } = req.body;
+  console.log("FILE 👉", req.file);
+  console.log("BODY 👉", req.body);
+
    if (!req.file) {
     console.log('No image provided')
     return res.status(422).send('no image provided')
@@ -61,7 +64,7 @@ exports.postEditHome = (req, res, next) => {
       home.rating = rating;
       home.description = description;
       if (req.file) {
-        home.photo = '/' + req.file.path.replace(/\\/g,'/')
+        home.photo = '/uploads/' + req.file.filename;
       }
       return home.save();
     })
