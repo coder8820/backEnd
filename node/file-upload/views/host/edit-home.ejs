@@ -4,9 +4,11 @@
     <%- include('../partials/nav') %>
     <main class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
       <h1 class="text-3xl font-bold mb-6 text-center text-gray-800"><%= editing ? "Edit" : "Register"%> Your Home is Now on AirBnB</h1>
-      <form action="/host/<%= editing ? "edit-home" : 'add-home'%>"
-        method="POST"enctype="multipart/form-data" enctype="multipart/form-data"
-         class="max-w-md mx-auto">
+      <form
+          action="/host/<%= editing ? 'edit-home' : 'add-home' %>"
+          method="POST"
+          enctype="multipart/form-data"
+          class="max-w-md mx-auto">
         <input type="hidden" name="id" value="<%= editing ? home._id.toString() : '' %>" />
         <input
           type="text"
@@ -49,10 +51,10 @@
           type="file"
           name="photo"
           accept="image/jpg,image/jpeg,image/png"
-          <%= editing ? "" : "required" %>
+          <%= editing ? '' : 'required' %>
           class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"/>
         <input type="submit" 
-        value="<%= editing ? "Update Home" : "Add Home"%>" 
+        value="<%= editing ? 'Update Home' : 'Add Home'%>" 
         class="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300" />
       </form>
     </main>
