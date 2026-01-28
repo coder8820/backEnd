@@ -9,7 +9,13 @@ const homeSchema = mongoose.Schema({
     photo: {
     type: String, 
     required: true
-  }
+  },
+  host: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User",
+  required: true
+}
+
 })
 
 module.exports = mongoose.model('Home', homeSchema)
