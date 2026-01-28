@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+
 const Home = require("../models/home");
 
 exports.getAddHome = (req, res, next) => {
@@ -75,13 +78,39 @@ exports.postEditHome = (req, res, next) => {
     });
 };
 
-
 exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;
-  console.log('Came to delete ', homeId);
-  Home.findByIdAndDelete(homeId).then(() => {
-    res.redirect("/host/host-home-list");
-  }).catch(error => {
-    console.log('Error while editing ', error)
-  })
+
+  Home.findById(homeId)
+    .then(home => {
+      if (!home) {
+        return res.redirect("/host/host-home-list");
+      }
+
+      // 🔥 IMAGE DELETE FROM DISK
+      const imagePath = path.join(
+        __dirname,
+        '..',
+        home.photo   // e.g. /uploads/abc.jpg
+      );
+
+      fs.unlink(imagePath, err => {
+        if (err) {
+          console.log("❌ Error deleting image:", err);
+        } else {
+          console.log("🗑 Image deleted from disk");
+        }
+      });
+
+      // 🔥 DELETE FROM DB
+      return Home.findByIdAndDelete(homeId);
+    })
+    .then(() => {
+      console.log("✅ Home deleted successfully");
+      res.redirect("/host/host-home-list");
+    })
+    .catch(err => {
+      console.log("❌ Error while deleting home", err);
+      res.redirect("/host/host-home-list");
+    });
 };
