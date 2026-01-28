@@ -1,0 +1,55 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+<%- include('../partials/nav') %>
+
+<main class="max-w-6xl mx-auto p-8">
+
+  <!-- PROFILE CARD -->
+  <div class="bg-white shadow rounded-lg p-6 flex gap-6">
+    <img src="/<%= user.photo || 'images/default-user.png' %>"
+         class="w-32 h-32 rounded-full object-cover">
+
+    <div>
+      <h2 class="text-2xl font-bold"><%= user.firstName %> <%= user.lastName %></h2>
+      <p class="text-gray-600"><%= user.email %></p>
+
+      <span class="inline-block mt-2 px-4 py-1 rounded
+        <%= user.userType === 'host' ? 'bg-green-500' : 'bg-blue-500' %>
+        text-white">
+        <%= user.userType.toUpperCase() %>
+      </span>
+    </div>
+  </div>
+
+  <!-- GUEST SECTION -->
+  <% if (user.userType === 'guest') { %>
+    <h3 class="text-xl font-bold mt-10 mb-4">❤️ Favourite Homes</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <% user.favourites.forEach(home => { %>
+        <div class="shadow rounded p-4">
+          <img src="/<%= home.photo %>" class="h-40 w-full object-cover rounded">
+          <h4 class="font-semibold mt-2"><%= home.houseName %></h4>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <!-- HOST SECTION -->
+  <% if (user.userType === 'host') { %>
+    <h3 class="text-xl font-bold mt-10 mb-4">🏠 My Listed Homes</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <% hostHomes.forEach(home => { %>
+        <div class="shadow rounded p-4">
+          <img src="/<%= home.photo %>" class="h-40 w-full object-cover rounded">
+          <h4 class="font-semibold mt-2"><%= home.houseName %></h4>
+          <a href="/host/edit-home/<%= home._id %>"
+             class="block mt-2 text-blue-500">Edit</a>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+</main>
+</body>
+</html>

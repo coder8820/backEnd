@@ -30,38 +30,64 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getFavouriteList = async (req, res, next) => {
-  const userId = req.session.user._id;
-  const user = await User.findById(userId).populate('favourites');
-  console.log('user', user)
-    res.render("store/favourite-list", {
-      favouriteHomes: user.favourites,
-      pageTitle: "My Favourites",
-      currentPage: "favourites",
-    })
+  if (!req.session.user) return res.redirect('/login');
+
+  const user = await User
+    .findById(req.session.user._id)
+    .populate('favourites');
+
+  const cleanFavourites = user.favourites.filter(h => h !== null);
+
+  res.render("store/favourite-list", {
+    favouriteHomes: cleanFavourites,
+    pageTitle: "My Favourites",
+    currentPage: "favourites",
+  });
 };
 
+
+
 exports.postAddToFavourite = async (req, res, next) => {
-  const homeId = req.body._id;
-  const userId = req.session.user._id;
-  const user = await User.findById(userId);
-  if (!user.favourites.includes(homeId)) {
-    user.favourites.push(homeId);
-    await user.save()
-  }
+  try {
+    if (!req.session.user) return res.redirect('/login');
+
+    const homeId = req.body._id;
+    const userId = req.session.user._id;
+
+    await User.updateOne(
+      { _id: userId },
+      { $addToSet: { favourites: homeId } }
+    );
+
     res.redirect("/favourites");
-}
+  } catch (err) {
+    console.log("Error adding favourite:", err);
+    res.redirect("/homes");
+  }
+};
+
+
+
 
 exports.postRemoveFromFavourite = async (req, res, next) => {
-  const homeId = req.params.homeId;
-  const userId = req.session.user._id;
-  const user = await User.findById(userId);
-  console.log('deleted favourite',user)
-  if(user.favourites.includes(homeId)) {
-    user.favourites = user.favourites.filter(fav => fav.toString() !== homeId);
-    await user.save();
-  }
+  try {
+    if (!req.session.user) return res.redirect('/login');
+
+    const homeId = req.params.homeId;
+    const userId = req.session.user._id;
+
+    await User.updateOne(
+      { _id: userId },
+      { $pull: { favourites: homeId } }
+    );
+
     res.redirect("/favourites");
-}
+  } catch (err) {
+    console.log("Error removing favourite:", err);
+    res.redirect("/favourites");
+  }
+};
+
 
 exports.getHomeDetails = (req, res, next) => {
   const homeId = req.params.homeId;
