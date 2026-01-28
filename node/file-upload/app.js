@@ -29,7 +29,6 @@ const store = new MongoDBStore({
   collection: 'session'
 })
 
-app.use(profileRoutes);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(rootDir, 'public')));
 app.use('/uploads', express.static(path.join(rootDir, 'uploads')));
@@ -50,6 +49,7 @@ app.use((req, res, next) => {
 });
 
 
+app.use(profileRoutes);
 app.use(storeRouter);
 app.use(authRouter);
 
