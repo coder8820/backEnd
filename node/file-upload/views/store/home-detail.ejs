@@ -1,72 +1,66 @@
 <%- include('../partials/head') %>
 </head>
-<body>
-  <%- include('../partials/nav') %>
+<body class="bg-gray-100">
 
-  <main class="container mx-auto bg-white shadow-md rounded-lg p-8 mt-10 max-w-6xl">
-    
-    <!-- Title -->
-    <h2 class="text-3xl text-red-500 font-bold text-center mb-8">
-      Details of <%= home.houseName %>
-    </h2>
+<%- include('../partials/nav') %>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      
-      <!-- Image -->
-      <div class="rounded-lg overflow-hidden border">
-        <img 
-          src="/<%= home.photo %>" 
-          alt="<%= home.houseName %>" 
-          class="w-full h-96 object-cover"
-        >
-      </div>
+<main class="container mx-auto mt-12 p-6 max-w-6xl">
 
-      <!-- Details -->
-      <div class="space-y-6">
+  <!-- Title -->
+  <h2 class="text-4xl font-extrabold text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 mb-12">
+    Details of <%= home.houseName %>
+  </h2>
 
-        <div>
-          <h3 class="text-xl font-semibold mb-1">Description</h3>
-          <p class="text-gray-600 leading-relaxed">
-            <%= home.description %>
-          </p>
-        </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-        <div>
-          <h3 class="text-xl font-semibold mb-1">Location</h3>
-          <p class="text-gray-600">
-            <%= home.location %>
-          </p>
-        </div>
-
-        <div>
-          <h3 class="text-xl font-semibold mb-1">Price</h3>
-          <p class="text-green-600 text-2xl font-bold">
-            Rs <%= home.price %> / night
-          </p>
-        </div>
-
-        <div>
-          <h3 class="text-xl font-semibold mb-1">Rating</h3>
-          <div class="flex items-center">
-            <span class="text-yellow-400 text-xl mr-1">★</span>
-            <span class="text-gray-700 font-medium">
-              <%= home.rating %> / 5
-            </span>
-          </div>
-        </div>
-
-        <!-- Actions -->
-        <div class="pt-4 flex gap-4">
-          <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md transition">
-            Book Now
-          </button>
-
-          <%- include('../partials/favourite') %>
-        </div>
-
-      </div>
+    <!-- Image -->
+    <div class="rounded-xl overflow-hidden border-2 border-gray-200 shadow-xl transform hover:scale-105 transition duration-500">
+      <img src="/<%= home.photo.replace(/\\/g, '/') %>" 
+           alt="<%= home.houseName %>" 
+           class="w-full h-96 object-cover">
     </div>
 
-  </main>
+    <!-- Details -->
+    <div class="space-y-6 p-4 bg-white rounded-xl shadow-xl border border-gray-200">
+      
+      <div>
+        <h3 class="text-2xl font-semibold mb-2">Description</h3>
+        <p class="text-gray-600 leading-relaxed"><%= home.description %></p>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-semibold mb-2">Location</h3>
+        <p class="text-gray-700"><%= home.location %></p>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-semibold mb-2">Price</h3>
+        <p class="text-green-500 text-3xl font-bold">Rs <%= home.price %> / night</p>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-semibold mb-2">Rating</h3>
+        <div class="flex items-center gap-2">
+          <span class="text-yellow-400 text-2xl">★</span>
+          <span class="text-gray-800 font-medium text-lg"><%= home.rating %> / 5</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex gap-4 mt-6">
+        <button class="relative px-6 py-2 font-semibold text-white rounded-lg overflow-hidden
+                       bg-gradient-to-r from-red-500 via-pink-500 to-purple-500
+                       shadow-lg hover:scale-105 transform transition duration-300
+                       before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white before:opacity-10 before:blur-md">
+          Book Now
+        </button>
+
+        <%- include('../partials/favourite', { home: home }) %>
+      </div>
+
+    </div>
+
+  </div>
+</main>
 </body>
 </html>

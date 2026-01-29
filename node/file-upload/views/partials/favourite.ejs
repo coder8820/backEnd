@@ -1,4 +1,10 @@
-<form action="/favourites" method="POST">
-  <button type="submit" class="bg-green-300 p-2 hover:bg-green-500">Add to Favourite</button>
+<form action="/favourites" method="POST" class="flex justify-center">
   <input type="hidden" name="_id" value="<%= home._id %>">
+  <button type="submit"
+          class="relative px-4 py-2 font-semibold text-white rounded-lg overflow-hidden
+                 bg-gradient-to-r from-green-400 via-green-500 to-green-600
+                 shadow-lg hover:scale-105 transform transition duration-300
+                 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white before:opacity-10 before:rounded-lg before:blur-md">
+    ❤️ Add to Favourite
+  </button>
 </form>

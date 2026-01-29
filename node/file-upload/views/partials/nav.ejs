@@ -1,75 +1,82 @@
-<header class="bg-red-500 text-white p-4 shadow-md">
-  <nav class="container mx-auto flex justify-between items-center">
+<header class="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-md shadow-lg">
+  <nav class="container mx-auto flex justify-between items-center py-2 px-6">
 
     <!-- Left: Logo -->
     <div>
-      <a href="/" class="font-bold text-xl hover:opacity-90 transition">
+      <a href="/" class="font-extrabold text-2xl text-red-500 hover:text-red-400 transition-all duration-300 tracking-wide">
         airbnb
       </a>
     </div>
 
     <!-- Middle: Menu (only if logged in) -->
     <% if (isLoggedIn){ %>
-      <ul class="flex space-x-3 md:space-x-4">
+      <ul class="flex space-x-3 md:space-x-6">
         <% if(user && user.userType === 'guest') {%>
-        <li>
-          <a href="/homes"
-             class="<%= currentPage === 'Home' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
-            Homes-List
-          </a>
-        </li>
-        <li>
-          <a href="/favourites"
-             class="<%= currentPage === 'favourites' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
-            Favourites
-          </a>
-        </li>
-        <li>
-          <a href="/bookings"
-             class="<%= currentPage === 'bookings' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
-            Bookings
-          </a>
-        </li>
+          <li>
+            <a href="/homes"
+               class="relative px-4 py-2 rounded-lg transition-all duration-300 <%= currentPage === 'Home' ? 'bg-red-500 font-bold text-white shadow-lg' : 'hover:bg-red-600/70' %>">
+              Homes-List
+              <% if(currentPage === 'Home'){ %>
+                <span class="absolute -bottom-1 left-1/2 w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+              <% } %>
+            </a>
+          </li>
+          <li>
+            <a href="/favourites"
+               class="relative px-4 py-2 rounded-lg transition-all duration-300 <%= currentPage === 'favourites' ? 'bg-red-500 font-bold text-white shadow-lg' : 'hover:bg-red-600/70' %>">
+              Favourites
+            </a>
+          </li>
+          <li>
+            <a href="/bookings"
+               class="relative px-4 py-2 rounded-lg transition-all duration-300 <%= currentPage === 'bookings' ? 'bg-red-500 font-bold text-white shadow-lg' : 'hover:bg-red-600/70' %>">
+              Bookings
+            </a>
+          </li>
         <% } else { %>
-        <li>
-          <a href="/host/host-home-list"
-             class="<%= currentPage === 'host-homes' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
-            Host Homes
-          </a>
-        </li>
-        <li>
-          <a href="/host/add-home"
-             class="<%= currentPage === 'addHome' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
-            Add Home
-          </a>
-        </li>         
+          <li>
+            <a href="/host/host-home-list"
+               class="relative px-4 py-2 rounded-lg transition-all duration-300 <%= currentPage === 'host-homes' ? 'bg-red-500 font-bold text-white shadow-lg' : 'hover:bg-red-600/70' %>">
+              Host Homes
+            </a>
+          </li>
+          <li>
+            <a href="/host/add-home"
+               class="relative px-4 py-2 rounded-lg transition-all duration-300 <%= currentPage === 'addHome' ? 'bg-red-500 font-bold text-white shadow-lg' : 'hover:bg-red-600/70' %>">
+              Add Home
+            </a>
+          </li>
         <% } %>
       </ul>
     <% } %>
 
     <!-- Right: Auth Buttons -->
-    <div class="flex space-x-3 md:space-x-4">
+    <div class="flex items-center space-x-4">
       <% if (!isLoggedIn){ %>
         <a href="/signup"
-           class="py-2 px-4 rounded hover:bg-red-600 transition font-medium">
+           class="px-4 py-2 rounded-lg border border-red-500 hover:bg-red-500/30 transition duration-300">
           SignUp
         </a>
         <a href="/login"
-           class="py-2 px-4 rounded hover:bg-red-600 transition font-medium">
+           class="px-4 py-2 rounded-lg border border-red-500 hover:bg-red-500/30 transition duration-300">
           Login
         </a>
       <% } else { %>
         <form action="/logout" method="POST">
           <button type="submit"
-                  class="py-2 px-4 rounded hover:bg-red-600 transition font-medium">
+                  class="px-4 py-2 rounded-lg border border-red-500 hover:bg-red-500/30 transition duration-300">
             Logout
           </button>
         </form>
-        <li>
-         <% if (isLoggedIn) { %>
-            <a href="/profile" class="hover:text-red-500">Profile</a>
-          <% } %>
-        </li>
+
+        <!-- Profile Link with Neon Glow -->
+        <a href="/profile" class="flex items-center space-x-2 px-3 py-2 rounded-lg bg-gray-800/60 backdrop-blur-md hover:shadow-[0_0_20px_rgba(255,0,0,0.6)] transition-all duration-300">
+          <img
+            src="<%= user?.photo || 'https://i.pravatar.cc/40' %>"
+            class="w-10 h-10 rounded-full object-cover border-2 border-red-500 shadow-md hover:scale-110 transition-transform duration-300"
+          />
+          <span class="text-white font-semibold tracking-wide">Profile</span>
+        </a>
       <% } %>
     </div>
 
