@@ -38,45 +38,86 @@ exports.getHostHomes = (req, res, next) => {
   });
 };
 
-exports.postAddHome = (req, res, next) => {
-  const { houseName, price, location, rating, description } = req.body;
-  console.log("FILE 👉", req.file);
-   if (!req.file) {
-    console.log('No image provided')
-    return res.status(422).send('no image provided')
-  }
-  const photo = "/uploads/" + req.file.filename;
-  const home = new Home({ houseName, price, location, rating, photo, description });
-  home.save().then(() => {
-    console.log("Home saved successfully.")
-  });
-  res.redirect("/host/host-home-list");
-};
+exports.postAddHome = async (req, res, next) => {
+  try {
+    const { houseName, price, location, rating, description } = req.body;
 
+    if (!req.file) {
+      console.log('No image provided');
+      return res.status(422).send('No image provided');
+    }
 
-exports.postEditHome = (req, res, next) => {
-  const { id, houseName, price, location, rating, description } = req.body;
-  Home.findById(id)
-    .then(home => {
-      home.houseName = houseName;
-      home.price = price;
-      home.location = location;
-      home.rating = rating;
-      home.description = description;
-      if (req.file) {
-        home.photo = "/uploads/" + req.file.filename;
-      }
-      return home.save();
-    })
-    .then(() => {
-      console.log("✅ Home updated successfully");
-      res.redirect("/host/host-home-list");
-    })
-    .catch(err => {
-      console.log("Error while updating home", err);
-      res.redirect("/host/host-home-list");
+    // Windows path fix
+    const photoPath = req.file.path.replace(/\\/g, '/');
+
+    // Assign host from session
+    const home = new Home({
+      houseName,
+      price,
+      location,
+      rating,
+      description,
+      photo: photoPath,
+      host: req.session.user._id   // <-- THIS IS REQUIRED
     });
+
+    await home.save();
+    console.log("✅ Home saved successfully.");
+
+    res.redirect("/host/host-home-list");
+
+  } catch (err) {
+    console.log("❌ Error in adding home:", err);
+    res.redirect("/host/add-home");
+  }
 };
+
+
+
+exports.postEditHome = async (req, res, next) => {
+  try {
+    const { id, houseName, price, location, rating, description } = req.body;
+
+    // Find the home first
+    const home = await Home.findById(id);
+    if (!home) {
+      console.log("❌ Home not found");
+      return res.redirect("/host/host-home-list");
+    }
+
+    // Ensure the logged-in host is editing their own home
+    if (home.host.toString() !== req.session.user._id) {
+      console.log("❌ Unauthorized attempt to edit home");
+      return res.redirect("/host/host-home-list");
+    }
+
+    // Update fields
+    home.houseName = houseName;
+    home.price = price;
+    home.location = location;
+    home.rating = rating;
+    home.description = description;
+
+    // Update photo if uploaded
+    if (req.file) {
+      const photoPath = req.file.path.replace(/\\/g, '/');
+      home.photo = photoPath;
+    }
+
+    // Re-assign host just in case
+    home.host = req.session.user._id;
+
+    await home.save();
+    console.log("✅ Home updated successfully");
+
+    res.redirect("/host/host-home-list");
+
+  } catch (err) {
+    console.log("❌ Error while updating home:", err);
+    res.redirect("/host/host-home-list");
+  }
+};
+
 
 exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;
