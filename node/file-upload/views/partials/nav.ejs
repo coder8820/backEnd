@@ -30,11 +30,6 @@
             Bookings
           </a>
         </li>
-        <li>
-          <% if (isLoggedIn) { %>
-            <a href="/profile" class="hover:text-red-500">Profile</a>
-          <% } %>
-        </li>
         <% } else { %>
         <li>
           <a href="/host/host-home-list"
@@ -47,12 +42,7 @@
              class="<%= currentPage === 'addHome' ? 'bg-red-600 font-semibold' : 'hover:bg-red-600' %> py-2 px-4 rounded transition duration-300">
             Add Home
           </a>
-        </li>
-        <li>
-          <% if (isLoggedIn) { %>
-            <a href="/profile" class="hover:text-red-500">Profile</a>
-          <% } %>
-        </li>
+        </li>         
         <% } %>
       </ul>
     <% } %>
@@ -75,6 +65,11 @@
             Logout
           </button>
         </form>
+        <li>
+         <% if (isLoggedIn) { %>
+            <a href="/profile" class="hover:text-red-500">Profile</a>
+          <% } %>
+        </li>
       <% } %>
     </div>
 
